@@ -34,13 +34,13 @@ import java.util.logging.Logger;
 class PassportsRepositoryTest {
 
     @Autowired
-    private IPassports passportsRepository;
+    private IPassportsRepository passportsRepository;
 
     @Autowired
     private IUsersRepository userRepository;
 
     @Autowired
-    private ICountries countriesRepository;
+    private ICountriesRepository countriesRepository;
 
     @Autowired
     private IAddress addressRepository;
@@ -139,6 +139,30 @@ class PassportsRepositoryTest {
         addressRepository.save(address);
         passportsRepository.save(passport);
         userRepository.saveAndFlush(user);
+    }
+
+
+    @Test
+    void addPassportToExistUser(){
+        User user = userRepository.findById(1L).get();
+
+        Passport passport = new Passport();
+
+        passport.setName("Vitali");
+        passport.setSurname("Tsvirko");
+        passport.setPassportNo("MP123456");
+        passport.setPersonalNo("12345678PB7");
+        passport.setDateOfBirth(LocalDate.of(1986,10,12));
+        passport.setIssueDate(LocalDate.of(2021,1,1));
+        passport.setExpirationDate(LocalDate.of(2031,1,1));
+        passport.setCountryOfIssue(countriesRepository.findById("BLR").get());
+        passport.setPlaceOfBirth("Новолукомль");
+
+
+        user.setPassport(passport);
+
+        passportsRepository.save(passport);
+        userRepository.save(user);
     }
 
 }

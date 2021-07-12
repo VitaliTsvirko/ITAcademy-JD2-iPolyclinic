@@ -9,12 +9,12 @@
      <meta name="description" content="">
 </head>
 
-<body>
+<body class="bg-light">
 <%@include file="header.jsp"%>
 
     <link href="static/css/auth.css" rel="stylesheet">
 
-    <main class="container">
+    <main class="container bg-white">
 
       <div class="auth-form px-3">
         <div class="auth-form-header p-0">

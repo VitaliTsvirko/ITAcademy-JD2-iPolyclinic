@@ -10,7 +10,7 @@
 
 </head>
 
-<body>
+<body class="bg-light">
 <%@include file="header.jsp"%>
 
 <main class="container">

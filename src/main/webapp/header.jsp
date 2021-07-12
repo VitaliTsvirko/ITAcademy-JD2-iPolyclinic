@@ -6,7 +6,7 @@
 <link href="<c:url value='/static/css/navbar.css'/>" rel="stylesheet">
 
 <header>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
         <div class="container-xxl">
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -33,7 +33,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">${sessionScope.user.phoneNo}</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdown01" >
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Выйти</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/userinfo.jsp">Профиль</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile.jsp">Профиль</a></li>
                             </ul>
                         </li>
                     </c:otherwise>

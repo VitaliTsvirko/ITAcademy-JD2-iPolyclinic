@@ -1,8 +1,7 @@
 package by.it_academy.jd2.controller;
 
 import by.it_academy.jd2.domain.User;
-import by.it_academy.jd2.service.IUserService;
-import org.dom4j.rule.Mode;
+import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -4,6 +4,7 @@ import by.it_academy.jd2.core.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
 import by.it_academy.jd2.repository.IUsersRepository;
+import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,7 +14,7 @@ import javax.transaction.Transactional;
  */
 @Service
 @Transactional
-public class UserService implements IUserService{
+public class UserService implements IUserService {
 
     private final IUsersRepository usersRepository;
 
@@ -42,5 +43,10 @@ public class UserService implements IUserService{
     @Override
     public User authentication(String login, String password) {
         return usersRepository.findByPhoneNo(login);
+    }
+
+
+    public User getUserById(Long id){
+        return usersRepository.findById(id).get();
     }
 }

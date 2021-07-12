@@ -1,7 +1,7 @@
 package by.it_academy.jd2.utils.countries;
 
 import by.it_academy.jd2.domain.Countries;
-import by.it_academy.jd2.repository.ICountries;
+import by.it_academy.jd2.repository.ICountriesRepository;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class InitStaticDBData {
 
-    private ICountries repository;
+    private ICountriesRepository repository;
     private Path filePath;
 
-    public InitStaticDBData(ICountries repository, Path filePath) {
+    public InitStaticDBData(ICountriesRepository repository, Path filePath) {
         this.repository = repository;
         this.filePath = filePath;
     }
