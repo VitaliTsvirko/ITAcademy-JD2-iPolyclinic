@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="70mm"
+   height="20mm"
+   viewBox="0 0 70 20"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="logo_source.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="171.04975"
+     inkscape:cy="-1.4870624"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#9155a7;fill-opacity:1;stroke-width:0.0499077"
+       id="path5"
+       d="M 25.505207,10.974381 H 21.220534 L 19.713073,5.8429743 A 0.54603983,0.54603983 0 0 0 19.182954,5.5171266 0.54559066,0.54559066 0 0 0 18.692212,5.8997195 L 15.531559,15.527559 12.192536,2.0168529 A 0.54569048,0.54569048 0 0 0 11.67135,1.5875968 c -0.251934,-0.0047 -0.475071,0.1622 -0.589459,0.405999 L 7.3982047,11.024289 H 1.6040239 c -0.3012927,0 -0.5456906,0.244349 -0.5456906,0.545742 v 0.134201 c 0,0.301342 0.2443979,0.545741 0.5456906,0.545741 h 6.3601338 c 0.2567252,0 0.4787146,-0.178969 0.5332634,-0.429755 L 11.57398,3.9961411 15.007479,18.080037 c 0.04033,0.296002 0.242251,0.483505 0.490692,0.505365 0.01612,0.0014 0.03219,0.0021 0.04811,0.0021 0.229775,0 0.437341,-0.144832 0.514648,-0.414882 l 3.17877,-10.3106764 1.038578,3.9833824 a 0.54574039,0.54574039 0 0 0 0.511155,0.354693 h 4.677048 c 0.301342,0 0.545739,-0.244348 0.545739,-0.54574 l 0.03872,-0.134206 c -5e-5,-0.301341 -0.244398,-0.545691 -0.545741,-0.545691 z" />
+    <text
+       id="text834"
+       y="10.017235"
+       x="28.581726"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#9155a7;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.81944px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#9155a7;fill-opacity:1;stroke-width:0.264583"
+         y="10.017235"
+         x="28.581726"
+         id="tspan832"
+         sodipodi:role="line">iPolyclinic</tspan></text>
+    <text
+       id="text838"
+       y="16.287323"
+       x="28.982628"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:Roboto;-inkscape-font-specification:'Roboto, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke-width:0.264583"
+         y="16.287323"
+         x="28.982628"
+         id="tspan836"
+         sodipodi:role="line">Exams &amp; Diagnostic</tspan></text>
+  </g>
+</svg>
