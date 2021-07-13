@@ -1,29 +1,8 @@
-.auth-form {
-    width: 340px;
-    margin: 0 auto;
-}
-
-.auth-form-body{
-    background-color: #f6f8fa;
-    border-top: 1px solid;
-    border-radius: 6px;
-    padding: 20px;
-    font-size: 14px;
-    border: #eaecef 1px solid;
-}
-
 .auth-form label{
     display: block;
     margin-bottom: 7px;
-    font-weight: 400;
+    font-weight: 600;
     text-align: left;
-}
-
-.auth-form-header h1 {
-    font-size: 20px;
-    font-weight: 300;
-    letter-spacing: -.5px;
-    text-align: center;
 }
 
 .input-block {
@@ -61,4 +40,8 @@
     padding-left: 5px;
     color: var(--bs-danger);
     content: "*";
+}
+
+.h-15{
+    height: 20px!important
 }

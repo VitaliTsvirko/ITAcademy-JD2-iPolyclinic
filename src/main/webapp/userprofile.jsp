@@ -5,17 +5,15 @@
 <html>
 <head>
     <title>Профиль пользователя</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <%@include file="layouts/head.jsp"%>
 </head>
 
-<body class="d-flex flex-column h-100 bg-light">
-    <%@include file="header.jsp"%>
+<body class="bg-light">
+    <%@include file="layouts/header.jsp"%>
 
     <link href="static/css/userprofile.css" rel="stylesheet">
 
-    <main class="container">
+    <main class="container-md pt-5">
 
 
         <!--begin::tabs container-->
@@ -23,7 +21,7 @@
 
             <div class="card-header border-0 cursor-pointer m-0 p-0">
                 <div class="card-title m-3">
-                    <h3 class="fw-bolder mb-3">Профиль пользователя</h3>
+                    <h3 class="fw-bolder mb-3 fs-4">Профиль пользователя</h3>
                 </div>
 
                 <!--begin::tabs header-->
@@ -199,6 +197,6 @@
         <!--end::tabs container-->
     </main>
 
-    <%@include file="footer.jsp"%>
+    <%@include file="layouts/footer.jsp"%>
 </body>
 </html>

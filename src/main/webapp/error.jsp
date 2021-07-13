@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    <%@include file="header.jsp"%>
+    <%@include file="layouts/header.jsp"%>
 
-    <main class="container">
+    <main class="container-md pt-5">
         <div class="starter-template text-center py-5 px-3">
             <c:choose>
                 <c:when test="${empty requestScope.storageError}">
@@ -30,6 +30,6 @@
         </div>
     </main>
 
-    <%@include file="footer.jsp"%>
+    <%@include file="layouts/footer.jsp"%>
 </body>
 </html>

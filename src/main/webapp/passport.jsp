@@ -7,17 +7,15 @@
 <html>
 <head>
     <title>Профиль пользователя</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <%@include file="layouts/head.jsp"%>
 </head>
 
 <body class="d-flex flex-column h-100">
-    <%@include file="header.jsp"%>
+    <%@include file="layouts/header.jsp"%>
 
     <link href="static/css/userprofile.css" rel="stylesheet">
 
-    <main class="container">
+    <main class="container-md pt-5">
 
         <spring:url value="/passport" var="passportActionUrl" />
 
@@ -116,6 +114,6 @@
 
     </main>
 
-    <%@include file="footer.jsp"%>
+    <%@include file="layouts/footer.jsp"%>
 </body>
 </html>

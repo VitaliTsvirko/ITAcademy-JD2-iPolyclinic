@@ -4,21 +4,20 @@
 <html>
 <head>
     <title>Поликлиника</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-
+    <%@include file="layouts/head.jsp"%>
 </head>
 
 <body class="bg-light">
-<%@include file="header.jsp"%>
+    <%@include file="layouts/header.jsp"%>
 
-<main class="container">
-    <div class="starter-template text-center py-5 px-3">
-       <p>Умная поликлиника</p>
-    </div>
-</main>
+    <main class="container-md pt-5">
 
-<%@include file="footer.jsp"%>
+        <div class="text-center py-5 px-3">
+           <p>Умная поликлиника</p>
+        </div>
+
+    </main>
+
+<%@include file="layouts/footer.jsp"%>
 </body>
 </html>

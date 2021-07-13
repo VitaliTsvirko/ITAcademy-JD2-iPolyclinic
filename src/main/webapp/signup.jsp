@@ -3,50 +3,62 @@
 
 <html>
 <head>
-     <title>SingUp</title>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <meta name="description" content="">
+     <title>Регистрация</title>
+    <%@include file="layouts/head.jsp"%>
 </head>
 
 <body class="bg-light">
-<%@include file="header.jsp"%>
+<%@include file="layouts/header.jsp"%>
+<link href="static/css/auth.css" rel="stylesheet">
 
-    <link href="static/css/auth.css" rel="stylesheet">
+<main class="container-md pt-5">
+    <div class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card shadow p-3 mb-5 bg-body rounded border-0" style="border-radius: .5rem!important;">
+                        <div class="card-body p-4 text-center">
 
-    <main class="container bg-white">
+                            <div class="fs-3 m-2">
+                                Зарегистрироваться
+                            </div>
+                            <div class="fs-7 mb-2 pb-3">
+                                Есть аккаунта, <a href="${pageContext.request.contextPath}/login.jsp">войти</a>
+                            </div>
 
-      <div class="auth-form px-3">
-        <div class="auth-form-header p-0">
-            <h1>Регистрация нового пользователя</h1>
-            <c:if test="${requestScope.signupResult != null}">
-                <p class="text-danger">${requestScope.signupResult}</p>
-            </c:if>
+                            <div>
+                                <form action="login" method="POST" class="auth-form">
+                                    <div class="form-outline mb-4">
+                                        <label for="inputName">Номер телефона</label>
+                                        <input type="tel" name="phoneNo" id="inputName" pattern="\+375\-[0-9]{2}\-[0-9]{3}\-[0-9]{2}\-[0-9]{2}" class="form-control input-block" placeholder="+375(__)___-__-__" required autofocus >
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="inputPassword">Пароль</label>
+                                        <input type="password" name="password" id="inputPassword" class="form-control input-block" required>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label for="inputPassword">Подтвертиде, пароль</label>
+                                        <input type="password" name="confirmPassword" id="inputConfirmPassword" class="form-control input-block" required>
+                                    </div>
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Зарегистрироваться</button>
+                                </form>
+                            </div>
+
+                            <div class="text-center text-muted text-uppercase fw-bolder my-2">или</div>
+
+                            <button class="btn btn-lg btn-block btn-primary border-0" style="color: #7e8299; background-color: #f5f8fa;" type="submit"><a><img alt="Logo" src="static/image/google-icon.svg" class="h-15 me-3">Войти через Google</a></button>
+                            <button class="btn btn-lg btn-block btn-primary border-0 mb-2" style="color: #7e8299; background-color: #f5f8fa;" type="submit"><a><img alt="Logo" src="static/image/github-icon.svg" class=" h-15 me-3">Войти через GitHub</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="auth-form-body mt-3">
-            <form action="signup" method="POST" class="form-group required">
-
-                <label for="inputName" class="sr-only">Номер телефона</label>
-                <input type="tel" name="phoneNo" id="inputName" pattern="\+375\-[0-9]{2}\-[0-9]{3}\-[0-9]{2}\-[0-9]{2}" class="form-control input-block" placeholder="+375(__)___-__-__" required autofocus >
-
-                <label class="sr-only">Пароль</label>
-                <input type="password" id="inputPassword" name="password" placeholder="Пароль" class="form-control input-block" required>
-
-                <label class="sr-only">Пожалуйста, подтвердите пароль</label>
-                <input type="password" id="inputConfirmPassword" name="confirmPassword" placeholder="Пароль" class="form-control input-block" required>
-
-                <button class="btn btn-primary btn-block" type="submit">Зарегистрироваться</button>
-            </form>
-        </div>
-
     </div>
 
-    </main>
+</main>
 
-    <%@include file="footer.jsp"%>
- </body>
-
+<%@include file="layouts/footer.jsp"%>
+</body>
 
 <script>
     var password = document.getElementById("inputPassword")
@@ -63,8 +75,6 @@
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
 </script>
-
-
 </html>
 
 
