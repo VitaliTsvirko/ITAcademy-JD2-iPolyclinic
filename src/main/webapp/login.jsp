@@ -34,7 +34,7 @@
                                     <form action="login" method="POST" class="auth-form">
 
                                         <div class="form-outline mb-4">
-                                            <label for="inputName">Имя пользователя</label>
+                                            <label for="inputName">Номер телефона</label>
                                             <input type="text" name="login" id="inputName" class="form-control input-block" required autofocus >
                                         </div>
 

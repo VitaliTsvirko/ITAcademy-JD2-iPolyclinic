@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by Vitali Tsvirko
  */
@@ -25,8 +28,10 @@ public class PassportController {
     }
 
     @GetMapping
-    public String addPassportForm(Model model){
+    public String addPassportForm(Model model, HttpServletRequest request){
         Passport passport = new Passport();
+
+        HttpSession session = request.getSession(false);
 
         passport.setName("Name");
         passport.setSurname("Surname");
@@ -34,7 +39,7 @@ public class PassportController {
         model.addAttribute("userPassport", passport);
         model.addAttribute("countriesMap", countryService.getAllCountries());
 
-        return "passport.jsp";
+        return "passport";
     }
 
     @PostMapping
@@ -47,7 +52,7 @@ public class PassportController {
         System.out.println("passport post service");
 
 
-        return "userprofile.jsp";
+        return "userprofile";
     }
 
 

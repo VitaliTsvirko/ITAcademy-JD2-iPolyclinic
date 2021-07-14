@@ -5,6 +5,7 @@ import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
 import by.it_academy.jd2.repository.IUsersRepository;
 import by.it_academy.jd2.service.api.IUserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,8 +19,11 @@ public class UserService implements IUserService {
 
     private final IUsersRepository usersRepository;
 
-    public UserService(IUsersRepository usersRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(IUsersRepository usersRepository, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -32,7 +36,7 @@ public class UserService implements IUserService {
 
         User user = new User();
         user.setPhoneNo(phoneNo);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         user.setState(ApplicationUserState.SIGNUP);
 
         usersRepository.save(user);

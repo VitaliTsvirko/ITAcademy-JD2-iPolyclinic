@@ -41,7 +41,7 @@ public class UserProfileInfo {
 
         model.addAttribute("countriesMap", countryService.getAllCountries());
 
-        return "userprofile.jsp";
+        return "userprofile";
     }
 
 }

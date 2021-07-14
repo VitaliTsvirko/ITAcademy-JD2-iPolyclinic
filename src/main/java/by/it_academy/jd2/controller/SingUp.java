@@ -41,7 +41,7 @@ public class SingUp {
         }
 
 
-        return "index.jsp";
+        return "index";
     }
 
 
