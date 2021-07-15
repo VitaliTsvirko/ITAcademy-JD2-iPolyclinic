@@ -28,7 +28,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User userSignUp(String phoneNo, String password){
+    public User createUser(String phoneNo, String password){
         User existingUser = usersRepository.findByPhoneNo(phoneNo);
 
         if (existingUser != null){
@@ -45,12 +45,6 @@ public class UserService implements IUserService {
 
         return user;
     }
-
-    @Override
-    public User authentication(String login, String password) {
-        return usersRepository.findByPhoneNo(login);
-    }
-
 
     public User getUserById(Long id){
         return usersRepository.findById(id).get();

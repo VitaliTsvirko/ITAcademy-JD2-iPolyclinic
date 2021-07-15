@@ -35,7 +35,7 @@ public class SingUpController {
                              Model model){
 
         try{
-            User user = usersService.userSignUp(phoneNo, password);
+            User user = usersService.createUser(phoneNo, password);
         } catch (UsernameAlreadyUsedException e){
             model.addAttribute("error", "Пользователь с таким номер телефона уже зарегестрирован");
             return "signup";
