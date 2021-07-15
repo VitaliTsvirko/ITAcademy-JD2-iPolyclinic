@@ -12,8 +12,8 @@
 <link href="static/css/auth.css" rel="stylesheet">
 
 <main class="container-md pt-5">
-    <div class="vh-100">
-        <div class="container py-5 h-100">
+    <div class="vh-80">
+        <div class="container py-5 h-80">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card shadow p-3 mb-5 bg-body rounded border-0" style="border-radius: .5rem!important;">
@@ -23,11 +23,17 @@
                                 Зарегистрироваться
                             </div>
                             <div class="fs-7 mb-2 pb-3">
-                                Есть аккаунта, <a href="${pageContext.request.contextPath}/login.jsp">войти</a>
+                                Есть аккаунт, <a href="${pageContext.request.contextPath}/login.jsp">войти</a>
                             </div>
 
+                            <c:if test="${not empty requestScope.error}">
+                                <div class="alert alert-danger d-flex align-items-center mx-4" role="alert">
+                                        ${requestScope.error}
+                                </div>
+                            </c:if>
+
                             <div>
-                                <form action="login" method="POST" class="auth-form">
+                                <form action="signup" method="POST" class="auth-form">
                                     <div class="form-outline mb-4">
                                         <label for="inputName">Номер телефона</label>
                                         <input type="tel" name="phoneNo" id="inputName" pattern="\+375\-[0-9]{2}\-[0-9]{3}\-[0-9]{2}\-[0-9]{2}" class="form-control input-block" placeholder="+375(__)___-__-__" required autofocus >

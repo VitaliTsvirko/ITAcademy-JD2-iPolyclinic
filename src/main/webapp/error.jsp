@@ -4,32 +4,21 @@
 <html>
 <head>
     <title>Ошибка</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-
+    <%@include file="layouts/head.jsp"%>
 </head>
+<body class="bg-light">
+<%@include file="layouts/header.jsp"%>
 
-<body>
-    <%@include file="layouts/header.jsp"%>
+<main class="container-md pt-5">
 
-    <main class="container-md pt-5">
-        <div class="starter-template text-center py-5 px-3">
-            <c:choose>
-                <c:when test="${empty requestScope.storageError}">
-                    <p style="font-size: 32px">Упс!!!!</p>
-                    <p style="font-size: 20px">Ошибка 404 - Запрашиваемая страница не найдена</p>
-                    <p class="login-callout mt-3"> Перейти <a href="${pageContext.request.contextPath}/index.jsp">на главную страницу</a> </p>
-                </c:when>
-                <c:otherwise>
-                    <p style="font-size: 32px">Упс!!!!</p>
-                    <p style="font-size: 20px">Произошла ошибка работы с базой...</p>
-                    <p class="login-callout mt-3"> Перейти <a href="${pageContext.request.contextPath}/index.jsp">на главную страницу</a> </p>
-                </c:otherwise>
-            </c:choose>
-        </div>
-    </main>
+    <div class="text-center py-5 px-3">
+        <p style="font-size: 32px">Упс!!!!</p>
+        <p style="font-size: 20px">Ошибка 404 - Запрашиваемая страница не найдена</p>
+        <p class="login-callout mt-3"> Перейти <a href="${pageContext.request.contextPath}/index.jsp">на главную страницу</a> </p>
+    </div>
 
-    <%@include file="layouts/footer.jsp"%>
+</main>
+
+<%@include file="layouts/footer.jsp"%>
 </body>
 </html>

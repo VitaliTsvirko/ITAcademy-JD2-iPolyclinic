@@ -1,4 +1,4 @@
-package by.it_academy.jd2.controller;
+package by.it_academy.jd2.controller.signup;
 
 import by.it_academy.jd2.core.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.User;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping(value = "/signup")
-public class SingUp {
+public class SingUpController {
 
     private final IUserService usersService;
 
-    public SingUp(IUserService usersService) {
+    public SingUpController(IUserService usersService) {
         this.usersService = usersService;
     }
 
@@ -37,7 +37,8 @@ public class SingUp {
         try{
             User user = usersService.userSignUp(phoneNo, password);
         } catch (UsernameAlreadyUsedException e){
-            return "error";
+            model.addAttribute("error", "Пользователь с таким номер телефона уже зарегестрирован");
+            return "signup";
         }
 
 

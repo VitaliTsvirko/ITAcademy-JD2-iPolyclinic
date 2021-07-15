@@ -3,6 +3,7 @@ package by.it_academy.jd2.service;
 import by.it_academy.jd2.core.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
+import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.repository.IUsersRepository;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,6 +39,7 @@ public class UserService implements IUserService {
         user.setPhoneNo(phoneNo);
         user.setPassword(passwordEncoder.encode(password));
         user.setState(ApplicationUserState.SIGNUP);
+        user.setUserRole(UserRoles.USER);
 
         usersRepository.save(user);
 

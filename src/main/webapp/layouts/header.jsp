@@ -39,14 +39,14 @@
                         <c:choose>
                             <c:when test="${sessionScope.user == null}">
                                 <li class="nav-item mx-3">
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/login.jsp">Личный кабинет</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/login">Личный кабинет</a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item mx-3 dropdown">
                                     <a class="nav-link dropdown-toggle" id="dropdown01" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Личный кабинет</a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdown01" >
-                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile.jsp">Профиль</a>
+                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile">Профиль</a>
                                         <a class="dropdown-item" href="#">Записаться на прием</a>
                                         <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Выйти</a>
                                     </ul>
