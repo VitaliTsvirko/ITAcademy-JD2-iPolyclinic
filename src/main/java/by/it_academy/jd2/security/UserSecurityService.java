@@ -29,11 +29,9 @@ public class UserSecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User existingUser = usersRepository.findByPhoneNo(login);
-
-        if (existingUser == null){
-            throw new UsernameNotFoundException("User with phone number" + login + "was not found");
-        }
+        User existingUser = usersRepository.findByPhoneNo(login).orElseThrow(
+                () -> new UsernameNotFoundException("User with phone number" + login + "was not found")
+        );
 
         List<UserRoles> userRoles = new ArrayList<>();
         userRoles.add(existingUser.getUserRole());

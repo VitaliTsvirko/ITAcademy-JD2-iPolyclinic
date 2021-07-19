@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public interface ICountryService {
 
-    Map<String, String> getAllCountries();
+    Map<String, String> getAllCountriesOrderByShotName();
 
 
 }

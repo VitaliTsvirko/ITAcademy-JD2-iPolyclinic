@@ -1,7 +1,12 @@
 package by.it_academy.jd2.config;
 
+import by.it_academy.jd2.repository.ICountriesRepository;
+import by.it_academy.jd2.utils.countries.InitStaticDBData;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import java.nio.file.Path;
 
 /**
  * Created by Vitali Tsvirko

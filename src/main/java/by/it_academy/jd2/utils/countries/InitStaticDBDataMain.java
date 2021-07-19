@@ -14,6 +14,7 @@ public class InitStaticDBDataMain {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(RootConfig.class);
 
+
         InitStaticDBData initStaticDBData = context.getBean("initStaticDBData", InitStaticDBData.class);
 
         List<Countries> countries = initStaticDBData.readCountriesDataFromFile();

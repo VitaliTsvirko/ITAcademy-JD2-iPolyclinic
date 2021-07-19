@@ -32,7 +32,8 @@ public class UserAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         HttpSession session = request.getSession(false);
         if (session != null) {
-            User loginUser = usersRepository.findByPhoneNo(authentication.getName());
+            User loginUser = usersRepository.findByPhoneNo(authentication.getName()).get();
+
             session.setAttribute("user", loginUser);
 
             //redirect to request page

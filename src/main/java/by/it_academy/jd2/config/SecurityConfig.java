@@ -10,6 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @PropertySource("classpath:application.properties")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -72,9 +74,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and().authorizeRequests()
                 .antMatchers("/userprofile/**").authenticated()
                 .antMatchers("/passport/**").authenticated()
+                .antMatchers("/api/manager/**").hasAnyAuthority("ADMIN, ROOT, DOCTOR")
+                .antMatchers("/api/**").authenticated()
                 .antMatchers("/login/**").permitAll()
-                .antMatchers("/signup").permitAll();
+                .antMatchers("/signup").permitAll()
+                .antMatchers("/api2/**").permitAll();
     }
+
+
 
 
     @Bean

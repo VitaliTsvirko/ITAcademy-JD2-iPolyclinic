@@ -43,7 +43,7 @@ class PassportsRepositoryTest {
     private ICountriesRepository countriesRepository;
 
     @Autowired
-    private IAddress addressRepository;
+    private IAddressRepository addressRepository;
 
     private static final Logger LOG = Logger.getLogger(PassportsRepositoryTest.class.getName());
 

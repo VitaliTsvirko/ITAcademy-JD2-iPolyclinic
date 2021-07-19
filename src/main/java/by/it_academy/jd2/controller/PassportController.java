@@ -37,7 +37,7 @@ public class PassportController {
         passport.setSurname("Surname");
 
         model.addAttribute("userPassport", passport);
-        model.addAttribute("countriesMap", countryService.getAllCountries());
+        model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
 
         return "passport";
     }

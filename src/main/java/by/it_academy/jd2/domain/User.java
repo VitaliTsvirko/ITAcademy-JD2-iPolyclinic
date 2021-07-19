@@ -3,7 +3,10 @@ package by.it_academy.jd2.domain;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
 import by.it_academy.jd2.domain.enumeration.HealthStatus;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
+import by.it_academy.jd2.service.AddressDTO;
 import jakarta.validation.constraints.Email;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -50,20 +53,9 @@ public class User implements Serializable {
     @JoinColumn(name = "medical_card_id", foreignKey=@ForeignKey(name = "FK_user_medical_card_id"))
     private MedicalCard medicalCard;
 
-    @ManyToOne
-    @JoinColumn(name ="position_id", foreignKey=@ForeignKey(name = "FK_user_position_id"))
-    private Position position;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "user_role")
     private UserRoles userRole;
-
-    @Column(name = "cabinet_no")
-    private Integer cabinetNo;
-
-    @Column(name = "previous_job")
-    private String previousJob;
-
 
     public Long getId() {
         return id;
@@ -137,14 +129,6 @@ public class User implements Serializable {
         this.medicalCard = medicalCard;
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
     public UserRoles getUserRole() {
         return userRole;
     }
@@ -153,32 +137,32 @@ public class User implements Serializable {
         this.userRole = userRole;
     }
 
-    public Integer getCabinetNo() {
-        return cabinetNo;
-    }
-
-    public void setCabinetNo(Integer cabinetNo) {
-        this.cabinetNo = cabinetNo;
-    }
-
-    public String getPreviousJob() {
-        return previousJob;
-    }
-
-    public void setPreviousJob(String previousJob) {
-        this.previousJob = previousJob;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(password, user.password) && Objects.equals(phoneNo, user.phoneNo) && Objects.equals(eMail, user.eMail) && Objects.equals(passport, user.passport) && Objects.equals(address, user.address) && state == user.state && healthStatus == user.healthStatus && Objects.equals(medicalCard, user.medicalCard) && Objects.equals(position, user.position) && userRole == user.userRole && Objects.equals(cabinetNo, user.cabinetNo) && Objects.equals(previousJob, user.previousJob);
+        return Objects.equals(id, user.id) && Objects.equals(password, user.password) && Objects.equals(phoneNo, user.phoneNo) && Objects.equals(eMail, user.eMail) && Objects.equals(passport, user.passport) && Objects.equals(address, user.address) && state == user.state && healthStatus == user.healthStatus && Objects.equals(medicalCard, user.medicalCard) && userRole == user.userRole;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, password, phoneNo, eMail, passport, address, state, healthStatus, medicalCard, position, userRole, cabinetNo, previousJob);
+        return Objects.hash(id, password, phoneNo, eMail, passport, address, state, healthStatus, medicalCard, userRole);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", password='" + password + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", eMail='" + eMail + '\'' +
+                ", passport=" + passport +
+                ", address=" + address +
+                ", state=" + state +
+                ", healthStatus=" + healthStatus +
+                ", medicalCard=" + medicalCard +
+                ", userRole=" + userRole +
+                '}';
     }
 }

@@ -2,6 +2,7 @@ package by.it_academy.jd2.utils.countries;
 
 import by.it_academy.jd2.domain.Countries;
 import by.it_academy.jd2.repository.ICountriesRepository;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -13,8 +14,8 @@ import java.util.List;
  */
 public class InitStaticDBData {
 
-    private ICountriesRepository repository;
-    private Path filePath;
+    private final ICountriesRepository repository;
+    private final Path filePath;
 
     public InitStaticDBData(ICountriesRepository repository, Path filePath) {
         this.repository = repository;

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by Vitali Tsvirko
  */
-public interface IAddress extends JpaRepository<Address, Long> {
+public interface IAddressRepository extends JpaRepository<Address, Long> {
 }

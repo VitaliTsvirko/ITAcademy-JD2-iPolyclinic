@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 /**
  * Created by Vitali Tsvirko
  */
@@ -33,13 +30,16 @@ public class UserProfileInfo {
     public String getUserProfile(Model model,
                                  @SessionAttribute("user") User user){
 
-        ApplicationUserState state = user.getState();
+        User authUser = userService.getAuthorizedUser();
 
-        if (user.getState() != ApplicationUserState.ACTIVATED) {
+        ApplicationUserState state = authUser.getState();
+
+        if (authUser.getState() != ApplicationUserState.ACTIVATED) {
             model.addAttribute("userActivationState", false);
         }
 
-        model.addAttribute("countriesMap", countryService.getAllCountries());
+        model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
+        model.addAttribute("user", authUser);
 
         return "userprofile";
     }

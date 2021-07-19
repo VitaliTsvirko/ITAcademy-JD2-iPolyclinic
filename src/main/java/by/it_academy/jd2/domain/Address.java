@@ -1,5 +1,6 @@
 package by.it_academy.jd2.domain;
 
+import by.it_academy.jd2.service.AddressDTO;
 import jakarta.validation.constraints.Min;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ public class Address implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "country_id", foreignKey=@ForeignKey(name = "FK_address_country_id"))
+    @JoinColumn(name = "country_id", foreignKey=@ForeignKey(name = "FK_address_country_id"), nullable = false)
     private Countries country;
 
     @Column(name = "city", nullable = false)
@@ -28,9 +29,9 @@ public class Address implements Serializable {
     @Column(name = "street")
     private String street;
 
-    @Min(value = 0)
+
     @Column(name ="home_no")
-    private Integer homeNo;
+    private String homeNo;
 
     @Min(value = 0)
     @Column(name = "corps_no")
@@ -39,10 +40,6 @@ public class Address implements Serializable {
     @Min(value = 0)
     @Column(name = "flat_no")
     private Integer flatNo;
-
-    @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
-    private Collection<User> tenants;
-
 
     public Long getId() {
         return id;
@@ -72,11 +69,11 @@ public class Address implements Serializable {
         this.street = street;
     }
 
-    public Integer getHomeNo() {
+    public String getHomeNo() {
         return homeNo;
     }
 
-    public void setHomeNo(Integer homeNo) {
+    public void setHomeNo(String homeNo) {
         this.homeNo = homeNo;
     }
 
@@ -96,38 +93,5 @@ public class Address implements Serializable {
         this.flatNo = flatNo;
     }
 
-    public Collection<User> getTenants() {
-        return tenants;
-    }
 
-    public void setTenants(Collection<User> tenants) {
-        this.tenants = tenants;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Address address = (Address) o;
-        return Objects.equals(country, address.country) && Objects.equals(city, address.city) && Objects.equals(street, address.street) && Objects.equals(homeNo, address.homeNo) && Objects.equals(corpsNo, address.corpsNo) && Objects.equals(flatNo, address.flatNo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(country, city, street, homeNo, corpsNo, flatNo);
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", country=" + country +
-                ", city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", homeNo=" + homeNo +
-                ", corpsNo=" + corpsNo +
-                ", flatNo=" + flatNo +
-                ", tenants=" + tenants +
-                '}';
-    }
 }
