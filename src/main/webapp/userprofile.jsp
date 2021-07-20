@@ -174,11 +174,9 @@
             </div>
             <!--end::tabs address-->
 
-
-
             <!--begin::tabs passport-->
             <div class="tab-pane fade" id="passport" role="tabpanel" aria-labelledby="passport-tab">
-
+                <%@include file="layouts/userprofile/view/passport.jsp"%>
             </div>
             <!--end::tabs passport-->
         </div>
@@ -189,11 +187,13 @@
 <!--end::tabs container-->
 
 <%@include file="layouts/userprofile/forms/address.jsp"%>
+<%@include file="layouts/userprofile/forms/passport.jsp"%>
 </main>
 
     <%@include file="layouts/footer.jsp"%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/core/core.js" type="application/javascript"></script>
     <script src="${pageContext.request.contextPath}/static/js/userprofile/address.js" type="application/javascript"></script>
+    <script src="${pageContext.request.contextPath}/static/js/userprofile/passport.js" type="application/javascript"></script>
 </body>
 </html>

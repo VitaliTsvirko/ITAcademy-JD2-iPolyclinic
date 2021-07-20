@@ -24,13 +24,13 @@ import java.util.function.Predicate;
  */
 @RestController
 @RequestMapping("/api/user")
-public class UserProfileRestController {
+public class UserProfileAddressRestController {
 
     //private static final String API_FULL_ACCESS_ROLES = String.format("hasAnyAuthority(%s,%s,%s)", UserRoles.ROOT, UserRoles.DOCTOR, UserRoles.ADMIN);
 
     private final IUserService userService;
 
-    public UserProfileRestController(IUserService userService) {
+    public UserProfileAddressRestController(IUserService userService) {
         this.userService = userService;
     }
 

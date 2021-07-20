@@ -3,6 +3,7 @@ package by.it_academy.jd2.service.api;
 import by.it_academy.jd2.domain.Address;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.service.AddressDTO;
+import by.it_academy.jd2.service.PassportDTO;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Optional;
@@ -22,4 +23,9 @@ public interface IUserService {
     User createAddress(User user, AddressDTO addressDTO);
 
     User updateAddress(User user, AddressDTO addressDTO);
+
+
+    User createPassport(User user, PassportDTO passportDTO);
+    User updatePassport(User user, PassportDTO passportDTO);
+    void deletePassport(User user);
 }
