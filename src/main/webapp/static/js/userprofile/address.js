@@ -9,18 +9,19 @@ jQuery(function($){
 
     function updateAddressData(){
         if (CONSOLE_DEBUG_ON) console.log("updateAddressData -> Request to update data");
-        $.getJSON('http://localhost:8080/IPolyclinic-1.0.0/api/user/address', function(data) {
+        $.getJSON(requestUrl, function(data, textStatus, jqXHR) {
             if (CONSOLE_DEBUG_ON) console.log("updateAddressData result ->" + data);
-            if ($.isEmptyObject(data) || data.status === 204){
-                $('#tap-address-data').removeClass("collapse");
-                $('#div-address-add-btn').addClass("collapse");
-                $('#form-address-save-btn').text("Сохранить");
-                requestType = "PUT";
-            } else {
+            if ($.isEmptyObject(data) || jqXHR.status === 204){
+                //address is null
                 $('#tap-address-data').addClass("collapse");
                 $('#div-address-add-btn').removeClass("collapse");
                 $('#form-address-save-btn').text("Добавить");
                 requestType = "POST";
+            } else {
+                $('#tap-address-data').removeClass("collapse");
+                $('#div-address-add-btn').addClass("collapse");
+                $('#form-address-save-btn').text("Сохранить");
+                requestType = "PUT";
 
                 //store data to page
                 $.each(data, function(key, val) {
@@ -63,7 +64,7 @@ jQuery(function($){
         e.preventDefault();
 
         $.ajax({
-            url: 'http://localhost:8080/IPolyclinic-1.0.0/api/user/address',
+            url: requestUrl,
             type : 'DELETE',
             contentType : 'application/json; charset=utf-8',
             data : "",

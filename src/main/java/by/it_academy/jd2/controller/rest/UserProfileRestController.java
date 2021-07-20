@@ -19,6 +19,8 @@ import java.util.function.Predicate;
 
 /**
  * Created by Vitali Tsvirko
+ * https://mkyong.com/spring-boot/spring-rest-spring-security-example/
+ * Spring HATEOAS
  */
 @RestController
 @RequestMapping("/api/user")
