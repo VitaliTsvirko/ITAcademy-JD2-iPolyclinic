@@ -45,9 +45,11 @@ public class UserService implements IUserService {
 
     @Override
     public User createUser(String phoneNo, String password){
-        usersRepository.findByPhoneNo(phoneNo).orElseThrow(
-                () -> new UsernameAlreadyUsedException()
+        usersRepository.findByPhoneNo(phoneNo).ifPresent(
+                user -> { throw new UsernameAlreadyUsedException("User phone number " + user.getPhoneNo() + " already registered");
+                }
         );
+
 
         User user = new User();
         user.setPhoneNo(phoneNo);

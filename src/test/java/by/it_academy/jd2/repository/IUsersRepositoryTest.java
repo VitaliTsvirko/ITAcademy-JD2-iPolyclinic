@@ -1,6 +1,7 @@
 package by.it_academy.jd2.repository;
 
 import by.it_academy.jd2.config.PersistentConfig;
+import by.it_academy.jd2.core.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.Address;
 import by.it_academy.jd2.domain.Countries;
 import by.it_academy.jd2.domain.User;
@@ -30,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class IUsersRepositoryTest {
 
     @Autowired
-    private IUsersRepository userRepository;
+    private IUsersRepository usersRepository;
 
     @Autowired
     private IAddressRepository addressRepository;
@@ -42,7 +43,7 @@ class IUsersRepositoryTest {
     void getExistUserByLogin(){
         String existPhone = "+375295148825";
 
-        Optional<User> repositoryById = userRepository.findById(1L);
+        Optional<User> repositoryById = usersRepository.findById(1L);
 
         repositoryById.ifPresent(user -> {
             user.seteMail("123@mail.com");
@@ -54,7 +55,7 @@ class IUsersRepositoryTest {
     @Test
     void deleteUserAddress(){
 
-        User byId = userRepository.getById(1L);
+        User byId = usersRepository.getById(1L);
 
         Address address = byId.getAddress();
 
@@ -78,9 +79,24 @@ class IUsersRepositoryTest {
         addressRepository.save(address);
 
 
-        User user = userRepository.findById(1L).get();
+        User user = usersRepository.findById(1L).get();
 
         user.setAddress(address);
+
+
+    }
+
+
+    @Test
+    void createUser(){
+        String phoneNo = "+375295148825";
+
+
+
+        usersRepository.findByPhoneNo(phoneNo).ifPresent(
+                user -> { throw new UsernameAlreadyUsedException("User phone number " + user.getPhoneNo() + " already registered");
+                }
+        );
 
 
     }
