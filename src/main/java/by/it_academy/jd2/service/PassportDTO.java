@@ -54,17 +54,19 @@ public class PassportDTO {
     }
 
     public PassportDTO(Passport passport){
-        this.setName(passport.getName());
-        this.setSurname(passport.getSurname());
-        this.setPatronymic(passport.getPatronymic());
-        this.setDateOfBirth(passport.getDateOfBirth());
-        this.setPlaceOfBirth(passport.getPlaceOfBirth());
-        this.setNationality(passport.getNationality());
-        this.setPersonalNo(passport.getPersonalNo());
-        this.setPassportNo(passport.getPassportNo());
-        this.setCountryOfIssue(passport.getCountryOfIssue().getShotName());
-        this.setIssueDate(passport.getIssueDate());
-        this.setExpirationDate(passport.getExpirationDate());
+        if (passport != null) {
+            this.setName(passport.getName());
+            this.setSurname(passport.getSurname());
+            this.setPatronymic(passport.getPatronymic());
+            this.setDateOfBirth(passport.getDateOfBirth());
+            this.setPlaceOfBirth(passport.getPlaceOfBirth());
+            this.setNationality(passport.getNationality());
+            this.setPersonalNo(passport.getPersonalNo());
+            this.setPassportNo(passport.getPassportNo());
+            this.setCountryOfIssue(passport.getCountryOfIssue().getShotName());
+            this.setIssueDate(passport.getIssueDate());
+            this.setExpirationDate(passport.getExpirationDate());
+        }
     }
 
     public String getName() {

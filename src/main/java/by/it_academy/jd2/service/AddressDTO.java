@@ -33,13 +33,15 @@ public class AddressDTO {
     }
 
     public AddressDTO(Address address) {
-        this.setCountryCode(address.getCountry().getCode());
-        this.setCountryName(address.getCountry().getShotName());
-        this.setCity(address.getCity());
-        this.setStreet(address.getStreet());
-        this.setHomeNo(address.getHomeNo());
-        this.setCorpsNo(address.getCorpsNo());
-        this.setFlatNo(address.getFlatNo());
+        if (address != null){
+            this.setCountryCode(address.getCountry().getCode());
+            this.setCountryName(address.getCountry().getShotName());
+            this.setCity(address.getCity());
+            this.setStreet(address.getStreet());
+            this.setHomeNo(address.getHomeNo());
+            this.setCorpsNo(address.getCorpsNo());
+            this.setFlatNo(address.getFlatNo());
+        }
     }
 
 
