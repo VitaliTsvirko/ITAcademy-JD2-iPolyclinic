@@ -21,9 +21,9 @@ public interface IUserService {
 
     void deleteAddress(User user);
 
-    User createAddress(User user, AddressDTO addressDTO);
+    Address createAddress(User user, AddressDTO addressDTO);
 
-    User updateAddress(User user, AddressDTO addressDTO);
+    Address updateAddress(User user, AddressDTO addressDTO);
 
 
     User createPassport(User user, PassportDTO passportDTO);

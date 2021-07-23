@@ -83,7 +83,7 @@ public class UserService implements IUserService {
         );
     }
     @Override
-    public User createAddress(User user, AddressDTO addressDTO){
+    public Address createAddress(User user, AddressDTO addressDTO){
         usersRepository.findById(user.getId())
                 .ifPresent( existingUser -> {
                             Countries countryDTO = countriesRepository
@@ -105,7 +105,7 @@ public class UserService implements IUserService {
                         }
                 );
 
-        return this.getUserById(user.getId());
+        return this.getUserById(user.getId()).getAddress();
     }
 
 
@@ -120,7 +120,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User updateAddress(User user, AddressDTO addressDTO) {
+    public Address updateAddress(User user, AddressDTO addressDTO) {
         usersRepository.findById(user.getId()).ifPresent(existUser -> {
             Countries countryDTO = countriesRepository
                     .findById(addressDTO.getCountryCode())
@@ -138,7 +138,7 @@ public class UserService implements IUserService {
             userAddress.setFlatNo(addressDTO.getFlatNo());
         });
 
-        return usersRepository.getById(user.getId());
+        return usersRepository.getById(user.getId()).getAddress();
     }
 
 

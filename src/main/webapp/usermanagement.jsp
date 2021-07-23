@@ -183,69 +183,59 @@
 
                             <!--begin::tabs address-->
                             <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-
-                                <div class="${empty requestScope.user.address ? "collapse" : ""}" id="div-address-add-btn">
-                                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addressModalForm">Добавить</button>
-                                </div>
-
-                                <div class="${not empty requestScope.user.address ? "collapse" : ""}" id="tap-address-data">
-                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addressModalForm">Измениить</button>
-                                        <button type="button" class="btn btn-danger" id='form-address-delete-btn'>Удалить</button>
+                                <form id='form-address' action='#' method='post'>
+                                    <div class="row mb-7 p-3">
+                                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Страна</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-select" name="country_code" aria-label="Страна" required>
+                                                <c:forEach items="${requestScope.countriesMap}" var="country">
+                                                    <option ${country.key.equalsIgnoreCase(requestScope.user.address.country.code) ? "selected" : ""} value="${country.key}">${country.value}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    <form id='form-address' action='#' method='post'>
-                                        <div class="row mb-7 p-3">
-                                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Страна</label>
-                                            <div class="col-lg-10">
-                                                <select class="form-select" name="country_code" aria-label="Страна" required>
-                                                    <c:forEach items="${requestScope.countriesMap}" var="country">
-                                                        <option ${country.key.equalsIgnoreCase(requestScope.user.address.country.code) ? "selected" : ""} value="${country.key}">${country.value}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </div>
+                                    <div class="row mb-7 p-3">
+                                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Город</label>
+                                        <div class="col-lg-10">
+                                            <input type="text" name="city" id="city" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.city}" >
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-7 p-3">
+                                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Улица</label>
+                                        <div class="col-lg-10">
+                                            <input type="text" name="street" id="street" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.street}" >
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-7 p-3">
+                                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Дом</label>
+                                        <div class="col-lg-2">
+                                            <input type="text" name="home_no" id="home_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.homeNo}" >
                                         </div>
 
-                                        <div class="row mb-7 p-3">
-                                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Город</label>
-                                            <div class="col-lg-10">
-                                                <input type="text" name="city" id="city" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.city}" >
-                                            </div>
+                                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Корпус</label>
+                                        <div class="col-lg-2">
+                                            <input type="text" name="corp_no" id="corp_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.corpsNo}" >
                                         </div>
 
-                                        <div class="row mb-7 p-3">
-                                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Улица</label>
-                                            <div class="col-lg-10">
-                                                <input type="text" name="street" id="street" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.street}" >
-                                            </div>
+                                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Квартира</label>
+                                        <div class="col-lg-2">
+                                            <input type="text" name="flat_no" id="flat_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.flatNo}" >
                                         </div>
+                                    </div>
+                                </form>
 
-                                        <div class="row mb-7 p-3">
-                                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Дом</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" name="home_no" id="home_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.homeNo}" >
-                                            </div>
-
-                                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Корпус</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" name="corp_no" id="corp_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.corpsNo}" >
-                                            </div>
-
-                                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Квартира</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" name="flat_no" id="flat_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.flatNo}" >
-                                            </div>
-                                        </div>
-                                    </form>
-
-
+                                <div id="address-buttons" class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-danger" onClick="deleteAddress(this.id)">Удалить</button>
+                                    <button type="button" class="btn btn-info" onClick="saveAddressData(this.id)">Сохранить</button>
                                 </div>
                             </div>
                             <!--end::tabs address-->
 
                             <!--begin::tabs passport-->
                             <div class="tab-pane fade" id="passport" role="tabpanel" aria-labelledby="passport-tab">
-
                                 <form id='form-passport' action='#' method='post'>
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -295,8 +285,6 @@
                                         </div>
                                     </div>
 
-
-
                                     <div class="row pt-5">
                                         <div class="col-lg-6">
                                             <div class="row mb-7 p-3">
@@ -342,8 +330,11 @@
                                         </div>
                                     </div>
                                 </form>
-
-
+                                <div id="passport-buttons" class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-danger" onClick="deletePassport(this.id)">Удалить</button>
+                                    <button type="button" class="btn btn-info" onClick="savePassportData(this.id)">Сохранить</button>
+                                    <button type="button" class="btn btn-info" onClick="confirmPassportData(this.id)">Подвердить данные</button>
+                                </div>
                             </div>
                             <!--end::tabs passport-->
                         </div>

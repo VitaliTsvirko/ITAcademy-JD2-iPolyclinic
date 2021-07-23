@@ -56,6 +56,15 @@ public class UserRestController {
     }
 
 
+    @PostMapping("/{id}/address")
+    public ResponseEntity<AddressDTO> createAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id){
+        try{
+            return new ResponseEntity<>(new AddressDTO(userService.createAddress(userService.getUserById(id), addressDTO)), HttpStatus.OK);
+        } catch (UsernameNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
     @GetMapping(value = "/{id}/address", produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<AddressDTO> readUserAddressByUserId(@PathVariable Long id){
@@ -65,6 +74,27 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
+
+    @PutMapping("/{id}/address")
+    public ResponseEntity<AddressDTO> updateAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id){
+        try{
+            return new ResponseEntity<>(new AddressDTO(userService.updateAddress(userService.getUserById(id), addressDTO)), HttpStatus.OK);
+        } catch (UsernameNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @DeleteMapping("/{id}/address")
+    public ResponseEntity<?> deleteAddress(@PathVariable Long id){
+        try{
+            userService.deleteAddress(userService.getUserById(id));
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (UsernameNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
 
     @GetMapping(value = "/{id}/passport", produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('ADMIN')")

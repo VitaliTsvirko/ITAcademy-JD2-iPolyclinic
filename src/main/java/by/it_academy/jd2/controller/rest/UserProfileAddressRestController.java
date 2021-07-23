@@ -36,8 +36,8 @@ public class UserProfileAddressRestController {
 
 
     @PostMapping("/address")
-    public ResponseEntity<?> createAddress(@RequestBody AddressDTO address){
-        User address1 = userService.createAddress(userService.getAuthorizedUser(), address);
+    public ResponseEntity<?> createAddress(@RequestBody AddressDTO addressDTO){
+        Address address1 = userService.createAddress(userService.getAuthorizedUser(), addressDTO);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -72,8 +72,8 @@ public class UserProfileAddressRestController {
     }
 
     @PutMapping("/address")
-    public ResponseEntity<?> updateAddress(@RequestBody AddressDTO address){
-        User user = userService.updateAddress(userService.getAuthorizedUser(), address);
+    public ResponseEntity<?> updateAddress(@RequestBody AddressDTO addressDTO){
+        Address address1 = userService.updateAddress(userService.getAuthorizedUser(), addressDTO);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
