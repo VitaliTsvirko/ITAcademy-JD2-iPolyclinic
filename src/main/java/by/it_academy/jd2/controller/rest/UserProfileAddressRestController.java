@@ -77,29 +77,4 @@ public class UserProfileAddressRestController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
-
-
-
-
-
-    @GetMapping(value = "/manager/{id}/read/address", produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Address> readUserAddressByUserId(@PathVariable Long id){
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
-            System.out.println("hasAuthority('ADMIN')");
-        }
-
-
-        Address address = userService.getUserById(id).getAddress();
-
-        return new ResponseEntity<>(address, HttpStatus.OK);
-    }
-
-
-
 }

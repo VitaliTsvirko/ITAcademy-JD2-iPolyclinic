@@ -34,7 +34,7 @@ public class UserProfileInfo {
 
         ApplicationUserState state = authUser.getState();
 
-        if (authUser.getState() != ApplicationUserState.ACTIVATED) {
+        if (authUser.getState() != ApplicationUserState.PASSPORT_DATA_VERIFIED) {
             model.addAttribute("userActivationState", false);
         }
 

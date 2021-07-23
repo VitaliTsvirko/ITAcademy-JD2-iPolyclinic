@@ -19,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -154,7 +155,7 @@ public class UserService implements IUserService {
                                     () -> new IllegalArgumentException("Bad country ID")
                             );
 
-                            //проверка на уникальность персонального номера
+                            //проверка на уникальность персонального номера (пробросить ошибки базы)
 
                             Passport newPassport  = new Passport();
                             newPassport.setName(passportDTO.getName());
@@ -214,6 +215,28 @@ public class UserService implements IUserService {
         });
 
         return usersRepository.getById(user.getId());
+    }
+
+
+    @Override
+    public User confirmPassportDataByUserId (Long userId){
+        User user = usersRepository.findById(userId).orElseThrow(
+                () -> new UsernameNotFoundException("User with id " + userId + "not found")
+        );
+
+        if (user.getPassport() == null) {
+            throw new IllegalArgumentException("Passport data is not entered");
+        }
+
+        user.setState(ApplicationUserState.PASSPORT_DATA_VERIFIED);
+
+        return user;
+    }
+
+
+
+    public List<User> getAllUsers(){
+        return usersRepository.findAll();
     }
 
 

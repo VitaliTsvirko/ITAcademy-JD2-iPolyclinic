@@ -45,15 +45,25 @@
                             <c:otherwise>
                                 <li class="nav-item mx-3 dropdown">
                                     <a class="nav-link dropdown-toggle" id="dropdown01" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Личный кабинет</a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdown01" >
-                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile">Профиль</a>
-                                        <a class="dropdown-item" href="#">Записаться на прием</a>
-                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Выйти</a>
-                                    </ul>
+                                    <c:choose>
+                                        <c:when test="${not empty sessionScope.userRoleIsAdmin}">
+                                            <ul class="dropdown-menu" aria-labelledby="dropdown01" >
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile">Профиль</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/user/manager">Пользователи</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Выйти</a>
+                                            </ul>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdown01" >
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile">Профиль</a>
+                                                <a class="dropdown-item" href="#">Записаться на прием</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Выйти</a>
+                                            </ul>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </li>
                             </c:otherwise>
                         </c:choose>
-
                     </ul>
                 </div>
             </nav>

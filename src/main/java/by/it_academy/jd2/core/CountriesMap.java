@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Vitali Tsvirko
  */
-@Component
+//@Component("countriesMap")
 public class CountriesMap {
 
     private final ICountriesRepository countriesRepository;

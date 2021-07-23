@@ -74,11 +74,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and().authorizeRequests()
                 .antMatchers("/userprofile/**").authenticated()
                 .antMatchers("/passport/**").authenticated()
-                .antMatchers("/api/manager/**").hasAnyAuthority("ADMIN, ROOT, DOCTOR")
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/login/**").permitAll()
-                .antMatchers("/signup").permitAll()
-                .antMatchers("/api2/**").permitAll();
+                .antMatchers("/signup").permitAll();
+
+        ///api/manager/ only admin, doctor and root
     }
 
 

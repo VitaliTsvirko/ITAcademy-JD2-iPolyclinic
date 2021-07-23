@@ -1,5 +1,6 @@
 package by.it_academy.jd2.service;
 
+import by.it_academy.jd2.domain.Passport;
 import by.it_academy.jd2.domain.enumeration.Sex;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -48,6 +49,23 @@ public class PassportDTO {
 
     @JsonProperty("place_of_birth")
     private String placeOfBirth;
+
+    public PassportDTO() {
+    }
+
+    public PassportDTO(Passport passport){
+        this.setName(passport.getName());
+        this.setSurname(passport.getSurname());
+        this.setPatronymic(passport.getPatronymic());
+        this.setDateOfBirth(passport.getDateOfBirth());
+        this.setPlaceOfBirth(passport.getPlaceOfBirth());
+        this.setNationality(passport.getNationality());
+        this.setPersonalNo(passport.getPersonalNo());
+        this.setPassportNo(passport.getPassportNo());
+        this.setCountryOfIssue(passport.getCountryOfIssue().getShotName());
+        this.setIssueDate(passport.getIssueDate());
+        this.setExpirationDate(passport.getExpirationDate());
+    }
 
     public String getName() {
         return name;

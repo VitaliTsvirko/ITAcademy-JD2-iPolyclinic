@@ -1,6 +1,7 @@
 package by.it_academy.jd2.security;
 
 import by.it_academy.jd2.domain.User;
+import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.repository.IUsersRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -35,6 +36,10 @@ public class UserAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
             User loginUser = usersRepository.findByPhoneNo(authentication.getName()).get();
 
             session.setAttribute("user", loginUser);
+
+            if (loginUser.getUserRole().equals(UserRoles.ADMIN)) {
+                session.setAttribute("userRoleIsAdmin", true);
+            }
 
             //redirect to request page
             SavedRequest saveRequest = new HttpSessionRequestCache().getRequest(request, response);

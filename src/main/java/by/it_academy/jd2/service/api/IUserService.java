@@ -6,6 +6,7 @@ import by.it_academy.jd2.service.AddressDTO;
 import by.it_academy.jd2.service.PassportDTO;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -28,4 +29,8 @@ public interface IUserService {
     User createPassport(User user, PassportDTO passportDTO);
     User updatePassport(User user, PassportDTO passportDTO);
     void deletePassport(User user);
+
+    List<User> getAllUsers();
+
+    User confirmPassportDataByUserId (Long userId);
 }

@@ -30,7 +30,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("/static/")
-                .setCachePeriod(Math.toIntExact(TimeUnit.HOURS.toSeconds(12)));
+                .setCachePeriod(0);
+                //.setCachePeriod(Math.toIntExct(TimeUnit.HOURS.toSeconds(12)));
     }
 
 
