@@ -8,10 +8,8 @@ function loadUserProfileData(id) {
 }
 
 function updateBasicUserData(id) {
-    if (CONSOLE_DEBUG_ON) console.log("loadUserProfileData -> Request to update data");
     jQuery(function ($) {
         $.getJSON(requestUrl + id + '/basic', function (data, textStatus, jqXHR) {
-            if (CONSOLE_DEBUG_ON) console.log("loadUserProfileData result ->" + data);
             if (!$.isEmptyObject(data)) {
                 //store data to page
                 $.each(data, function (key, val) {
@@ -19,17 +17,15 @@ function updateBasicUserData(id) {
                 });
             }
 
-        }).fail(function () {
-            console.log("loadUserProfileData -> error");
-        });
+        }).fail(function(jqxhr, textStatus, error) {
+            alert( "Ошибка при получении данных пользователя.\nError detail:\nHTTP status " + jqxhr.status + "\n error: " + error);
+        })
     });
 }
 
 function updateAddressData(id){
-    if (CONSOLE_DEBUG_ON) console.log("updateAddressData -> Request to update data");
     jQuery(function($){
         $.getJSON(requestUrl + id + '/address', function(data, textStatus, jqXHR) {
-            if (CONSOLE_DEBUG_ON) console.log("updateAddressData result ->" + data);
             if (!$.isEmptyObject(data)){
                 //store data to page
                 $.each(data, function(key, val) {
@@ -37,26 +33,24 @@ function updateAddressData(id){
                 });
             }
 
-        }).fail(function() {
-            console.log( "updateAddressData -> error" );
+        }).fail(function(jqxhr, textStatus, error) {
+            alert( "Ошибка при получении данных адреса пользователя.\nError detail:\nHTTP status " + jqxhr.status + "\n error: " + error);
         })
     });
 }
 
 function updatePassportData(id){
-    if (CONSOLE_DEBUG_ON) console.log("updatePassportData -> Request to update data");
+    jQuery(function ($) {
     $.getJSON(requestUrl + id + '/passport', function(data, textStatus, jqXHR) {
-        jQuery(function ($) {
-            if (CONSOLE_DEBUG_ON) console.log("updatePassportData result ->" + data);
             if (!$.isEmptyObject(data)) {
                 //store data to page
                 $.each(data, function (key, val) {
                     $('#' + key).val(val);
                 });
             }
-        }).fail(function() {
-            console.log( "updatePassportData -> error" );
-        })
+    }).fail(function(jqxhr, textStatus, error) {
+        alert( "Ошибка при получении пасспортных данных пользователя.\nError detail:\nHTTP status " + jqxhr.status + "\n error: " + error);
+    })
     });
 }
 
