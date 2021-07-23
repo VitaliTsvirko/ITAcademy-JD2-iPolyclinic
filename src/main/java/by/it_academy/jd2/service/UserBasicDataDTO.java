@@ -51,8 +51,10 @@ public class UserBasicDataDTO {
             this.eMail = user.geteMail();
             this.userRole = user.getUserRole();
             this.state = user.getState();
-            this.fullName = user.getPassport().getSurname() + " " + user.getPassport().getName() + " " + user.getPassport().getPatronymic();
-            this.dateOfBirth = user.getPassport().getDateOfBirth();
+            if (user.getPassport() != null){
+                this.fullName = user.getPassport().getSurname() + " " + user.getPassport().getName() + " " + user.getPassport().getPatronymic();
+                this.dateOfBirth = user.getPassport().getDateOfBirth();
+            }
         }
     }
 
