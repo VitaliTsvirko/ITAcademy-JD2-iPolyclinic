@@ -33,7 +33,7 @@ public class User implements Serializable {
     @Column(name = "email", unique = true)
     private String eMail;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "passport_id", foreignKey=@ForeignKey(name = "FK_user_passport_id"))
     private Passport passport;
 

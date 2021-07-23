@@ -1,5 +1,6 @@
 package by.it_academy.jd2.service;
 
+import by.it_academy.jd2.domain.Address;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -27,6 +28,19 @@ public class AddressDTO {
 
     @JsonProperty("flat_no")
     private Integer flatNo;
+
+    public AddressDTO() {
+    }
+
+    public AddressDTO(Address address) {
+        this.setCountryCode(address.getCountry().getCode());
+        this.setCountryName(address.getCountry().getShotName());
+        this.setCity(address.getCity());
+        this.setStreet(address.getStreet());
+        this.setHomeNo(address.getHomeNo());
+        this.setCorpsNo(address.getCorpsNo());
+        this.setFlatNo(address.getFlatNo());
+    }
 
 
     public String getCountryCode() {

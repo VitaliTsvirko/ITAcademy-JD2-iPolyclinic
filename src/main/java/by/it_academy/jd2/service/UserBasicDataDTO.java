@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 /**
  * Created by Vitali Tsvirko
@@ -22,6 +23,12 @@ public class UserBasicDataDTO {
 
     @JsonProperty("phone_no")
     private String phoneNo;
+
+    @JsonProperty("date_of_birth")
+    private LocalDate dateOfBirth;
+
+    @JsonProperty("full_name")
+    private String fullName;
 
     @JsonProperty("email")
     private String eMail;
@@ -41,6 +48,8 @@ public class UserBasicDataDTO {
         this.eMail = user.geteMail();
         this.userRole = user.getUserRole();
         this.state = user.getState();
+        this.fullName = user.getPassport().getSurname() + " " + user.getPassport().getName() + " " + user.getPassport().getPatronymic();
+        this.dateOfBirth = user.getPassport().getDateOfBirth();
     }
 
 
@@ -82,5 +91,21 @@ public class UserBasicDataDTO {
 
     public void setUserRole(UserRoles userRole) {
         this.userRole = userRole;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }
