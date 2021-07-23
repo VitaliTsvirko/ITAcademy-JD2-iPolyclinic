@@ -1,7 +1,5 @@
 var requestType;
 var requestUrl = 'http://localhost:8080/IPolyclinic-1.0.0/api/manager/user/';
-var requestAddressUrl = 'http://localhost:8080/IPolyclinic-1.0.0/api/user/address';
-var requestPassportUrl = 'http://localhost:8080/IPolyclinic-1.0.0/api/user/passport';
 
 function loadUserProfileData(id) {
         updateBasicUserData(id);
@@ -12,7 +10,7 @@ function loadUserProfileData(id) {
 function updateBasicUserData(id) {
     if (CONSOLE_DEBUG_ON) console.log("loadUserProfileData -> Request to update data");
     jQuery(function ($) {
-        $.getJSON(requestUrl + id, function (data, textStatus, jqXHR) {
+        $.getJSON(requestUrl + id + '/basic', function (data, textStatus, jqXHR) {
             if (CONSOLE_DEBUG_ON) console.log("loadUserProfileData result ->" + data);
             if (!$.isEmptyObject(data)) {
                 //store data to page
@@ -30,12 +28,12 @@ function updateBasicUserData(id) {
 function updateAddressData(id){
     if (CONSOLE_DEBUG_ON) console.log("updateAddressData -> Request to update data");
     jQuery(function($){
-        $.getJSON(requestUrl + id, function(data, textStatus, jqXHR) {
+        $.getJSON(requestUrl + id + '/address', function(data, textStatus, jqXHR) {
             if (CONSOLE_DEBUG_ON) console.log("updateAddressData result ->" + data);
             if (!$.isEmptyObject(data)){
                 //store data to page
                 $.each(data, function(key, val) {
-                    $('#' + key).text(val);
+                    $('#' + key).val(val);
                 });
             }
 
@@ -47,13 +45,13 @@ function updateAddressData(id){
 
 function updatePassportData(id){
     if (CONSOLE_DEBUG_ON) console.log("updatePassportData -> Request to update data");
-    $.getJSON(requestUrl + id, function(data, textStatus, jqXHR) {
+    $.getJSON(requestUrl + id + '/passport', function(data, textStatus, jqXHR) {
         jQuery(function ($) {
             if (CONSOLE_DEBUG_ON) console.log("updatePassportData result ->" + data);
             if (!$.isEmptyObject(data)) {
                 //store data to page
                 $.each(data, function (key, val) {
-                    $('#' + key).text(val);
+                    $('#' + key).val(val);
                 });
             }
         }).fail(function() {

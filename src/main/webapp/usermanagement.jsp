@@ -120,7 +120,7 @@
                                 <div class="row mb-7 p-3">
                                     <label class="col-lg-2 fw-bold text-muted">ФИО</label>
                                     <div class="col-lg-6">
-                                        <span id="info-fio" class="fw-bolder fs-6 text-dark"> </span>
+                                        <span id="info-full_name" class="fw-bolder fs-6 text-dark"> </span>
                                     </div>
                                 </div>
 

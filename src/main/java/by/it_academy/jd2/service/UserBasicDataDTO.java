@@ -7,6 +7,7 @@ import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
 import by.it_academy.jd2.domain.enumeration.HealthStatus;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 
@@ -25,6 +26,7 @@ public class UserBasicDataDTO {
     private String phoneNo;
 
     @JsonProperty("date_of_birth")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDate dateOfBirth;
 
     @JsonProperty("full_name")
