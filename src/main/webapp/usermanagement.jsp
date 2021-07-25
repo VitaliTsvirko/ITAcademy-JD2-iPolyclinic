@@ -200,7 +200,7 @@
                                     <div class="row mb-7 p-3">
                                         <label class="col-lg-2 col-form-label required fw-bold fs-6">Город</label>
                                         <div class="col-lg-10">
-                                            <input type="text" name="city" id="address_city" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.city}" >
+                                            <input type="text" name="city" id="address_city" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.city}">
                                         </div>
                                     </div>
 
@@ -308,6 +308,7 @@
                                                 <label class="col-4 col-form-label required fw-bold fs-6">Страна выдачи</label>
                                                 <div class="col-8">
                                                     <select class="form-select" name="country_of_issue_code" aria-label="Страна" required>
+                                                        <option value="">Укажите страну</option>
                                                         <c:forEach items="${requestScope.countriesMap}" var="country">
                                                             <option ${country.key.equalsIgnoreCase(requestScope.user.address.country.code) ? "selected" : ""} value="${country.key}">${country.value}</option>
                                                         </c:forEach>

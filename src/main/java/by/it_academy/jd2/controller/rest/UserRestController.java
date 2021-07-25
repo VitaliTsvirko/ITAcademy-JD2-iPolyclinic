@@ -1,21 +1,21 @@
 package by.it_academy.jd2.controller.rest;
 
 import by.it_academy.jd2.domain.Address;
-import by.it_academy.jd2.domain.User;
+import by.it_academy.jd2.domain.Passport;
 import by.it_academy.jd2.service.AddressDTO;
+import by.it_academy.jd2.service.ApiErrorDTO;
 import by.it_academy.jd2.service.PassportDTO;
 import by.it_academy.jd2.service.UserBasicDataDTO;
 import by.it_academy.jd2.service.api.IUserService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by Vitali Tsvirko
@@ -59,11 +59,13 @@ public class UserRestController {
 
 
     @PostMapping("/{id}/address")
-    public ResponseEntity<AddressDTO> createAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id){
+    public ResponseEntity<Object> createAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id) throws UnsupportedEncodingException {
         try{
             return new ResponseEntity<>(new AddressDTO(userService.createAddress(userService.getUserById(id), addressDTO)), HttpStatus.OK);
         } catch (UsernameNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (DataIntegrityViolationException e){
+            return new ResponseEntity<>(new ApiErrorDTO("Не заполнено одно из обязательных полей"), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
@@ -84,11 +86,13 @@ public class UserRestController {
 
 
     @PutMapping("/{id}/address")
-    public ResponseEntity<AddressDTO> updateAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id){
+    public ResponseEntity<Object> updateAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id) throws UnsupportedEncodingException {
         try{
             return new ResponseEntity<>(new AddressDTO(userService.updateAddress(userService.getUserById(id), addressDTO)), HttpStatus.OK);
         } catch (UsernameNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (DataIntegrityViolationException e){
+            return new ResponseEntity<>(new ApiErrorDTO("Не заполнено одно из обязательных полей"), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
@@ -111,27 +115,36 @@ public class UserRestController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<PassportDTO> readUserPassportByUserId(@PathVariable Long id){
         try{
-            return new ResponseEntity<>(new PassportDTO(userService.getUserById(id).getPassport()), HttpStatus.OK);
+            Passport passport = userService.getUserById(id).getPassport();
+            if (passport == null){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(new PassportDTO(passport), HttpStatus.OK);
+            }
         } catch (UsernameNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 
     @PostMapping("/{id}/passport")
-    public ResponseEntity<PassportDTO> createPassportByUserId(@RequestBody PassportDTO passportDTO, @PathVariable Long id){
+    public ResponseEntity<Object> createPassportByUserId(@RequestBody PassportDTO passportDTO, @PathVariable Long id){
         try{
             return new ResponseEntity<>(new PassportDTO(userService.createPassport(userService.getUserById(id), passportDTO)), HttpStatus.OK);
         } catch (UsernameNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (DataIntegrityViolationException e){
+            return new ResponseEntity<>(new ApiErrorDTO("Не заполнено одно из обязательных полей"), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @PutMapping("/{id}/passport")
-    public ResponseEntity<PassportDTO> updatePassportByUserId(@RequestBody PassportDTO passportDTO, @PathVariable Long id){
+    public ResponseEntity<Object> updatePassportByUserId(@RequestBody PassportDTO passportDTO, @PathVariable Long id){
         try{
             return new ResponseEntity<>(new PassportDTO(userService.updatePassport(userService.getUserById(id), passportDTO)), HttpStatus.OK);
         } catch (UsernameNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (DataIntegrityViolationException e){
+            return new ResponseEntity<>(new ApiErrorDTO("Не заполнено одно из обязательных полей"), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 

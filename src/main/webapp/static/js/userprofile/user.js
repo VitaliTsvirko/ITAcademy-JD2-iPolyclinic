@@ -116,7 +116,7 @@ function saveAddressData(id) {
                 readBasicUserData(id);
             },
             error: function (xhr, resp, text) {
-                injectAlert("address-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
+                injectAlert("address-tab-alert", "Ошибка!" + xhr.responseJSON.message, AlertsTypes.ERROR);
             }
         });
         return false;
@@ -155,7 +155,7 @@ function savePassportData(id) {
                 readBasicUserData(id);
             },
             error: function (xhr, resp, text) {
-                injectAlert("address-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
+                injectAlert("passport-tab-alert", "Ошибка!" + xhr.responseJSON.message, AlertsTypes.ERROR);
             }
         });
         return false;
