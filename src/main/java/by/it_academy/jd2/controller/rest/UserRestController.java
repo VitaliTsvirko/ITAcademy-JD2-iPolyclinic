@@ -96,6 +96,10 @@ public class UserRestController {
     }
 
 
+
+
+
+
     @GetMapping(value = "/{id}/passport", produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<PassportDTO> readUserPassportByUserId(@PathVariable Long id){

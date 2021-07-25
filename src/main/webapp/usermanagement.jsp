@@ -81,7 +81,7 @@
                 <div class="modal-body">
 
 
-                    <div class="card-header border-0 cursor-pointer m-0 p-0">
+                    <div id="userProfileModalTabsHeader" class="card-header border-0 cursor-pointer m-0 p-0">
                         <!--begin::tabs header-->
                         <ul class="nav nav-tabs m-0" id="tab" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -183,6 +183,7 @@
 
                             <!--begin::tabs address-->
                             <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+                                <div id="address-tab-alert"></div>
                                 <form id='form-address' action='#' method='post'>
                                     <div class="row mb-7 p-3">
                                         <label class="col-lg-2 col-form-label required fw-bold fs-6">Страна</label>
