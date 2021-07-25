@@ -51,7 +51,7 @@
                             <td>${usr.passport.name}</td>
                             <td>${usr.passport.surname}</td>
                             <td>
-                                <button type="button" class="btn btn-info" data-bs-toggle="modal" id="${usr.id}" data-bs-target="#userProfileModalForm" onClick="loadUserProfileData(this.id)">Профиль</button>
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal" id="${usr.id}" data-bs-target="#userProfileModal" onClick="loadUserProfileData(this.id)">Профиль</button>
                                 <button type="button" class="btn btn-warning">Заблокировать</button>
                                 <button type="button" class="btn btn-danger">Удалить</button>
 
@@ -71,7 +71,7 @@
 
 
 
-<div class="modal fade" id="userProfileModalForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="userProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -189,6 +189,7 @@
                                         <label class="col-lg-2 col-form-label required fw-bold fs-6">Страна</label>
                                         <div class="col-lg-10">
                                             <select class="form-select" name="country_code" aria-label="Страна" required>
+                                                <option value="">Укажите страну</option>
                                                 <c:forEach items="${requestScope.countriesMap}" var="country">
                                                     <option ${country.key.equalsIgnoreCase(requestScope.user.address.country.code) ? "selected" : ""} value="${country.key}">${country.value}</option>
                                                 </c:forEach>
@@ -228,7 +229,7 @@
                                     </div>
                                 </form>
 
-                                <div id="address-buttons" class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <div id="address-buttons" class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
                                     <button type="button" class="btn btn-danger" onClick="deleteAddress(this.id)">Удалить</button>
                                     <button type="button" class="btn btn-info" onClick="saveAddressData(this.id)">Сохранить</button>
                                 </div>
@@ -237,6 +238,7 @@
 
                             <!--begin::tabs passport-->
                             <div class="tab-pane fade" id="passport" role="tabpanel" aria-labelledby="passport-tab">
+                                <div id="passport-tab-alert"></div>
                                 <form id='form-passport' action='#' method='post'>
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -344,11 +346,6 @@
                     <!--end::card body-->
                 </div>
                 <!--end::tabs container-->
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                    <button type="button" id='form-address-save-btn' class='btn btn-primary' data-bs-dismiss="modal">Добавить</button>
-                </div>
             </div>
         </div>
     </div>

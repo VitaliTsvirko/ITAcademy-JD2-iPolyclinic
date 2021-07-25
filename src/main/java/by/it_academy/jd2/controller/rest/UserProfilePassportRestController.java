@@ -25,7 +25,7 @@ public class UserProfilePassportRestController {
 
     @PostMapping("/passport")
     public ResponseEntity<?> createPassport(@RequestBody PassportDTO passportDTO){
-        User user = userService.createPassport(userService.getAuthorizedUser(), passportDTO);
+        Passport passport = userService.createPassport(userService.getAuthorizedUser(), passportDTO);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -66,7 +66,7 @@ public class UserProfilePassportRestController {
 
     @PutMapping("/passport")
     public ResponseEntity<?> updatePassport(@RequestBody PassportDTO passportDTO){
-        User user = userService.updatePassport(userService.getAuthorizedUser(), passportDTO);
+        Passport passport = userService.updatePassport(userService.getAuthorizedUser(), passportDTO);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

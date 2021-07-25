@@ -146,7 +146,7 @@ public class UserService implements IUserService {
 
 
     @Override
-    public User createPassport(User user, PassportDTO passportDTO){
+    public Passport createPassport(User user, PassportDTO passportDTO){
         usersRepository.findById(user.getId())
                 .ifPresent( existingUser -> {
                             Countries countryDTO = countriesRepository
@@ -177,7 +177,7 @@ public class UserService implements IUserService {
                         }
                 );
 
-        return this.getUserById(user.getId());
+        return this.getUserById(user.getId()).getPassport();
     }
 
 
@@ -191,7 +191,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User updatePassport(User user, PassportDTO passportDTO) {
+    public Passport updatePassport(User user, PassportDTO passportDTO) {
         usersRepository.findById(user.getId()).ifPresent(existUser -> {
             Countries countryDTO = countriesRepository
                     .findById(passportDTO.getCountryOfIssueCode())
@@ -214,7 +214,7 @@ public class UserService implements IUserService {
             userPassport.setExpirationDate(passportDTO.getExpirationDate());
         });
 
-        return usersRepository.getById(user.getId());
+        return usersRepository.getById(user.getId()).getPassport();
     }
 
 

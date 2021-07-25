@@ -1,6 +1,7 @@
 package by.it_academy.jd2.service.api;
 
 import by.it_academy.jd2.domain.Address;
+import by.it_academy.jd2.domain.Passport;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.service.AddressDTO;
 import by.it_academy.jd2.service.PassportDTO;
@@ -26,8 +27,8 @@ public interface IUserService {
     Address updateAddress(User user, AddressDTO addressDTO);
 
 
-    User createPassport(User user, PassportDTO passportDTO);
-    User updatePassport(User user, PassportDTO passportDTO);
+    Passport createPassport(User user, PassportDTO passportDTO);
+    Passport updatePassport(User user, PassportDTO passportDTO);
     void deletePassport(User user);
 
     List<User> getAllUsers();

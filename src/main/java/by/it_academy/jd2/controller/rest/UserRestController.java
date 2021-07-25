@@ -15,6 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 /**
  * Created by Vitali Tsvirko
  */
@@ -69,7 +71,12 @@ public class UserRestController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<AddressDTO> readUserAddressByUserId(@PathVariable Long id){
         try{
-            return new ResponseEntity<>(new AddressDTO(userService.getUserById(id).getAddress()), HttpStatus.OK);
+            Address address = userService.getUserById(id).getAddress();
+            if (address == null){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity<>(new AddressDTO(address), HttpStatus.OK);
+            }
         } catch (UsernameNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -109,5 +116,34 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
+    @PostMapping("/{id}/passport")
+    public ResponseEntity<PassportDTO> createPassportByUserId(@RequestBody PassportDTO passportDTO, @PathVariable Long id){
+        try{
+            return new ResponseEntity<>(new PassportDTO(userService.createPassport(userService.getUserById(id), passportDTO)), HttpStatus.OK);
+        } catch (UsernameNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @PutMapping("/{id}/passport")
+    public ResponseEntity<PassportDTO> updatePassportByUserId(@RequestBody PassportDTO passportDTO, @PathVariable Long id){
+        try{
+            return new ResponseEntity<>(new PassportDTO(userService.updatePassport(userService.getUserById(id), passportDTO)), HttpStatus.OK);
+        } catch (UsernameNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @DeleteMapping("/{id}/passport")
+    public ResponseEntity<?> deletePassport(@PathVariable Long id){
+        try{
+            userService.deletePassport(userService.getUserById(id));
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (UsernameNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
 
 }
