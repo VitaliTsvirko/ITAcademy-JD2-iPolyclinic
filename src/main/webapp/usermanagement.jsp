@@ -188,7 +188,7 @@
                                     <div class="row mb-7 p-3">
                                         <label class="col-lg-2 col-form-label required fw-bold fs-6">Страна</label>
                                         <div class="col-lg-10">
-                                            <select class="form-select" name="country_code" aria-label="Страна" required>
+                                            <select class="form-select" id="address_country_code" name="country_code" aria-label="Страна" required>
                                                 <option value="">Укажите страну</option>
                                                 <c:forEach items="${requestScope.countriesMap}" var="country">
                                                     <option ${country.key.equalsIgnoreCase(requestScope.user.address.country.code) ? "selected" : ""} value="${country.key}">${country.value}</option>
@@ -200,31 +200,31 @@
                                     <div class="row mb-7 p-3">
                                         <label class="col-lg-2 col-form-label required fw-bold fs-6">Город</label>
                                         <div class="col-lg-10">
-                                            <input type="text" name="city" id="city" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.city}" >
+                                            <input type="text" name="city" id="address_city" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.city}" >
                                         </div>
                                     </div>
 
                                     <div class="row mb-7 p-3">
                                         <label class="col-lg-2 col-form-label required fw-bold fs-6">Улица</label>
                                         <div class="col-lg-10">
-                                            <input type="text" name="street" id="street" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.street}" >
+                                            <input type="text" name="street" id="address_street" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.street}" >
                                         </div>
                                     </div>
 
                                     <div class="row mb-7 p-3">
                                         <label class="col-lg-2 col-form-label required fw-bold fs-6">Дом</label>
                                         <div class="col-lg-2">
-                                            <input type="text" name="home_no" id="home_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.homeNo}" >
+                                            <input type="text" name="home_no" id="address_home_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.homeNo}" >
                                         </div>
 
                                         <label class="col-lg-2 col-form-label required fw-bold fs-6">Корпус</label>
                                         <div class="col-lg-2">
-                                            <input type="text" name="corp_no" id="corp_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.corpsNo}" >
+                                            <input type="text" name="corp_no" id="address_corp_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.corpsNo}" >
                                         </div>
 
                                         <label class="col-lg-2 col-form-label required fw-bold fs-6">Квартира</label>
                                         <div class="col-lg-2">
-                                            <input type="text" name="flat_no" id="flat_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.flatNo}" >
+                                            <input type="text" name="flat_no" id="address_flat_no" class="form-control form-control-lg form-control-solid" value="${requestScope.user.address.flatNo}" >
                                         </div>
                                     </div>
                                 </form>

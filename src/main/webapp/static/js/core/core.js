@@ -1,5 +1,6 @@
 //https://only-to-top.ru/blog/programming/2019-11-11-jquery-ajax-json-php.html
-var CONSOLE_DEBUG_ON = true;
+
+const AlertsTypes = {SUCCESS : "alert-success",  WARNING : "alert-warning", ERROR : "alert-danger"};
 
 jQuery(function($){
 });

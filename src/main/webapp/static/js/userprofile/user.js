@@ -2,7 +2,7 @@ var requestTypeAddress;
 var requestTypePassport;
 var requestUrl = 'http://localhost:8080/IPolyclinic-1.0.0/api/manager/user/';
 
-const AlertsTypes = {SUCCESS : "alert-success",  WARNING : "alert-warning", ERROR : "alert-danger"};
+
 
 function loadUserProfileData(id) {
         readBasicUserData(id);
@@ -64,7 +64,7 @@ function readAddressData(id){
                 if (!$.isEmptyObject(data)){
                     //store data to page
                     $.each(data, function(key, val) {
-                        $('#' + key).val(val);
+                        $('#address_' + key).val(val);
                     });
                 }
                 requestTypeAddress = 'PUT';
@@ -83,14 +83,19 @@ function readAddressData(id){
 function readPassportData(id){
     jQuery(function ($) {
     $.getJSON(requestUrl + id + '/passport', function(data, textStatus, jqXHR) {
-        if (!$.isEmptyObject(data) && jqXHR.status === 200){
-            //store data to page
-            $.each(data, function(key, val) {
-                $('#' + key).val(val);
-            });
+        if (jqXHR.status === 200){
+            if (!$.isEmptyObject(data)){
+                //store data to page
+                $.each(data, function(key, val) {
+                    $('#' + key).val(val);
+                });
+            }
             requestTypePassport = 'PUT';
         } else {
             requestTypePassport = 'POST';
+            //clear form
+            $('#form-passport input').val('');
+            $('#form-passport select').val('');
         }
     }).fail(function(jqxhr, textStatus, error) {
         alert( "Ошибка при получении пасспортных данных пользователя.\nError detail:\nHTTP status " + jqxhr.status + "\n error: " + error);
@@ -150,7 +155,7 @@ function savePassportData(id) {
                 readBasicUserData(id);
             },
             error: function (xhr, resp, text) {
-                alert("Ошибка. Попробуйте снова! .\nError detail:\nHTTP status " + xhr.status + "\n error: " + text)
+                injectAlert("address-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
             }
         });
         return false;
@@ -168,7 +173,7 @@ function deletePassport(id) {
                 readAddressData(id);
             },
             error: function(xhr, resp, text) {
-                alert("Ошибка. Попробуйте снова! .\nError detail:\nHTTP status " + xhr.status + "\n error: " + text)
+                injectAlert("address-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
             }
         });
         return false;
