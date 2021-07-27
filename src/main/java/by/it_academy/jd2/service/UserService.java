@@ -1,17 +1,11 @@
 package by.it_academy.jd2.service;
 
 import by.it_academy.jd2.core.UsernameAlreadyUsedException;
-import by.it_academy.jd2.domain.Address;
-import by.it_academy.jd2.domain.Countries;
-import by.it_academy.jd2.domain.Passport;
-import by.it_academy.jd2.domain.User;
+import by.it_academy.jd2.domain.*;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
 import by.it_academy.jd2.domain.enumeration.Sex;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
-import by.it_academy.jd2.repository.IAddressRepository;
-import by.it_academy.jd2.repository.ICountriesRepository;
-import by.it_academy.jd2.repository.IPassportsRepository;
-import by.it_academy.jd2.repository.IUsersRepository;
+import by.it_academy.jd2.repository.*;
 import by.it_academy.jd2.security.SecurityUtils;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,14 +27,16 @@ public class UserService implements IUserService {
     private final IAddressRepository addressRepository;
     private final IPassportsRepository passportsRepository;
     private final ICountriesRepository countriesRepository;
+    private final IMedicalCardRepository medicalCardRepository;
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(IUsersRepository usersRepository, IAddressRepository addressRepository, IPassportsRepository passportsRepository, ICountriesRepository countriesRepository, PasswordEncoder passwordEncoder) {
+    public UserService(IUsersRepository usersRepository, IAddressRepository addressRepository, IPassportsRepository passportsRepository, ICountriesRepository countriesRepository, IMedicalCardRepository medicalCardRepository, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
         this.addressRepository = addressRepository;
         this.passportsRepository = passportsRepository;
         this.countriesRepository = countriesRepository;
+        this.medicalCardRepository = medicalCardRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -51,14 +47,19 @@ public class UserService implements IUserService {
                 }
         );
 
-
         User user = new User();
         user.setPhoneNo(phoneNo);
         user.setPassword(passwordEncoder.encode(password));
         user.setState(ApplicationUserState.SIGNUP);
         user.setUserRole(UserRoles.USER);
 
+        MedicalCard medicalCard = new MedicalCard();
+        medicalCard.setUser(user);
+
+        user.setMedicalCard(medicalCard);
+
         usersRepository.save(user);
+        medicalCardRepository.save(medicalCard);
 
         return user;
     }

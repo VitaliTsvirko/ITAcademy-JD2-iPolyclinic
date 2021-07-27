@@ -54,7 +54,7 @@ public class User implements Serializable {
     private MedicalCard medicalCard;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_role")
+    @Column(name = "user_role", nullable = false)
     private UserRoles userRole;
 
     @Column(name = "oauth2_github_id")

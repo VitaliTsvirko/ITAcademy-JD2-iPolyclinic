@@ -4,7 +4,10 @@ import by.it_academy.jd2.config.PersistentConfig;
 import by.it_academy.jd2.core.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.Address;
 import by.it_academy.jd2.domain.Countries;
+import by.it_academy.jd2.domain.MedicalCard;
 import by.it_academy.jd2.domain.User;
+import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
+import by.it_academy.jd2.domain.enumeration.UserRoles;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -39,6 +42,9 @@ class IUsersRepositoryTest {
 
     @Autowired
     private ICountriesRepository countriesRepository;
+
+    @Autowired
+    private IMedicalCardRepository medicalCardRepository;
 
     @Test
     void getExistUserByLogin(){
@@ -90,17 +96,20 @@ class IUsersRepositoryTest {
 
     @Test
     void createUser(){
-        String phoneNo = "+375295148825";
+        User user = new User();
 
+        user.setPhoneNo("+37529111112");
+        user.setPassword("MyPassword");
+        user.setState(ApplicationUserState.SIGNUP);
+        user.setUserRole(UserRoles.USER);
 
+        MedicalCard medicalCard = new MedicalCard();
+        medicalCard.setUser(user);
 
+        user.setMedicalCard(medicalCard);
 
-
-/*        usersRepository.findByPhoneNo(phoneNo).ifPresent(
-                user -> { throw new UsernameAlreadyUsedException("User phone number " + user.getPhoneNo() + " already registered");
-                }
-        );*/
-
+        usersRepository.save(user);
+        medicalCardRepository.save(medicalCard);
 
     }
 
