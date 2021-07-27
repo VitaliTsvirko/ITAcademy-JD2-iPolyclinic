@@ -22,6 +22,21 @@
     </properties>
 
 
+    <profiles>
+        <profile>
+            <id>work</id>
+            <properties>
+                <maven.tomcat.url>http://localhost:8081/manager/text</maven.tomcat.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>home</id>
+            <properties>
+                <maven.tomcat.url>http://localhost:8080/manager/text</maven.tomcat.url>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
