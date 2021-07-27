@@ -14,7 +14,7 @@ public class MedicalCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "medicalCard")
     private User user;
 
     @OneToMany(mappedBy = "id", fetch = FetchType.EAGER)
