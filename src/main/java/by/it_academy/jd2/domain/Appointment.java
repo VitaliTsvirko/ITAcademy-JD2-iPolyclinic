@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "appointments")
-public class Appointments {
+public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +51,7 @@ public class Appointments {
     private Integer diastolicBloodPressure;
 
     @OneToOne
-    @JoinColumn(name = "disease_code", foreignKey=@ForeignKey(name = "FK_appointment_doctor_id"))
+    @JoinColumn(name = "disease_code", foreignKey=@ForeignKey(name = "FK_disease_code_id"))
     private Diseases diagnosis;
 
     @Column(name = "therapy")
@@ -60,6 +60,10 @@ public class Appointments {
     @Enumerated(EnumType.STRING)
     @Column(name = "health_status")
     private HealthStatus healthStatus;
+
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn (name="medical_card_id")
+    private MedicalCard medicalCard;
 
     public Long getId() {
         return id;
@@ -147,5 +151,13 @@ public class Appointments {
 
     public void setHealthStatus(HealthStatus healthStatus) {
         this.healthStatus = healthStatus;
+    }
+
+    public MedicalCard getMedicalCard() {
+        return medicalCard;
+    }
+
+    public void setMedicalCard(MedicalCard medicalCard) {
+        this.medicalCard = medicalCard;
     }
 }

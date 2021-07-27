@@ -1,6 +1,6 @@
 package by.it_academy.jd2.controller.signup;
 
-import by.it_academy.jd2.core.UsernameAlreadyUsedException;
+import by.it_academy.jd2.core.exceptions.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.stereotype.Controller;

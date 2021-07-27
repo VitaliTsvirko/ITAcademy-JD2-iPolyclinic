@@ -1,4 +1,4 @@
-package by.it_academy.jd2.core;
+package by.it_academy.jd2.core.exceptions;
 
 /**
  * Created by Vitali Tsvirko

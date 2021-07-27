@@ -16,4 +16,6 @@ public interface IUsersRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByPhoneNo(String phoneNo);
 
+    List<User> findByUserRoleEquals(UserRoles userRoles);
+
 }

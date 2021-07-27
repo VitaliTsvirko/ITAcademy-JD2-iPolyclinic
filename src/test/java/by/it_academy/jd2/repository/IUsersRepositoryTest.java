@@ -1,7 +1,6 @@
 package by.it_academy.jd2.repository;
 
 import by.it_academy.jd2.config.PersistentConfig;
-import by.it_academy.jd2.core.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.Address;
 import by.it_academy.jd2.domain.Countries;
 import by.it_academy.jd2.domain.MedicalCard;
@@ -12,7 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -22,8 +22,6 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import javax.transaction.Transactional;
 
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ExtendWith(value = {SpringExtension.class})
@@ -45,6 +43,8 @@ class IUsersRepositoryTest {
 
     @Autowired
     private IMedicalCardRepository medicalCardRepository;
+
+
 
     @Test
     void getExistUserByLogin(){
@@ -98,8 +98,48 @@ class IUsersRepositoryTest {
     void createUser(){
         User user = new User();
 
-        user.setPhoneNo("+37529111112");
-        user.setPassword("MyPassword");
+        user.setPhoneNo("+37529111113");
+        user.setPassword("doctor");
+        user.setState(ApplicationUserState.SIGNUP);
+        user.setUserRole(UserRoles.DOCTOR);
+
+        /*MedicalCard medicalCard = new MedicalCard();
+        medicalCard.setUser(user);
+
+        user.setMedicalCard(medicalCard);
+*/
+        usersRepository.save(user);
+//        medicalCardRepository.save(medicalCard);
+
+    }
+
+    @Test
+    void initialCreateUsers(){
+
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        User admin = new User();
+
+        admin.setPhoneNo("+37529111111");
+        admin.setPassword(passwordEncoder.encode("admin"));
+        admin.setState(ApplicationUserState.SIGNUP);
+        admin.setUserRole(UserRoles.ADMIN);
+
+        usersRepository.save(admin);
+
+        User doctor = new User();
+
+        doctor.setPhoneNo("+37529111112");
+        doctor.setPassword(passwordEncoder.encode("doctor"));
+        doctor.setState(ApplicationUserState.SIGNUP);
+        doctor.setUserRole(UserRoles.DOCTOR);
+
+        usersRepository.save(doctor);
+
+        User user = new User();
+
+        user.setPhoneNo("+37529111113");
+        user.setPassword(passwordEncoder.encode("user"));
         user.setState(ApplicationUserState.SIGNUP);
         user.setUserRole(UserRoles.USER);
 
@@ -110,6 +150,7 @@ class IUsersRepositoryTest {
 
         usersRepository.save(user);
         medicalCardRepository.save(medicalCard);
+
 
     }
 

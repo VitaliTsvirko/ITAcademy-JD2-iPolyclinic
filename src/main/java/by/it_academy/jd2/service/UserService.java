@@ -1,6 +1,6 @@
 package by.it_academy.jd2.service;
 
-import by.it_academy.jd2.core.UsernameAlreadyUsedException;
+import by.it_academy.jd2.core.exceptions.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.*;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
 import by.it_academy.jd2.domain.enumeration.Sex;
@@ -230,6 +230,14 @@ public class UserService implements IUserService {
         }
 
         user.setState(ApplicationUserState.PASSPORT_DATA_VERIFIED);
+
+        MedicalCard medicalCard = new MedicalCard();
+        medicalCard.setUser(user);
+        medicalCardRepository.save(medicalCard);
+
+        user.setMedicalCard(medicalCard);
+
+        user.setState(ApplicationUserState.ACTIVATED);
 
         return user;
     }
