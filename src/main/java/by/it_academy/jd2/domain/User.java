@@ -57,6 +57,12 @@ public class User implements Serializable {
     @Column(name = "user_role")
     private UserRoles userRole;
 
+    @Column(name = "oauth2_github_id")
+    private String githubId;
+
+    @Column(name = "oauth2_google_id")
+    private String googleId;
+
     public Long getId() {
         return id;
     }
@@ -135,6 +141,23 @@ public class User implements Serializable {
 
     public void setUserRole(UserRoles userRole) {
         this.userRole = userRole;
+    }
+
+
+    public String getGithubId() {
+        return githubId;
+    }
+
+    public void setGithubId(String githubId) {
+        this.githubId = githubId;
+    }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
     }
 
     @Override
