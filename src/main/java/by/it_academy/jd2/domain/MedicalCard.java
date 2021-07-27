@@ -3,6 +3,7 @@ package by.it_academy.jd2.domain;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Vitali Tsvirko
@@ -18,8 +19,8 @@ public class MedicalCard {
     @OneToOne(mappedBy = "medicalCard")
     private User user;
 
-    @OneToMany(mappedBy = "medicalCard", cascade = CascadeType.ALL)
-    private Collection<Appointment> appointments = new HashSet<>();
+    @OneToMany(mappedBy = "medicalCard", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Appointment> appointments = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -37,11 +38,11 @@ public class MedicalCard {
         this.user = user;
     }
 
-    public Collection<Appointment> getAppointments() {
+    public Set<Appointment> getAppointments() {
         return appointments;
     }
 
-    public void setAppointments(Collection<Appointment> appointments) {
+    public void setAppointments(Set<Appointment> appointments) {
         this.appointments = appointments;
     }
 

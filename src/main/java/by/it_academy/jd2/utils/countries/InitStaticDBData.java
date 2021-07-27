@@ -1,8 +1,9 @@
 package by.it_academy.jd2.utils.countries;
 
 import by.it_academy.jd2.domain.Countries;
+import by.it_academy.jd2.domain.Diseases;
 import by.it_academy.jd2.repository.ICountriesRepository;
-import org.springframework.stereotype.Component;
+import by.it_academy.jd2.repository.IDiseasesRepository;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -15,11 +16,15 @@ import java.util.List;
 public class InitStaticDBData {
 
     private final ICountriesRepository repository;
+    private final IDiseasesRepository diseasesRepository;
     private final Path filePath;
+    private final Path diseasesFilePath;
 
-    public InitStaticDBData(ICountriesRepository repository, Path filePath) {
+    public InitStaticDBData(ICountriesRepository repository, IDiseasesRepository diseasesRepository, Path filePath, Path diseasesFilePath) {
         this.repository = repository;
+        this.diseasesRepository = diseasesRepository;
         this.filePath = filePath;
+        this.diseasesFilePath = diseasesFilePath;
     }
 
 
@@ -51,10 +56,43 @@ public class InitStaticDBData {
         return countriesList;
     }
 
+    public List<Diseases> readDiseasesDataFromFile(){
+        List<Diseases> diseasesList = new ArrayList<>();
+        String textLine;
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.diseasesFilePath.toString()))){
+            textLine = bufferedReader.readLine();
+            while(textLine != null){
+                String[] split = textLine.split(";");
+
+                Diseases diseases = new Diseases();
+                diseases.setCode(split[0]);
+                diseases.setName(split[1]);
+
+
+                diseasesList.add(diseases);
+
+                textLine = bufferedReader.readLine();
+            }
+        } catch (FileNotFoundException e){
+            System.err.println("Файл не найден.");
+        }
+        catch (IOException | NullPointerException e){
+            e.printStackTrace();
+        }
+
+        return diseasesList;
+    }
 
     public void writeCountriesDataToDb(List<Countries> countries){
         for (Countries country : countries) {
             repository.save(country);
+        }
+    }
+
+    public void writeDiseasesListDataToDb(List<Diseases> diseasesList){
+        for (Diseases disease : diseasesList) {
+            diseasesRepository.save(disease);
         }
     }
 

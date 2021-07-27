@@ -19,7 +19,9 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ExtendWith(value = {SpringExtension.class})
@@ -59,6 +61,19 @@ class IMedicalCardRepositoryTest {
                     appointmentsRepository.save(appointment);
                 }
                 );
+    }
+
+    @Test
+    void getAllAppointmentsByMedicalCardId(){
+        Optional<MedicalCard> byUserId = medicalCardRepository.findByUserId(3L);
+
+        MedicalCard medicalCard = byUserId.get();
+
+        Set<Appointment> appointments = medicalCard.getAppointments();
+
+        int size = appointments.size();
+
+
     }
 
 

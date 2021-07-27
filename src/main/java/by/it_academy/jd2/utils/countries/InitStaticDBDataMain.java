@@ -2,6 +2,7 @@ package by.it_academy.jd2.utils.countries;
 
 import by.it_academy.jd2.config.RootConfig;
 import by.it_academy.jd2.domain.Countries;
+import by.it_academy.jd2.domain.Diseases;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -18,8 +19,11 @@ public class InitStaticDBDataMain {
         InitStaticDBData initStaticDBData = context.getBean("initStaticDBData", InitStaticDBData.class);
 
         List<Countries> countries = initStaticDBData.readCountriesDataFromFile();
+        List<Diseases> diseasesList = initStaticDBData.readDiseasesDataFromFile();
 
         initStaticDBData.writeCountriesDataToDb(countries);
+
+        initStaticDBData.writeDiseasesListDataToDb(diseasesList);
 
     }
 }
