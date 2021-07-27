@@ -13,6 +13,7 @@ import jakarta.validation.constraints.Email;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * Created by Vitali Tsvirko
@@ -28,6 +29,9 @@ public class UserBasicDataDTO {
     @JsonProperty("date_of_birth")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDate dateOfBirth;
+
+    @JsonProperty("age")
+    private Integer age;
 
     @JsonProperty("full_name")
     private String fullName;
@@ -54,6 +58,7 @@ public class UserBasicDataDTO {
             if (user.getPassport() != null){
                 this.fullName = user.getPassport().getSurname() + " " + user.getPassport().getName() + " " + user.getPassport().getPatronymic();
                 this.dateOfBirth = user.getPassport().getDateOfBirth();
+                this.age = Period.between(dateOfBirth, LocalDate.now()).getYears();
             }
         }
     }
@@ -113,5 +118,13 @@ public class UserBasicDataDTO {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

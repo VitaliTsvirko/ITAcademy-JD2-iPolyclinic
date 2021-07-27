@@ -1,11 +1,9 @@
 package by.it_academy.jd2.repository;
 
 import by.it_academy.jd2.config.PersistentConfig;
-import by.it_academy.jd2.domain.Address;
-import by.it_academy.jd2.domain.Countries;
-import by.it_academy.jd2.domain.MedicalCard;
-import by.it_academy.jd2.domain.User;
+import by.it_academy.jd2.domain.*;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
+import by.it_academy.jd2.domain.enumeration.Sex;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,6 +19,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import javax.transaction.Transactional;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -43,6 +42,9 @@ class IUsersRepositoryTest {
 
     @Autowired
     private IMedicalCardRepository medicalCardRepository;
+
+    @Autowired
+    private IPassportsRepository passportsRepository;
 
 
 
@@ -150,7 +152,45 @@ class IUsersRepositoryTest {
 
         usersRepository.save(user);
         medicalCardRepository.save(medicalCard);
+    }
 
+    @Test
+    void addUserPassport(){
+/*        usersRepository.findByPhoneNo("+37529111113").ifPresent(user -> {
+            Passport passport = new Passport();
+            passport.setName("Иван");
+            passport.setSurname("Иванов");
+            passport.setPatronymic("Иванович");
+            passport.setDateOfBirth(LocalDate.of(1986, 1, 1));
+            passport.setIssueDate(LocalDate.of(2021, 1, 1));
+            passport.setExpirationDate(LocalDate.of(2021, 1, 1));
+            passport.setSex(Sex.MALE);
+            passport.setPassportNo("123456");
+            passport.setPersonalNo("010203040506E017PB6");
+
+            passportsRepository.save(passport);
+
+            user.setPassport(passport);
+
+        });*/
+
+            usersRepository.findByPhoneNo("+37529111112").ifPresent(user -> {
+                Passport passport = new Passport();
+                passport.setName("Сергей");
+                passport.setSurname("Сергеевич");
+                passport.setPatronymic("Сергеев");
+                passport.setDateOfBirth(LocalDate.of(1989, 1, 1));
+                passport.setIssueDate(LocalDate.of(2011, 1, 1));
+                passport.setExpirationDate(LocalDate.of(2051, 1, 1));
+                passport.setSex(Sex.MALE);
+                passport.setPassportNo("786343");
+                passport.setPersonalNo("010203040506E017PB7");
+
+                passportsRepository.save(passport);
+
+                user.setPassport(passport);
+
+        });
 
     }
 
