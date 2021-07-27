@@ -1,4 +1,4 @@
-package by.it_academy.jd2.service;
+package by.it_academy.jd2.service.dto;
 
 import by.it_academy.jd2.domain.Passport;
 import by.it_academy.jd2.domain.enumeration.Sex;

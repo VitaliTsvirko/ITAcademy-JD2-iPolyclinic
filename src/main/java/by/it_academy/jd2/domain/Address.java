@@ -1,12 +1,9 @@
 package by.it_academy.jd2.domain;
 
-import by.it_academy.jd2.service.AddressDTO;
 import jakarta.validation.constraints.Min;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Objects;
 
 /**
  * Created by Vitali Tsvirko

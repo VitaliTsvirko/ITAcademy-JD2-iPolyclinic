@@ -1,15 +1,11 @@
 package by.it_academy.jd2.controller.rest;
 
-import by.it_academy.jd2.service.AppointmentDTO;
+import by.it_academy.jd2.service.dto.AppointmentDTO;
 import by.it_academy.jd2.service.api.IAppointmentsService;
-import by.it_academy.jd2.service.api.IMedicalCardService;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/appointment")

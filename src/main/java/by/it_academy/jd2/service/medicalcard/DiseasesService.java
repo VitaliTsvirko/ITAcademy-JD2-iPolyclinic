@@ -1,4 +1,4 @@
-package by.it_academy.jd2.service;
+package by.it_academy.jd2.service.medicalcard;
 
 import by.it_academy.jd2.core.exceptions.DiseasesNotFoundException;
 import by.it_academy.jd2.domain.Diseases;

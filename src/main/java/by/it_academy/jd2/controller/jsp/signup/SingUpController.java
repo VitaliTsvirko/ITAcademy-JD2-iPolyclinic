@@ -1,4 +1,4 @@
-package by.it_academy.jd2.controller.signup;
+package by.it_academy.jd2.controller.jsp.signup;
 
 import by.it_academy.jd2.core.exceptions.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.User;

@@ -1,4 +1,4 @@
-package by.it_academy.jd2.controller;
+package by.it_academy.jd2.controller.jsp;
 
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;

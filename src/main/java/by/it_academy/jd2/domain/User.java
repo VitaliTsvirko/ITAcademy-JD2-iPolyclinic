@@ -3,10 +3,7 @@ package by.it_academy.jd2.domain;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
 import by.it_academy.jd2.domain.enumeration.HealthStatus;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
-import by.it_academy.jd2.service.AddressDTO;
 import jakarta.validation.constraints.Email;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;

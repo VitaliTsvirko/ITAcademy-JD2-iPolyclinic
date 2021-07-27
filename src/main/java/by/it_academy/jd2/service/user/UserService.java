@@ -1,4 +1,4 @@
-package by.it_academy.jd2.service;
+package by.it_academy.jd2.service.user;
 
 import by.it_academy.jd2.core.exceptions.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.*;
@@ -7,6 +7,8 @@ import by.it_academy.jd2.domain.enumeration.Sex;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.repository.*;
 import by.it_academy.jd2.security.SecurityUtils;
+import by.it_academy.jd2.service.dto.AddressDTO;
+import by.it_academy.jd2.service.dto.PassportDTO;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;

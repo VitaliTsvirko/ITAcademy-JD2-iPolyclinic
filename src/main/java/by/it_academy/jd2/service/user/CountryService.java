@@ -1,4 +1,4 @@
-package by.it_academy.jd2.service;
+package by.it_academy.jd2.service.user;
 
 import by.it_academy.jd2.domain.Countries;
 import by.it_academy.jd2.repository.ICountriesRepository;

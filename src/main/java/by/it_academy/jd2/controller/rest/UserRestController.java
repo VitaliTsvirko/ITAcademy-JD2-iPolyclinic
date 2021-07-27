@@ -2,10 +2,10 @@ package by.it_academy.jd2.controller.rest;
 
 import by.it_academy.jd2.domain.Address;
 import by.it_academy.jd2.domain.Passport;
-import by.it_academy.jd2.service.AddressDTO;
-import by.it_academy.jd2.service.ApiErrorDTO;
-import by.it_academy.jd2.service.PassportDTO;
-import by.it_academy.jd2.service.UserBasicDataDTO;
+import by.it_academy.jd2.service.dto.AddressDTO;
+import by.it_academy.jd2.service.dto.ApiErrorDTO;
+import by.it_academy.jd2.service.dto.PassportDTO;
+import by.it_academy.jd2.service.dto.UserBasicDataDTO;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;

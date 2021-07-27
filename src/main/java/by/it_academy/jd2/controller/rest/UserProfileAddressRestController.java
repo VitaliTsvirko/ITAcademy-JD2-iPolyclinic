@@ -1,20 +1,12 @@
 package by.it_academy.jd2.controller.rest;
 
 import by.it_academy.jd2.domain.Address;
-import by.it_academy.jd2.domain.User;
-import by.it_academy.jd2.service.AddressDTO;
+import by.it_academy.jd2.service.dto.AddressDTO;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 
 /**
