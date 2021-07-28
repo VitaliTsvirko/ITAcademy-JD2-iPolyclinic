@@ -1,5 +1,7 @@
 package by.it_academy.jd2.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 /**
@@ -10,9 +12,11 @@ import javax.persistence.*;
 public class Diseases {
 
     @Id
+    @JsonProperty("id")
     private String code;
 
     @Column(name = "name")
+    @JsonProperty("text")
     private String name;
 
     public String getCode() {

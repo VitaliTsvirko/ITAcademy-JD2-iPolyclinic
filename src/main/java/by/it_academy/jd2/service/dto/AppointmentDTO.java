@@ -55,8 +55,11 @@ public class AppointmentDTO {
     @JsonProperty("diastolic_blood_pressure")
     private Integer diastolicBloodPressure;
 
-    @JsonProperty("diagnosis")
-    private Diseases diagnosis;
+    @JsonProperty("diagnosis_code")
+    private String diagnosisCode;
+
+    @JsonProperty("diagnosis_name")
+    private String diagnosisName;
 
     @JsonProperty("therapy")
     private String therapy;
@@ -66,7 +69,6 @@ public class AppointmentDTO {
 
     @JsonProperty("medical_card_id")
     private Long medicalCardId;
-
 
     public AppointmentDTO() {
 
@@ -88,7 +90,10 @@ public class AppointmentDTO {
             this.temperature = appointment.getTemperature();
             this.diastolicBloodPressure = appointment.getDiastolicBloodPressure();
             this.systolicBloodPressure = appointment.getSystolicBloodPressure();
-            this.diagnosis = appointment.getDiagnosis();
+            if (appointment.getDiagnosis() != null){
+                this.diagnosisCode = appointment.getDiagnosis().getCode();
+                this.diagnosisName = appointment.getDiagnosis().getName();
+            }
             this.therapy = appointment.getTherapy();
             this.healthStatus = appointment.getHealthStatus();
             this.medicalCardId = appointment.getMedicalCard().getId();
@@ -176,12 +181,20 @@ public class AppointmentDTO {
         this.diastolicBloodPressure = diastolicBloodPressure;
     }
 
-    public Diseases getDiagnosis() {
-        return diagnosis;
+    public String getDiagnosisCode() {
+        return diagnosisCode;
     }
 
-    public void setDiagnosis(Diseases diagnosis) {
-        this.diagnosis = diagnosis;
+    public void setDiagnosisCode(String diagnosisCode) {
+        this.diagnosisCode = diagnosisCode;
+    }
+
+    public String getDiagnosisName() {
+        return diagnosisName;
+    }
+
+    public void setDiagnosisName(String diagnosisName) {
+        this.diagnosisName = diagnosisName;
     }
 
     public String getTherapy() {

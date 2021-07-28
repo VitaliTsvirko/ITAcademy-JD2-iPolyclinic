@@ -19,10 +19,10 @@ public class AppointmentsRestController {
         this.userService = userService;
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{medicalCardId}")
     //@PreAuthorize("hasAuthority('DOCTOR')")
-    public ResponseEntity<AppointmentDTO> createAppointment(@PathVariable Long id){
-        return new ResponseEntity<>(new AppointmentDTO(appointmentsService.createAppointment(userService.getAuthorizedUser(), id)), HttpStatus.OK);
+    public ResponseEntity<AppointmentDTO> createAppointment(@PathVariable Long medicalCardId){
+        return new ResponseEntity<>(new AppointmentDTO(appointmentsService.createAppointment(userService.getAuthorizedUser(), medicalCardId)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

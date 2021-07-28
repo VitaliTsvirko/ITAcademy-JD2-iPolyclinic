@@ -156,7 +156,7 @@ class IUsersRepositoryTest {
 
     @Test
     void addUserPassport(){
-/*        usersRepository.findByPhoneNo("+37529111113").ifPresent(user -> {
+        usersRepository.findByPhoneNo("+37529111113").ifPresent(user -> {
             Passport passport = new Passport();
             passport.setName("Иван");
             passport.setSurname("Иванов");
@@ -172,7 +172,7 @@ class IUsersRepositoryTest {
 
             user.setPassport(passport);
 
-        });*/
+        });
 
             usersRepository.findByPhoneNo("+37529111112").ifPresent(user -> {
                 Passport passport = new Passport();

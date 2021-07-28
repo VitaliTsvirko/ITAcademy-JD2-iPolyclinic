@@ -62,6 +62,11 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </li>
+
+                                <li class="nav-item mx-3">
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/work">Рабочее место</a>
+                                </li>
+
                             </c:otherwise>
                         </c:choose>
                     </ul>

@@ -50,7 +50,9 @@ public class AppointmentsService implements IAppointmentsService {
                                 record.setTemperature(appointmentDTO.getTemperature());
                                 record.setSystolicBloodPressure(appointmentDTO.getSystolicBloodPressure());
                                 record.setDiastolicBloodPressure(appointmentDTO.getDiastolicBloodPressure());
-                                record.setDiagnosis(appointmentDTO.getDiagnosis());
+
+                                //record.setDiagnosis(appointmentDTO.getDiagnosis());
+
                                 record.setTherapy(appointmentDTO.getTherapy());
                                 record.setHealthStatus(appointmentDTO.getHealthStatus());
 

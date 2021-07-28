@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>Медицинская карта</title>
+    <title>Медицинская карта - ${patientData.fullName}</title>
     <%@include file="layouts/head.jsp"%>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -19,10 +19,10 @@
 <main class="container-md pt-5">
 
     <div class="card mb-2">
-        <h5 class="card-header" id="patient_full_name"></h5>
+        <h5 class="card-header" id="patient_full_name">${patientData.fullName}</h5>
         <div class="card-body">
-            <span class="card-text m-0" id="patient_age_date_of_birth"></span>
-            <span class="card-text m-0" id="patient_address"></span>
+            <p class="card-text m-0">${patientData.age} лет, ${patientData.dateOfBirth}</p>
+            <p class="card-text m-0">${patientData.phoneNo}</p>
         </div>
     </div>
 
@@ -31,6 +31,7 @@
             <table class="table table-hover" id="patient_appointments">
                 <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Дата</th>
                     <th scope="col">Врач</th>
                     <th scope="col">Прием</th>
@@ -43,10 +44,11 @@
                 <tbody>
                     <c:forEach items="${appointmentsList}" var="app">
                         <tr>
-                            <th scope="row">${app.date}</th>
+                            <th scope="row">${app.id}</th>
+                            <th>${app.date}</th>
                             <td>${app.doctorFullName}</td>
                             <td>${app.type}</td>
-                            <td>${app.diagnosis.name}</td>
+                            <td>${app.diagnosisName}</td>
                             <td>${app.therapy}</td>
                             <td>${app.healthStatus}</td>
                             <td></td>
@@ -65,7 +67,6 @@
 
     <%@include file="layouts/footer.jsp"%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/medicalcard.js" type="application/javascript"></script>
 
 </body>
 </html>
