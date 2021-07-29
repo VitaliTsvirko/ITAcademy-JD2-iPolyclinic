@@ -51,4 +51,11 @@ public class MedicalCardsService implements IMedicalCardService {
                 .orElseThrow(() -> new MedicalCardNotFoundException("Medical card was not found"));
     }
 
+
+    public Integer getAppointmentCountByMedicalcardId(Long id){
+        return medicalCardRepository.findById(id).map(md -> md.getAppointments().size())
+                .orElseThrow(() -> new MedicalCardNotFoundException("Medical card was not found"));
+    }
+
+
 }

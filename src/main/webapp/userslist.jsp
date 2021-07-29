@@ -34,6 +34,7 @@
                         <th scope="col">Логин</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Фамилия</th>
+                        <th scope="col">Обращений</th>
                         <th scope="col">---</th>
                     </tr>
                     </thead>
@@ -45,6 +46,7 @@
                             <td>${usr.phoneNo}</td>
                             <td>${usr.passport.name}</td>
                             <td>${usr.passport.surname}</td>
+                            <td>${appointmentsCounts[usr.id]}</td>
                             <td>
                               <a href="${pageContext.request.contextPath}/userprofile/${usr.id}" target="_blank"> <span class="badge rounded-pill bg-info text-dark">Профиль</span></a>
                               <span> </span>
