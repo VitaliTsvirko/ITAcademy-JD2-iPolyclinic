@@ -4,6 +4,8 @@
 <link href="<c:url value='/static/css/navbar.css'/>" rel="stylesheet">
 <link href="<c:url value='/static/css/style.css'/>" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="<c:url value='/static/js/core/core.js'/>" type="application/javascript"></script>
 

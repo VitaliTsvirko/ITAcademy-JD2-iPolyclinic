@@ -16,22 +16,9 @@
 <main class="container-md pt-5">
 
     <div class="card mb-2">
-        <h5 class="card-header" id="patient_full_name">${patientData.fullName}</h5>
+        <h5 class="card-header" id="patient_full_name"><i class="bi bi-gender-male">${patientData.fullName}</i></h5>
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <p class="card-text m-0">${patientData.age} лет, ${patientData.dateOfBirth}</p>
-                    <p class="card-text m-0">${patientData.phoneNo}</p>
-                </div>
-                <div class="col-lg-6">
-                    <p class="card-text m-0">Рост: <span>${empty medicalCardHeight ? '---' : medicalCardHeight}</span> см</p>
-                    <p class="card-text m-0">Вес: <span>${empty medicalCardWeight ? '---' : medicalCardWeight}</span> кг</p>
-                </div>
-            </div>
-            <hr>
-            <div class="row mt-0">
-                <p class="card-text m-0">Аллергия: <span>${empty requestScope.medicalCardAllergy ? "нет" : medicalCardAllergy}</span> </p>
-            </div>
+            <%@include file="layouts/medicalcard.jsp"%>
         </div>
     </div>
 
