@@ -4,9 +4,11 @@ import by.it_academy.jd2.config.PersistentConfig;
 import by.it_academy.jd2.config.RootConfig;
 import by.it_academy.jd2.domain.Address;
 import by.it_academy.jd2.domain.User;
+import by.it_academy.jd2.domain.enumeration.AppointmentType;
 import by.it_academy.jd2.repository.IAddressRepository;
 import by.it_academy.jd2.repository.IUsersRepository;
 import by.it_academy.jd2.service.api.IUserService;
+import by.it_academy.jd2.service.dto.AppointmentDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -57,5 +59,8 @@ class UserServiceTest {
 
     @Test
     void updateAddress() {
+        AppointmentDTO appointmentDTO = new AppointmentDTO();
+
+        appointmentDTO.getDoctorId();
     }
 }

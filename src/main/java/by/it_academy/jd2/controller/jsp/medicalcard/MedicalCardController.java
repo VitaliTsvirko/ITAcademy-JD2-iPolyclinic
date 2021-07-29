@@ -44,6 +44,8 @@ public class MedicalCardController {
                                                     .collect(Collectors.toList()));
         model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(id)));
 
+        model.addAttribute("medicalCardId", id);
+
         return "medicalcard";
     }
 

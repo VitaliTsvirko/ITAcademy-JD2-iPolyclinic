@@ -41,6 +41,7 @@ public class AppointmentDTO {
     private String doctorFullName;
 
     @JsonProperty("type")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private AppointmentType type;
 
     @JsonProperty("complaints")
@@ -65,6 +66,7 @@ public class AppointmentDTO {
     private String therapy;
 
     @JsonProperty("health_status")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private HealthStatus healthStatus;
 
     @JsonProperty("medical_card_id")

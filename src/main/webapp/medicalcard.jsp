@@ -51,7 +51,9 @@
                             <td>${app.diagnosisName}</td>
                             <td>${app.therapy}</td>
                             <td>${app.healthStatus}</td>
-                            <td></td>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/appointment/${app.id}" target="_blank"> <span class="badge rounded-pill bg-primary">Редактировать</span></a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
@@ -61,12 +63,8 @@
 
     </div>
 
-
-
 </main>
-
     <%@include file="layouts/footer.jsp"%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 </body>
 </html>

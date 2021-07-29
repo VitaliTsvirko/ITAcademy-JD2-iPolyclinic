@@ -80,7 +80,7 @@
                     <label class="fw-bold fs-6">Жалобы:</label>
                 </div>
                 <div class="col-lg-9">
-                    <textarea class="form-control" name="complaints" id="complaints"></textarea>
+                    <textarea class="form-control" name="complaints" id="complaints">${appointmentDTO.complaints}</textarea>
                 </div>
             </div>
 
@@ -89,7 +89,7 @@
                 <label class="fw-bold fs-6">Температура:</label>
             </div>
             <div class="col-lg-3">
-                    <input type="text" name="temperature" id="temperature" class="form-control form-control-sm form-control-solid mb-3">
+                    <input type="text" name="temperature" id="temperature" class="form-control form-control-sm form-control-solid mb-3" value="${appointmentDTO.temperature}">
             </div>
             <div class="col-lg-2">
             </div>
@@ -97,16 +97,18 @@
                 <label class="fw-bold fs-6">Давление:</label>
             </div>
             <div class="col-lg-1">
-                    <input type="text" name="systolicBloodPressure" id="systolicBloodPressure" class="form-control form-control-sm form-control-solid mb-3">
+                    <input type="text" name="systolicBloodPressure" id="systolicBloodPressure" class="form-control form-control-sm form-control-solid mb-3" value="${appointmentDTO.systolicBloodPressure}">
             </div>
             <div class="col-lg-1">
-                    <input type="text" name="diastolicBloodPressure" id="diastolicBloodPressure" class="form-control form-control-sm form-control-solid mb-3">
+                    <input type="text" name="diastolicBloodPressure" id="diastolicBloodPressure" class="form-control form-control-sm form-control-solid mb-3" value="${appointmentDTO.diastolicBloodPressure}">
             </div>
         </div>
 
             <div class="row my-3">
                 <div class="col-lg-3">
                     <label class="fw-bold fs-6">Диагноз:</label>
+                    <input type="hidden" id="current_diagnosis_code" value="${appointmentDTO.diagnosisCode}">
+                    <input type="hidden" id="current_diagnosis_name" value="${appointmentDTO.diagnosisName}">
                 </div>
                 <div class="col-lg-9">
                     <select name="diagnosis_code" class="js-diseases-search" style="width: 100%"></select>
@@ -118,7 +120,7 @@
                     <label class="fw-bold fs-6">Рекомендовано:</label>
                 </div>
                 <div class="col-lg-9">
-                    <textarea name="therapy" id="therapy" class="form-control"></textarea>
+                    <textarea name="therapy" id="therapy" class="form-control"> ${appointmentDTO.therapy} </textarea>
                 </div>
             </div>
 
@@ -184,6 +186,18 @@
                     };
             },
           }
+        });
+    </script>
+
+    <script>
+        jQuery(function($){
+            $(document).ready(function(){
+                if ($('#current_diagnosis_code').val() !== ''){
+
+                    $('.js-diseases-search').select2("trigger", "select", {data : {id: $('#current_diagnosis_code').val(),
+                                                                                    text: $('#current_diagnosis_name').val()}});
+                }
+            })
         });
     </script>
 
