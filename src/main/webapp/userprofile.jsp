@@ -123,11 +123,11 @@
             <!--begin::tabs address-->
             <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
 
-                <div class="${empty requestScope.user.address ? "collapse" : ""}" id="div-address-add-btn">
+                <div class="${not empty requestScope.user.address ? 'collapse' : ''}" id="div-address-add-btn">
                     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addressModalForm">Добавить</button>
                 </div>
 
-                <div class="${not empty requestScope.user.address ? "collapse" : ""}" id="tap-address-data">
+                <div class="${empty requestScope.user.address ? 'collapse' : ''}" id="tap-address-data">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addressModalForm">Измениить</button>
                         <button type="button" class="btn btn-danger" id='form-address-delete-btn'>Удалить</button>

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<div class="${empty requestScope.user.passport ? "collapse" : ""}" id="div-passport-add-btn">
+<div class="${not empty requestScope.user.passport ? 'collapse' : ''}" id="div-passport-add-btn">
     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#passportModalForm">Добавить</button>
 </div>
 
-<div class="${not empty requestScope.user.passport ? "collapse" : ""}" id="tap-passport-data">
+<div class="${empty requestScope.user.passport ? 'collapse' : ''}" id="tap-passport-data">
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#passportModalForm">Измениить</button>
         <button type="button" class="btn btn-danger" id='form-passport-delete-btn'>Удалить</button>
