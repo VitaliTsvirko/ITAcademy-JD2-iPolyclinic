@@ -65,11 +65,11 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="type " id="type1" value="PRIMARY">
+                      <input class="form-check-input" type="radio" name="appointmentType" id="type1" value="PRIMARY">
                       <label class="form-check-label" for="type1">Первичный</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="type" id="type2" value="SECOND">
+                      <input class="form-check-input" type="radio" name="appointmentType" id="type2" value="SECOND">
                       <label class="form-check-label" for="type2">Повторный</label>
                     </div>
                 </div>

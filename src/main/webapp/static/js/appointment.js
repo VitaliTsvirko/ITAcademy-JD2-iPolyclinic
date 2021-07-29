@@ -21,7 +21,7 @@ function saveAppointmentData() {
 
         var data = JSON.stringify({
             id : $('#id').val(),
-            type : $('input[name=type]:checked', '#form-appointment').val(),
+            type : $('input[name=appointmentType]:checked', '#form-appointment').val(),
             complaints : $('#complaints').val(),
             temperature : $('#temperature').val(),
             systolicBloodPressure : $('#systolicBloodPressure').val(),

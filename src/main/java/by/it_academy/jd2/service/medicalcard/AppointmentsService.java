@@ -3,8 +3,10 @@ package by.it_academy.jd2.service.medicalcard;
 import by.it_academy.jd2.core.exceptions.AppointmentNotFoundException;
 import by.it_academy.jd2.core.exceptions.MedicalCardNotFoundException;
 import by.it_academy.jd2.domain.Appointment;
+import by.it_academy.jd2.domain.Diseases;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.repository.IAppointmentsRepository;
+import by.it_academy.jd2.repository.IDiseasesRepository;
 import by.it_academy.jd2.repository.IMedicalCardRepository;
 import by.it_academy.jd2.service.dto.AppointmentDTO;
 import by.it_academy.jd2.service.api.IAppointmentsService;
@@ -12,6 +14,7 @@ import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 
 @Service
@@ -22,9 +25,12 @@ public class AppointmentsService implements IAppointmentsService {
 
     private final IAppointmentsRepository appointmentsRepository;
 
-    public AppointmentsService(IMedicalCardRepository medicalCardRepository, IUserService userService, IAppointmentsRepository appointmentsRepository) {
+    private final IDiseasesRepository diseasesRepository;
+
+    public AppointmentsService(IMedicalCardRepository medicalCardRepository, IUserService userService, IAppointmentsRepository appointmentsRepository, IDiseasesRepository diseasesRepository) {
         this.medicalCardRepository = medicalCardRepository;
         this.appointmentsRepository = appointmentsRepository;
+        this.diseasesRepository = diseasesRepository;
     }
 
     @Override
@@ -51,7 +57,10 @@ public class AppointmentsService implements IAppointmentsService {
                                 record.setSystolicBloodPressure(appointmentDTO.getSystolicBloodPressure());
                                 record.setDiastolicBloodPressure(appointmentDTO.getDiastolicBloodPressure());
 
-                                //record.setDiagnosis(appointmentDTO.getDiagnosis());
+                                Diseases disease = diseasesRepository.findById(appointmentDTO.getDiagnosisCode())
+                                        .orElseThrow(() -> new EntityNotFoundException());
+
+                                record.setDiagnosis(disease);
 
                                 record.setTherapy(appointmentDTO.getTherapy());
                                 record.setHealthStatus(appointmentDTO.getHealthStatus());
