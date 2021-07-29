@@ -164,7 +164,7 @@
             minimumInputLength: 3,
 
           ajax: {
-            url: 'http://localhost:8081/IPolyclinic-1.0.0/api/diseases/search',
+            url: BASE_URL + '/api/diseases/search',
             type: 'GET',
             dataType: 'json',
             delay: 250,
