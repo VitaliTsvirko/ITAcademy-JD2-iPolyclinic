@@ -1,5 +1,5 @@
 var requestType;
-var requestAddressUrl = 'http://localhost:8080/IPolyclinic-1.0.0/api/user/address';
+var requestAddressUrl = BASE_URL + '/api/user/address';
 
 jQuery(function($){
 

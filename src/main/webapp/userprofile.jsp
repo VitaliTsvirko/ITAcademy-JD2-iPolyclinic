@@ -191,8 +191,7 @@
 </main>
 
     <%@include file="layouts/footer.jsp"%>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/core/core.js" type="application/javascript"></script>
+
     <script src="${pageContext.request.contextPath}/static/js/userprofile/address.js" type="application/javascript"></script>
     <script src="${pageContext.request.contextPath}/static/js/userprofile/passport.js" type="application/javascript"></script>
 </body>

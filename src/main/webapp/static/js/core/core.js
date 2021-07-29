@@ -2,10 +2,12 @@
 
 const AlertsTypes = {SUCCESS : "alert-success",  WARNING : "alert-warning", ERROR : "alert-danger"};
 
+const BASE_URL = window.location.origin + "/IPolyclinic-1.0.0";
+
 jQuery(function($){
 });
- 
-// функция для создания значений формы в формате json 
+
+// функция для создания значений формы в формате json
 $.fn.serializeObject = function() {
     var o = {};
     var a = this.serializeArray();

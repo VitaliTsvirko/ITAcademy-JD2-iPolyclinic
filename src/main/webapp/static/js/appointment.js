@@ -1,6 +1,6 @@
 var requestTypeAddress;
 var requestTypePassport;
-var requestUrl = 'http://localhost:8081/IPolyclinic-1.0.0/api/appointment/';
+var requestUrl = BASE_URL + '/api/appointment/';
 
 jQuery(function($){
     $(document).ready(function(){

@@ -8,7 +8,6 @@
     <%@include file="layouts/head.jsp"%>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/core/core.js" type="application/javascript"></script>
     <script src="${pageContext.request.contextPath}/static/js/userprofile/user.js" type="application/javascript"></script>
 
 </head>

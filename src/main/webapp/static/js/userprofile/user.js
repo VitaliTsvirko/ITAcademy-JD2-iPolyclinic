@@ -1,6 +1,6 @@
 var requestTypeAddress;
 var requestTypePassport;
-var requestUrl = 'http://localhost:8080/IPolyclinic-1.0.0/api/manager/user/';
+var requestUrl = BASE_URL + '/api/manager/user/';
 
 
 

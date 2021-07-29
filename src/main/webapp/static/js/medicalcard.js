@@ -1,4 +1,4 @@
-var requestUrl = 'http://localhost:8080/IPolyclinic-1.0.0/api/mcard/';
+var requestUrl = BASE_URL + '/api/mcard/';
 var id = 1;
 
 
@@ -22,7 +22,4 @@ jQuery(function($){
             alert( "Ошибка при получении данных адреса пользователя.\nError detail:\nHTTP status " + jqxhr.status + "\n error: " + error);
         })
     })
-
-
-
 });

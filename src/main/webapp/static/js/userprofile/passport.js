@@ -1,5 +1,5 @@
 var requestType;
-var requestPassportUrl = 'http://localhost:8080/IPolyclinic-1.0.0/api/user/passport';
+var requestPassportUrl = BASE_URL + '/api/user/passport';
 
 jQuery(function($){
 

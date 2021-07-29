@@ -6,10 +6,6 @@
 <head>
     <title>Прием</title>
     <%@include file="layouts/head.jsp"%>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/core/core.js" type="application/javascript"></script>
-
 </head>
 
 <body class="bg-light">
@@ -156,9 +152,7 @@
 </main>
 
     <%@include file="layouts/footer.jsp"%>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/appointment.js"></script>
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/select2/css/select2.min.css">
     <script src="${pageContext.request.contextPath}/static/select2/js/select2.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/select2/js/i18n/ru.js"></script>
