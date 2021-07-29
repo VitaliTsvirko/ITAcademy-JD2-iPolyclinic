@@ -39,6 +39,7 @@
                         <th scope="col">Логин</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Фамилия</th>
+                        <th scope="col">Роль</th>
                         <th scope="col">---</th>
                     </tr>
                     </thead>
@@ -50,13 +51,11 @@
                             <td>${usr.phoneNo}</td>
                             <td>${usr.passport.name}</td>
                             <td>${usr.passport.surname}</td>
+                            <td>${usr.userRole}</td>
                             <td>
                                 <button type="button" class="btn btn-info" data-bs-toggle="modal" id="${usr.id}" data-bs-target="#userProfileModal" onClick="loadUserProfileData(this.id)">Профиль</button>
                                 <button type="button" class="btn btn-warning">Заблокировать</button>
                                 <button type="button" class="btn btn-danger">Удалить</button>
-
-
-
                             </td>
                         </tr>
                     </c:forEach>

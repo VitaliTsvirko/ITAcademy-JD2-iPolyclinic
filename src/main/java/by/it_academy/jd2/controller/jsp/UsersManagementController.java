@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by Vitali Tsvirko
  */
 @Controller
-@RequestMapping("/user/manager")
+@RequestMapping("/admin/users")
 public class UsersManagementController {
 
     private final IUserService userService;

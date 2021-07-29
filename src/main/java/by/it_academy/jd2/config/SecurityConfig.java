@@ -1,5 +1,6 @@
 package by.it_academy.jd2.config;
 
+import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.repository.IUsersRepository;
 import by.it_academy.jd2.security.UserAuthenticationSuccessHandler;
 import by.it_academy.jd2.security.UserSecurityService;
@@ -75,7 +76,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/userprofile/**").authenticated()
                 .antMatchers("/passport/**").authenticated()
                 .antMatchers("/api/**").authenticated()
-                .antMatchers("/work/**").authenticated()
+                .antMatchers("/work/**").hasAnyAuthority(UserRoles.ADMIN.name(), UserRoles.DOCTOR.name())
+                .antMatchers("/admin/**").hasAuthority(UserRoles.ADMIN.name())
                 .antMatchers("/login/**").permitAll()
                 .antMatchers("/signup").permitAll();
 
