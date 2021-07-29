@@ -31,6 +31,7 @@ public interface IUserService {
     void deletePassport(User user);
 
     List<User> getAllUsers();
+    List<User> getAllPatients();
 
     User confirmPassportDataByUserId (Long userId);
 }

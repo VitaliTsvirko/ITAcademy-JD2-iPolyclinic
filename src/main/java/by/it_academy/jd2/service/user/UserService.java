@@ -250,6 +250,10 @@ public class UserService implements IUserService {
         return usersRepository.findAll();
     }
 
+    @Override
+    public List<User> getAllPatients() {
+        return usersRepository.findByUserRoleEquals(UserRoles.USER);
+    }
 
 
 }

@@ -195,6 +195,55 @@ class IUsersRepositoryTest {
     }
 
 
+    @Test
+    void initialCreatePatients(){
+
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        int count = 10;
+
+
+        for (int i = 0; i < count; i++) {
+            User user = new User();
+
+            user.setPhoneNo("+3752920000" + i);
+            user.setPassword(passwordEncoder.encode("user"));
+            user.setState(ApplicationUserState.SIGNUP);
+            user.setUserRole(UserRoles.USER);
+
+            usersRepository.save(user);
+
+            MedicalCard medicalCard = new MedicalCard();
+            medicalCard.setUser(user);
+
+            user.setMedicalCard(medicalCard);
+
+            usersRepository.saveAndFlush(user);
+            medicalCardRepository.saveAndFlush(medicalCard);
+        }
+
+        for (int i = 0; i < count; i++) {
+            final int index = i;
+
+            usersRepository.findByPhoneNo("+3752920000" + i).ifPresent(user -> {
+                Passport passport = new Passport();
+                passport.setName("Иван" + index);
+                passport.setSurname("Иванов" + index);
+                passport.setPatronymic("Иванович" + index);
+                passport.setDateOfBirth(LocalDate.of(1986, 1, index + 1));
+                passport.setIssueDate(LocalDate.of(2021, 1, index + 1));
+                passport.setExpirationDate(LocalDate.of(2021, 1, index + 1));
+                passport.setSex(Sex.MALE);
+                passport.setPassportNo("100000" + index);
+                passport.setPersonalNo("010203040506E017PP" + index);
+
+                passportsRepository.save(passport);
+
+                user.setPassport(passport);
+            });
+        }
+    }
+
 
 
 }

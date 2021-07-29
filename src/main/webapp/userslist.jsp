@@ -50,9 +50,9 @@
                             <td>
                               <a href="${pageContext.request.contextPath}/userprofile/${usr.id}" target="_blank"> <span class="badge rounded-pill bg-info text-dark">Профиль</span></a>
                               <span> </span>
-                              <a href="${pageContext.request.contextPath}/medicalcard/${usr.id}" target="_blank"> <span class="badge rounded-pill bg-success">Медкарта</span></a>
+                              <a href="${pageContext.request.contextPath}/medicalcard/${usr.medicalCard.id}" target="_blank"> <span class="badge rounded-pill bg-success">Медкарта</span></a>
                               <span> </span>
-                              <a href="${pageContext.request.contextPath}/medicalcard/${usr.id}/appointment/new" target="_blank"> <span class="badge rounded-pill bg-primary">+Прием</span></a>
+                              <a href="${pageContext.request.contextPath}/medicalcard/${usr.medicalCard.id}/appointment/new" target="_blank"> <span class="badge rounded-pill bg-primary">+Прием</span></a>
                             </td>
                         </tr>
                     </c:forEach>

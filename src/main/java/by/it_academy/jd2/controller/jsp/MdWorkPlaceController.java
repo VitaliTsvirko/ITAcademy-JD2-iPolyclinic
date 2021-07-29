@@ -25,7 +25,7 @@ public class MdWorkPlaceController {
 
     @GetMapping
     public String getUserManagementPage(Model model){
-        model.addAttribute("usersList", userService.getAllUsers());
+        model.addAttribute("usersList", userService.getAllPatients());
 
         return "userslist";
     }
