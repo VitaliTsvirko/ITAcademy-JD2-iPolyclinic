@@ -1,5 +1,7 @@
 package by.it_academy.jd2.domain;
 
+import jakarta.validation.constraints.Min;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -21,6 +23,17 @@ public class MedicalCard {
 
     @OneToMany(mappedBy = "medicalCard", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Appointment> appointments = new HashSet<>();
+
+    @Column(name = "height")
+    @Min(0)
+    private Integer height;
+
+    @Column(name = "weight")
+    @Min(0)
+    private Integer weight;
+
+    @Column(name = "allergy")
+    private String allergy;
 
     public Long getId() {
         return id;
@@ -50,4 +63,27 @@ public class MedicalCard {
         this.appointments.add(appointment);
     }
 
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public String getAllergy() {
+        return allergy;
+    }
+
+    public void setAllergy(String allergy) {
+        this.allergy = allergy;
+    }
 }

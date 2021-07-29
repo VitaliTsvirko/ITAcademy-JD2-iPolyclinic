@@ -45,4 +45,10 @@ public class MedicalCardsService implements IMedicalCardService {
                             .orElseThrow(() -> new MedicalCardNotFoundException("Medical card was not found"));
     }
 
+    @Override
+    public MedicalCard getMedicalCardById(Long id) {
+        return medicalCardRepository.findById(id)
+                .orElseThrow(() -> new MedicalCardNotFoundException("Medical card was not found"));
+    }
+
 }

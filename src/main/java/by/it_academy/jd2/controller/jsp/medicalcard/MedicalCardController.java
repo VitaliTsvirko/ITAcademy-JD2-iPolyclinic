@@ -45,6 +45,9 @@ public class MedicalCardController {
         model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(id)));
 
         model.addAttribute("medicalCardId", id);
+        model.addAttribute("medicalCardHeight", medicalCardService.getMedicalCardById(id).getHeight());
+        model.addAttribute("medicalCardWeight", medicalCardService.getMedicalCardById(id).getWeight());
+        model.addAttribute("medicalCardAllergy", medicalCardService.getMedicalCardById(id).getAllergy());
 
         return "medicalcard";
     }
