@@ -7,6 +7,7 @@ import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -40,6 +41,23 @@ public class UserProfileInfo {
 
         model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
         model.addAttribute("user", authUser);
+
+        return "userprofile";
+    }
+
+    @GetMapping("/{id}")
+    public String getUserProfileById(@PathVariable Long id, Model model){
+
+        User user = userService.getUserById(id);
+
+        ApplicationUserState state = user.getState();
+
+        if (user.getState() != ApplicationUserState.PASSPORT_DATA_VERIFIED) {
+            model.addAttribute("userActivationState", false);
+        }
+
+        model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
+        model.addAttribute("user", user);
 
         return "userprofile";
     }
