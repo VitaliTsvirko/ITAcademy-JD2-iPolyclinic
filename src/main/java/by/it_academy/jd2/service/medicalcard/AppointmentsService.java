@@ -66,6 +66,7 @@ public class AppointmentsService implements IAppointmentsService {
 
                                 record.setTherapy(appointmentDTO.getTherapy());
                                 record.setHealthStatus(appointmentDTO.getHealthStatus());
+                                record.setType(appointmentDTO.getType());
 
                                 return record;
         }).orElseThrow(() -> new AppointmentNotFoundException("Appointment with id " + appointmentDTO.getId() + " was not found"));

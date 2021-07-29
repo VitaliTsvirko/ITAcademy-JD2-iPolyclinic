@@ -24,11 +24,11 @@ function saveAppointmentData() {
             type : $('input[name=appointmentType]:checked', '#form-appointment').val(),
             complaints : $('#complaints').val(),
             temperature : $('#temperature').val(),
-            systolicBloodPressure : $('#systolicBloodPressure').val(),
-            diastolicBloodPressure : $('#diastolicBloodPressure').val(),
+            systolic_blood_pressure : $('#systolicBloodPressure').val(),
+            diastolic_blood_pressure : $('#diastolicBloodPressure').val(),
             diagnosis_code : $('.js-diseases-search').val(),
             therapy : $('#therapy').val(),
-            healthStatus : $('input[name=health_status]:checked', '#form-appointment').val()
+            health_status : $('input[name=health_status]:checked', '#form-appointment').val()
         });
 
         var form_data = data;
