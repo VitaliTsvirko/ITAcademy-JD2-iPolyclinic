@@ -66,6 +66,10 @@ class IUsersRepositoryTest {
                 "Иван", "Иванов", "Иванович",
                 UserRoles.USER, "100000", "317100000PB");
 
+        this.usersCreator(15, "user", "user",
+                "Андрей", "Сидоров", "Владимирович",
+                UserRoles.USER, "110000", "317120000PB");
+
         this.usersCreator(1, "+37529200000", "123",
                 "Петр", "Петров", "Петрович",
                 UserRoles.DOCTOR, "200000", "317100000MD");
