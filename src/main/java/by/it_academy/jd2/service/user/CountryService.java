@@ -6,6 +6,7 @@ import by.it_academy.jd2.service.api.ICountryService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,8 @@ public class CountryService implements ICountryService {
 
     @Override
     public Map<String, String> getAllCountriesOrderByShotName() {
-        return countriesRepository.findAll()
+        return countriesRepository.findAllByOrderByShotNameAsc()
                 .stream()
-                .collect(Collectors.toMap(Countries::getCode, Countries::getShotName));
+                .collect(Collectors.toMap(Countries::getCode, Countries::getShotName, (a, b) -> b, LinkedHashMap::new));
     }
 }

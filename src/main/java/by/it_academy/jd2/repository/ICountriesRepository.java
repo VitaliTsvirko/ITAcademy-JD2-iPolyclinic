@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface ICountriesRepository extends JpaRepository<Countries, String> {
 
+    List<Countries> findAllByOrderByShotNameAsc();
 
 }
