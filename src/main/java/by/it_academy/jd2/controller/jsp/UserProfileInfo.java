@@ -4,6 +4,7 @@ import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
 import by.it_academy.jd2.service.api.ICountryService;
 import by.it_academy.jd2.service.api.IUserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,7 @@ public class UserProfileInfo {
      * @return страница с данными пользователя
      */
     @GetMapping({"", "/{id}"})
+    @PreAuthorize("hasAuthority('ADMIN') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public String getUserProfilePage(@PathVariable(required = false) Optional<Long> id, Model model){
 
         User user = id.map(userId -> userService.getUserById(userId))
