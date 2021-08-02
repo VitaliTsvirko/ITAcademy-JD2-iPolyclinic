@@ -63,114 +63,19 @@
 
             <!--begin::tabs overview-->
             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                <div class="row mb-7 p-3">
-                    <label class="col-lg-2 fw-bold text-muted">ID</label>
-                    <div class="col-lg-6">
-                        <span class="fw-bolder fs-6 text-dark">${requestScope.user.id}</span>
-                    </div>
-                </div>
-
-                <div class="row mb-7 p-3">
-                    <label class="col-lg-2 fw-bold text-muted">ФИО</label>
-                    <div class="col-lg-6">
-                        <span class="fw-bolder fs-6 text-dark">${requestScope.user.passport.name} ${requestScope.user.passport.surname} ${requestScope.user.passport.patronymic}</span>
-                    </div>
-                </div>
-
-                <div class="row mb-7 p-3">
-                    <label class="col-lg-2 fw-bold text-muted">Дата рождения</label>
-                    <div class="col-lg-6">
-                        <span class="fw-bolder fs-6 text-dark">${requestScope.user.passport.dateOfBirth}</span>
-                    </div>
-                </div>
-
-                <div class="row mb-7 p-3">
-                    <label class="col-lg-2 fw-bold text-muted">Телефон</label>
-                    <div class="col-lg-6">
-                        <span class="fw-bolder fs-6 text-dark">${requestScope.user.phoneNo}</span>
-                    </div>
-                </div>
-
-                <div class="row mb-7 p-3">
-                    <label class="col-lg-2 fw-bold text-muted">Адресс</label>
-                    <div class="col-lg-6">
-                        <span class="fw-bolder fs-6 text-dark">${requestScope.user.address.city} ${requestScope.user.address.street} ${requestScope.user.address.corpsNo} ${requestScope.user.address.flatNo}</span>
-                    </div>
-                </div>
-
+                <%@include file="layouts/userprofile/view/basicinfo.jsp"%>
             </div>
             <!--end::tabs overview-->
 
             <!--begin::tabs auth-->
             <div class="tab-pane fade" id="auth" role="tabpanel" aria-labelledby="auth-tab">
-                <div class="row mb-7">
-                    <label class="col-lg-2 col-form-label required fw-bold fs-6">Телефон</label>
-                    <div class="col-lg-6">
-                        <input type="text" name="phoneNo" class="form-control form-control-lg form-control-solid mb-3" value="${requestScope.user.phoneNo}" readonly>
-                    </div>
-                </div>
-
-                <div class="row mb-7">
-                    <label class="col-lg-2 col-form-label required fw-bold fs-6">Пароль</label>
-                    <div class="col-lg-6">
-                        <input type="password" name="password" class="form-control form-control-lg form-control-solid mb-3" value="password" readonly>
-                    </div>
-                </div>
+                <%@include file="layouts/userprofile/view/auth.jsp"%>
             </div>
             <!--begin::tabs auth-->
 
-
             <!--begin::tabs address-->
             <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-
-                <div class="${not empty requestScope.user.address ? 'collapse' : ''}" id="div-address-add-btn">
-                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addressModalForm">Добавить</button>
-                </div>
-
-                <div class="${empty requestScope.user.address ? 'collapse' : ''}" id="tap-address-data">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addressModalForm">Измениить</button>
-                        <button type="button" class="btn btn-danger" id='form-address-delete-btn'>Удалить</button>
-                    </div>
-                    <div class="row mb-7 p-3">
-                        <label class="col-lg-2 col-form-label required fw-bold fs-6 text-muted">Страна</label>
-
-                        <div class="col-lg-6">
-                            <span id="country_name" class="fw-bolder fs-6 text-dark">${requestScope.user.address.country.shotName}</span>
-                        </div>
-                    </div>
-
-                    <div class="row mb-7 p-3">
-                        <label class="col-lg-2 col-form-label required fw-bold fs-6 text-muted">Город</label>
-                        <div class="col-lg-6">
-                            <span id="city" class="fw-bolder fs-6 text-dark">${requestScope.user.address.city}</span>
-                        </div>
-                    </div>
-
-                    <div class="row mb-7 p-3">
-                        <label class="col-lg-2 col-form-label required fw-bold fs-6 text-muted">Улица</label>
-                        <div class="col-lg-6">
-                            <span id="street" class="fw-bolder fs-6 text-dark">${requestScope.user.address.street}</span>
-                        </div>
-                    </div>
-
-                    <div class="row mb-7 p-3">
-                        <label class="col-lg-2 col-form-label required fw-bold fs-6 text-muted">Дом</label>
-                        <div class="col-lg-1">
-                            <span id="home_no" class="fw-bolder fs-6 text-dark">${requestScope.user.address.homeNo}</span>
-                        </div>
-
-                        <label class="col-lg-1 col-form-label required fw-bold fs-6 text-muted">Корпус</label>
-                        <div class="col-lg-1">
-                            <span id="corp_no" class="fw-bolder fs-6 text-dark">${requestScope.user.address.corpsNo}</span>
-                        </div>
-
-                        <label class="col-lg-1 col-form-label required fw-bold fs-6 text-muted">Квартира</label>
-                        <div class="col-lg-1">
-                            <span id="flat_no" class="fw-bolder fs-6 text-dark">${requestScope.user.address.flatNo}</span>
-                        </div>
-                    </div>
-                </div>
+                <%@include file="layouts/userprofile/view/address.jsp"%>
             </div>
             <!--end::tabs address-->
 
@@ -179,6 +84,7 @@
                 <%@include file="layouts/userprofile/view/passport.jsp"%>
             </div>
             <!--end::tabs passport-->
+
         </div>
         <!--end::tabs content-->
     </div>
