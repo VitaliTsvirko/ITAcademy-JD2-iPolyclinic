@@ -23,3 +23,11 @@ $.fn.serializeObject = function() {
     });
     return o;
 };
+
+
+function injectAlert(blockId, messageText, alertType){
+    jQuery(function($){
+        $('<div class="alert ' + alertType + ' alert-dismissible fade show" role="alert">' + messageText +
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>').appendTo('#' + blockId);
+    });
+}

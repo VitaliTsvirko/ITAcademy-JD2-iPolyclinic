@@ -13,12 +13,13 @@
 <%@include file="layouts/header.jsp"%>
 <link href="static/css/userprofile.css" rel="stylesheet">
 
+<input type="hidden" id="user_id" value="${requestScope.user.id}">
 <main class="container-md pt-5">
 
 <!--begin::tabs container-->
 <div class="card mb-5 mb-xl-10">
 
-    <div class="card-header border-0 cursor-pointer m-0 p-0">
+    <div id="userProfileModalTabsHeader" class="card-header border-0 cursor-pointer m-0 p-0">
         <div class="card-title m-3">
             <h3 class="fw-bolder mb-3 fs-4">Профиль пользователя</h3>
         </div>
@@ -93,13 +94,20 @@
 </div>
 <!--end::tabs container-->
 
-<%@include file="layouts/userprofile/forms/address.jsp"%>
-<%@include file="layouts/userprofile/forms/passport.jsp"%>
 </main>
-
     <%@include file="layouts/footer.jsp"%>
 
-    <script src="${pageContext.request.contextPath}/static/js/userprofile/address.js" type="application/javascript"></script>
-    <script src="${pageContext.request.contextPath}/static/js/userprofile/passport.js" type="application/javascript"></script>
+<script>
+    jQuery(function($){
+        $(document).ready(function(){
+            // Listen with the jQuery to the tabs click:
+            $('#userProfileModalTabsHeader a').click(function (link) {
+                //remove all alerts
+                $('#address-tab-alert').empty();
+                $('#passport-tab-alert').empty();
+            })
+        })
+    });
+</script>
 </body>
 </html>

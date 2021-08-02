@@ -21,7 +21,7 @@ import java.io.UnsupportedEncodingException;
  * Created by Vitali Tsvirko
  */
 @RestController
-@RequestMapping("/api/manager/user")
+@RequestMapping("/api/userprofile/")
 public class UserRestController {
 
 

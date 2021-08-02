@@ -1,82 +1,73 @@
-var requestType;
-var requestAddressUrl = BASE_URL + '/api/user/address';
+let requestTypeAddress;
+const requestAddressUrl = BASE_URL + '/api/userprofile/';
 
-jQuery(function($){
+function saveAddressData(id) {
+    jQuery(function ($) {
+        var form_data = JSON.stringify($("#form-address").serializeObject());
 
-    $(document).ready(function() {
-        updateAddressData();
-    });
-
-    function updateAddressData(){
-        if (CONSOLE_DEBUG_ON) console.log("updateAddressData -> Request to update data");
-        $.getJSON(requestAddressUrl, function(data, textStatus, jqXHR) {
-            if (CONSOLE_DEBUG_ON) console.log("updateAddressData result ->" + data);
-            if ($.isEmptyObject(data) || jqXHR.status === 204){
-                //address is null
-                $('#tap-address-data').addClass("collapse");
-                $('#div-address-add-btn').removeClass("collapse");
-                $('#form-address-save-btn').text("Добавить");
-                requestType = "POST";
-            } else {
-                $('#tap-address-data').removeClass("collapse");
-                $('#div-address-add-btn').addClass("collapse");
-                $('#form-address-save-btn').text("Сохранить");
-                requestType = "PUT";
-
-                //store data to page
-                $.each(data, function(key, val) {
-                    $('#' + key).text(val);
-                });
-            }
-
-        }).fail(function() {
-            console.log( "updateAddressData -> error" );
-        })
-    }
-
-
-    //Button save
-    $(document).on('click', '#form-address-save-btn', function(e){
-        e.preventDefault();
-        var form_data=JSON.stringify($("#form-address").serializeObject());
-
-        console.log(form_data);
+        if ($("#city").text() === "") {
+            requestTypeAddress = 'POST';
+        } else {
+            requestTypeAddress = 'PUT';
+        }
 
         $.ajax({
-            url: requestAddressUrl,
-            type : requestType,
-            contentType : 'application/json; charset=utf-8',
-            data : form_data,
-            success : function(result) {
-                updateAddressData();
+            url: requestAddressUrl + id + '/address',
+            type: requestTypeAddress,
+            contentType: 'application/json; charset=utf-8',
+            data: form_data,
+            success: function (result) {
+                if (!$.isEmptyObject(result)){
+                    //store data to page
+                    $.each(result, function(key, val) {
+                        $('#' + key).text(val);
+                    });
+
+                    //hide buttons
+                    $('#tap-address-data').removeClass("collapse");
+                    $('#div-address-add-btn').addClass("collapse");
+
+                    injectAlert("address-tab-alert", "Данные успешно обновлены", AlertsTypes.SUCCESS);
+                }
+                //readBasicUserData(id);
             },
-            error: function(xhr, resp, text) {
-                alert("Ошибка. Попробуйте снова!")
-                console.log(xhr, resp, text);
+            error: function (xhr, resp, text) {
+                injectAlert("address-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
             }
         });
         return false;
     });
+}
 
-
-    //Button delete
-    $(document).on('click', '#form-address-delete-btn', function(e){
-        e.preventDefault();
-
+function deleteAddress(id) {
+    jQuery(function ($) {
         $.ajax({
-            url: requestAddressUrl,
+            url: requestAddressUrl + id + '/address',
             type : 'DELETE',
             contentType : 'application/json; charset=utf-8',
-            data : "",
             success : function(result) {
-                updateAddressData();
+                //clear page data
+                $('#country_name').text("");
+                $('#city').text("");
+                $('#street').text("");
+                $('#home_no').text("");
+                $('#corp_no').text("");
+                $('#flat_no').text("");
+
+                //clear form
+                $('#form-address input').val('');
+                $('#form-address select').val('');
+
+                //hide buttons
+                $('#tap-address-data').addClass("collapse");
+                $('#div-address-add-btn').removeClass("collapse");
+
+                injectAlert("address-tab-alert", "Данные успешно удалены", AlertsTypes.SUCCESS);
             },
             error: function(xhr, resp, text) {
-                alert("Ошибка. Попробуйте снова!")
-                console.log(xhr, resp, text);
+                injectAlert("address-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
             }
         });
         return false;
     });
-
-});
+}
