@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="by.it_academy.jd2.domain.enumeration.ApplicationUserState" %>
 
 <html>
 <head>
@@ -23,7 +24,7 @@
         </div>
 
         <!--begin::notification-->
-        <c:if test="${requestScope.userActivationState == false }">
+        <c:if test="${user.state != ApplicationUserState.ACTIVATED }">
             <div class="alert alert-danger d-flex align-items-center mx-4" role="alert">
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                 <div>

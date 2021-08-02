@@ -8,6 +8,7 @@ import by.it_academy.jd2.service.dto.PassportDTO;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Vitali Tsvirko
@@ -15,6 +16,7 @@ import java.util.List;
 public interface IUserService {
     User createUser(String phoneNo, String password);
 
+    User getUserById(Optional<Long> id) throws UsernameNotFoundException;
     User getUserById(Long id) throws UsernameNotFoundException;
 
     User getAuthorizedUser();

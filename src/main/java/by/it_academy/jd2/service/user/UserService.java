@@ -67,6 +67,13 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User getUserById(Optional<Long> id) throws UsernameNotFoundException{
+        return id.map(userId -> usersRepository.findById(userId)
+                                      .orElseThrow(() -> new UsernameNotFoundException("User with id" + userId +"was not found")))
+                .orElse(getAuthorizedUser());
+    }
+
+    @Override
     public User getUserById(Long id) throws UsernameNotFoundException{
         return usersRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User with id" + id +"was not found"));

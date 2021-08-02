@@ -80,7 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/work/**").hasAnyAuthority(UserRoles.ADMIN.name(), UserRoles.DOCTOR.name())
                 .antMatchers("/admin/**").hasAuthority(UserRoles.ADMIN.name())
                 .antMatchers("/login/**").permitAll()
-                .antMatchers("/signup").permitAll();
+                .antMatchers("/signup").permitAll()
+                .antMatchers("/error").permitAll();
+
 
         ///api/manager/ only admin, doctor and root
     }

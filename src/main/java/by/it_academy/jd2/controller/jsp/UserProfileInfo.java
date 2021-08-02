@@ -6,6 +6,7 @@ import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.service.api.ICountryService;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,18 +42,14 @@ public class UserProfileInfo {
     @GetMapping({"", "/{id}"})
     @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public String getUserProfilePage(@PathVariable(required = false) Optional<Long> id, Model model){
+        try {
+            model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
+            model.addAttribute("user", userService.getUserById(id));
 
-        User user = id.map(userId -> userService.getUserById(userId))
-                        .orElse(userService.getAuthorizedUser());
-
-        if (user.getState() != ApplicationUserState.PASSPORT_DATA_VERIFIED) {
-            model.addAttribute("userActivationState", false);
+            return "userprofile";
+        } catch (UsernameNotFoundException e){
+            return "error";
         }
-
-        model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
-        model.addAttribute("user", user);
-
-        return "userprofile";
     }
 
 }
