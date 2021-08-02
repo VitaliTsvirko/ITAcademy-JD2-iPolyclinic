@@ -21,6 +21,11 @@
                         <div class="card shadow p-3 mb-5 bg-body rounded border-0" style="border-radius: .5rem!important;">
                             <div class="card-body p-4 text-center">
 
+                                <c:if test="${param.error != null}">
+                                    <div class="alert alert-danger d-flex align-items-center mx-4" role="alert">
+                                           Ошибка авторизации. Проверьте правильность введенных данных!
+                                    </div>
+                                </c:if>
 
                                 <div class="fs-3 m-2">
                                     Войти

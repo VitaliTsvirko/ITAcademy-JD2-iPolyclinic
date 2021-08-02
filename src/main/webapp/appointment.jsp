@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="by.it_academy.jd2.domain.enumeration.AppointmentType" %>
+<%@ page import="by.it_academy.jd2.domain.enumeration.HealthStatus" %>
 
 <html>
 <head>
@@ -60,11 +62,11 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="appointmentType" id="type1" value="PRIMARY">
+                      <input class="form-check-input" type="radio" name="appointmentType" id="type1" value="PRIMARY" ${appointmentDTO.type eq AppointmentType.PRIMARY ? 'checked' : ''} >
                       <label class="form-check-label" for="type1">Первичный</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="appointmentType" id="type2" value="SECOND">
+                      <input class="form-check-input" type="radio" name="appointmentType" id="type2" value="SECOND" ${appointmentDTO.type eq AppointmentType.SECOND ? 'checked' : ''}>
                       <label class="form-check-label" for="type2">Повторный</label>
                     </div>
                 </div>
@@ -125,11 +127,11 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="health_status" id="health_status1" value="HEALTHY">
+                      <input class="form-check-input" type="radio" name="health_status" id="health_status1" value="HEALTHY" ${appointmentDTO.healthStatus eq HealthStatus.HEALTHY ? 'checked' : ''}>
                       <label class="form-check-label" for="health_status1">Здоров</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="health_status" id="health_status2" value="SICK">
+                      <input class="form-check-input" type="radio" name="health_status" id="health_status2" value="SICK" ${appointmentDTO.healthStatus eq HealthStatus.SICK ? 'checked' : ''}>
                       <label class="form-check-label" for="health_status2">Нуждается в лечении</label>
                     </div>
                     </div>
