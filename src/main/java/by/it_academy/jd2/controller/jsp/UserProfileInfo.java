@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.util.Optional;
+
 /**
  * Created by Vitali Tsvirko
  */
@@ -26,31 +28,19 @@ public class UserProfileInfo {
         this.countryService = countryService;
     }
 
+    /**
+     * Данный метод возвращет страницу с данными пользователя.
+     * Если id пользователя не передан, беруться данные текущего зарегестрированного пользователя
+     *
+     * @param id id пользователя.
+     * @param model
+     * @return страница с данными пользователя
+     */
+    @GetMapping({"", "/{id}"})
+    public String getUserProfilePage(@PathVariable(required = false) Optional<Long> id, Model model){
 
-    @GetMapping()
-    public String getUserProfile(Model model,
-                                 @SessionAttribute("user") User user){
-
-        User authUser = userService.getAuthorizedUser();
-
-        ApplicationUserState state = authUser.getState();
-
-        if (authUser.getState() != ApplicationUserState.PASSPORT_DATA_VERIFIED) {
-            model.addAttribute("userActivationState", false);
-        }
-
-        model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
-        model.addAttribute("user", authUser);
-
-        return "userprofile";
-    }
-
-    @GetMapping("/{id}")
-    public String getUserProfileById(@PathVariable Long id, Model model){
-
-        User user = userService.getUserById(id);
-
-        ApplicationUserState state = user.getState();
+        User user = id.map(userId -> userService.getUserById(userId))
+                        .orElse(userService.getAuthorizedUser());
 
         if (user.getState() != ApplicationUserState.PASSPORT_DATA_VERIFIED) {
             model.addAttribute("userActivationState", false);
