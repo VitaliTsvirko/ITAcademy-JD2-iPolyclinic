@@ -25,7 +25,7 @@ public class SingUpController {
 
     @GetMapping
     public String userSignUp(Model model){
-        return "signup";
+        return "auth/signup";
     }
 
 
@@ -38,7 +38,7 @@ public class SingUpController {
             User user = usersService.createUser(phoneNo, password);
         } catch (UsernameAlreadyUsedException e){
             model.addAttribute("error", "Пользователь с таким номер телефона уже зарегестрирован");
-            return "signup";
+            return "auth/signup";
         }
 
 

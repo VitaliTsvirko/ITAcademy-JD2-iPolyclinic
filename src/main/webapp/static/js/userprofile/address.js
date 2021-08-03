@@ -3,7 +3,7 @@ const requestAddressUrl = BASE_URL + '/api/userprofile/';
 
 function saveAddressData(id) {
     jQuery(function ($) {
-        var form_data = JSON.stringify($("#form-address").serializeObject());
+        let form_data = JSON.stringify($("#form-address").serializeObject());
 
         if ($("#city").text() === "") {
             requestTypeAddress = 'POST';

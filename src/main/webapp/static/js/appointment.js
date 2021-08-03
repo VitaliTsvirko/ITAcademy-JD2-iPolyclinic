@@ -1,6 +1,4 @@
-var requestTypeAddress;
-var requestTypePassport;
-var requestUrl = BASE_URL + '/api/appointment/';
+const requestUrl = BASE_URL + '/api/appointment/';
 
 jQuery(function($){
     $(document).ready(function(){
@@ -17,21 +15,21 @@ function injectAlert(blockId, messageText, alertType){
 
 function saveAppointmentData() {
     jQuery(function ($) {
-        var id = $('#id').val();
+        let id = $('#id').val();
 
-        var data = JSON.stringify({
-            id : $('#id').val(),
-            type : $('input[name=appointmentType]:checked', '#form-appointment').val(),
-            complaints : $('#complaints').val(),
-            temperature : $('#temperature').val(),
-            systolic_blood_pressure : $('#systolicBloodPressure').val(),
-            diastolic_blood_pressure : $('#diastolicBloodPressure').val(),
-            diagnosis_code : $('.js-diseases-search').val(),
-            therapy : $('#therapy').val(),
-            health_status : $('input[name=health_status]:checked', '#form-appointment').val()
+        let data = JSON.stringify({
+            id: id,
+            type: $('input[name=appointmentType]:checked', '#form-appointment').val(),
+            complaints: $('#complaints').val(),
+            temperature: $('#temperature').val(),
+            systolic_blood_pressure: $('#systolicBloodPressure').val(),
+            diastolic_blood_pressure: $('#diastolicBloodPressure').val(),
+            diagnosis_code: $('.js-diseases-search').val(),
+            therapy: $('#therapy').val(),
+            health_status: $('input[name=health_status]:checked', '#form-appointment').val()
         });
 
-        var form_data = data;
+        let form_data = data;
 
         $.ajax({
             url: requestUrl + id,

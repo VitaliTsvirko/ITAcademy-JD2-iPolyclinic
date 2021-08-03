@@ -5,12 +5,11 @@
 <html>
 <head>
     <title>Профиль пользователя</title>
-    <%@include file="layouts/head.jsp"%>
+    <%@include file="../layouts/head.jsp"%>
 </head>
 
 <body class="bg-light">
-<%@include file="layouts/header.jsp"%>
-<link href="static/css/userprofile.css" rel="stylesheet">
+<%@include file="../layouts/header.jsp"%>
 
 <main class="container-md pt-5">
 
@@ -66,6 +65,6 @@
     <!--end::card-->
 
 </main>
-    <%@include file="layouts/footer.jsp"%>
+    <%@include file="../layouts/footer.jsp"%>
 </body>
 </html>

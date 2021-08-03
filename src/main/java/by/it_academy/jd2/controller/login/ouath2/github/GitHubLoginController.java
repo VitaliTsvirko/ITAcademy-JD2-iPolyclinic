@@ -62,7 +62,7 @@ public class GitHubLoginController {
             e.printStackTrace();
         }
 
-        return "redirect:/userprofile";
+        return "users/userprofile";
     }
 
 

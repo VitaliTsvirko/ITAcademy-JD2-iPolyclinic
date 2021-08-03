@@ -5,8 +5,6 @@ import by.it_academy.jd2.core.exceptions.MedicalCardNotFoundException;
 import by.it_academy.jd2.domain.Appointment;
 import by.it_academy.jd2.domain.Diseases;
 import by.it_academy.jd2.domain.User;
-import by.it_academy.jd2.domain.enumeration.AppointmentType;
-import by.it_academy.jd2.domain.enumeration.HealthStatus;
 import by.it_academy.jd2.repository.IAppointmentsRepository;
 import by.it_academy.jd2.repository.IDiseasesRepository;
 import by.it_academy.jd2.repository.IMedicalCardRepository;

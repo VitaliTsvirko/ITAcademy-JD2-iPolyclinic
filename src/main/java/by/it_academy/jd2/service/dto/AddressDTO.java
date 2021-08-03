@@ -2,7 +2,6 @@ package by.it_academy.jd2.service.dto;
 
 import by.it_academy.jd2.domain.Address;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotNull;
 
 /**
  * Created by Vitali Tsvirko

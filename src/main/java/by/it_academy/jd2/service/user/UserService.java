@@ -3,7 +3,6 @@ package by.it_academy.jd2.service.user;
 import by.it_academy.jd2.core.exceptions.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.*;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
-import by.it_academy.jd2.domain.enumeration.GenderType;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.repository.*;
 import by.it_academy.jd2.security.SecurityUtils;
@@ -92,6 +91,7 @@ public class UserService implements IUserService {
                 () -> new UsernameNotFoundException("Authorized user not found")
         );
     }
+
     @Override
     public Address createAddress(User user, AddressDTO addressDTO){
         usersRepository.findById(user.getId())

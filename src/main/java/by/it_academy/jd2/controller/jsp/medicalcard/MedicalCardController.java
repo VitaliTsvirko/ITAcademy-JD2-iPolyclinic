@@ -1,6 +1,5 @@
 package by.it_academy.jd2.controller.jsp.medicalcard;
 
-import by.it_academy.jd2.domain.Diseases;
 import by.it_academy.jd2.service.api.IAppointmentsService;
 import by.it_academy.jd2.service.api.IDiseasesService;
 import by.it_academy.jd2.service.api.IMedicalCardService;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -49,7 +47,7 @@ public class MedicalCardController {
         model.addAttribute("medicalCardWeight", medicalCardService.getMedicalCardById(id).getWeight());
         model.addAttribute("medicalCardAllergy", medicalCardService.getMedicalCardById(id).getAllergy());
 
-        return "medicalcard";
+        return "medicalcard/medicalcard";
     }
 
 
@@ -68,7 +66,7 @@ public class MedicalCardController {
 
         model.addAttribute("diseasesMap", diseasesService.getAllDiseases());
 
-        return "appointment";
+        return "medicalcard/appointment";
     }
 
 }

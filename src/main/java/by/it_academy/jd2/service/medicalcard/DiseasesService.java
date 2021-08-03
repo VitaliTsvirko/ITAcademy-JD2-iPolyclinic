@@ -1,17 +1,13 @@
 package by.it_academy.jd2.service.medicalcard;
 
 import by.it_academy.jd2.core.exceptions.DiseasesNotFoundException;
-import by.it_academy.jd2.domain.Countries;
 import by.it_academy.jd2.domain.Diseases;
-import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.repository.IDiseasesRepository;
 import by.it_academy.jd2.service.api.IDiseasesService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

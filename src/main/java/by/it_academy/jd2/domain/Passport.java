@@ -40,7 +40,7 @@ public class Passport implements Serializable {
     @Column(name = "passport_no", nullable = false)
     private String passportNo;
 
-    @Column(name = "nationality", nullable = true)
+    @Column(name = "nationality")
     private String nationality;
 
     @NotNull

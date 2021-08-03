@@ -28,6 +28,6 @@ public class UsersManagementController {
         model.addAttribute("usersList", userService.getAllUsers());
         model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
 
-        return "usermanagement";
+        return "users/usermanagement";
     }
 }

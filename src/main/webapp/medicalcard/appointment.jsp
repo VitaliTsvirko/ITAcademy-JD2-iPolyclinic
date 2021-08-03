@@ -7,24 +7,23 @@
 <html>
 <head>
     <title>Прием - ${patientData.fullName}</title>
-    <%@include file="layouts/head.jsp"%>
+    <%@include file="../layouts/head.jsp"%>
 </head>
 
-<body class="bg-light">
-<%@include file="layouts/header.jsp"%>
+<main class="bg-light">
+<%@include file="../layouts/header.jsp"%>
 
-<main class="container-md pt-5">
 
-    <div class="card mb-2">
-        <h5 class="card-header" id="patient_full_name">${patientData.fullName}</h5>
-        <div class="card-body">
-            <%@include file="layouts/medicalcard.jsp"%>
-        </div>
+<div class="card mb-2">
+    <h5 class="card-header" id="patient_full_name">${patientData.fullName}</h5>
+    <div class="card-body">
+        <%@include file="../layouts/medicalcard.jsp"%>
     </div>
+</div>
 
-    <div class="card">
-      <h5 class="card-header">Текущий прием</h5>
-      <div class="card-body">
+<div class="card">
+    <h5 class="card-header">Текущий прием</h5>
+    <div class="card-body">
 
         <div class="row my-3">
             <div class="col-lg-3">
@@ -62,12 +61,12 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="appointmentType" id="type1" value="PRIMARY" ${appointmentDTO.type eq AppointmentType.PRIMARY ? 'checked' : ''} >
-                      <label class="form-check-label" for="type1">Первичный</label>
+                        <input class="form-check-input" type="radio" name="appointmentType" id="type1" value="PRIMARY" ${appointmentDTO.type eq AppointmentType.PRIMARY ? 'checked' : ''} >
+                        <label class="form-check-label" for="type1">Первичный</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="appointmentType" id="type2" value="SECOND" ${appointmentDTO.type eq AppointmentType.SECOND ? 'checked' : ''}>
-                      <label class="form-check-label" for="type2">Повторный</label>
+                        <input class="form-check-input" type="radio" name="appointmentType" id="type2" value="SECOND" ${appointmentDTO.type eq AppointmentType.SECOND ? 'checked' : ''}>
+                        <label class="form-check-label" for="type2">Повторный</label>
                     </div>
                 </div>
             </div>
@@ -81,25 +80,25 @@
                 </div>
             </div>
 
-        <div class="row my-3">
-            <div class="col-lg-3">
-                <label class="fw-bold fs-6">Температура:</label>
-            </div>
-            <div class="col-lg-3">
+            <div class="row my-3">
+                <div class="col-lg-3">
+                    <label class="fw-bold fs-6">Температура:</label>
+                </div>
+                <div class="col-lg-3">
                     <input type="text" name="temperature" id="temperature" class="form-control form-control-sm form-control-solid mb-3" value="${appointmentDTO.temperature}">
-            </div>
-            <div class="col-lg-2">
-            </div>
-            <div class="col-lg-1">
-                <label class="fw-bold fs-6">Давление:</label>
-            </div>
-            <div class="col-lg-1">
+                </div>
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-1">
+                    <label class="fw-bold fs-6">Давление:</label>
+                </div>
+                <div class="col-lg-1">
                     <input type="text" name="systolicBloodPressure" id="systolicBloodPressure" class="form-control form-control-sm form-control-solid mb-3" value="${appointmentDTO.systolicBloodPressure}">
-            </div>
-            <div class="col-lg-1">
+                </div>
+                <div class="col-lg-1">
                     <input type="text" name="diastolicBloodPressure" id="diastolicBloodPressure" class="form-control form-control-sm form-control-solid mb-3" value="${appointmentDTO.diastolicBloodPressure}">
+                </div>
             </div>
-        </div>
 
             <div class="row my-3">
                 <div class="col-lg-3">
@@ -127,13 +126,12 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="health_status" id="health_status1" value="HEALTHY" ${appointmentDTO.healthStatus eq HealthStatus.HEALTHY ? 'checked' : ''}>
-                      <label class="form-check-label" for="health_status1">Здоров</label>
+                        <input class="form-check-input" type="radio" name="health_status" id="health_status1" value="HEALTHY" ${appointmentDTO.healthStatus eq HealthStatus.HEALTHY ? 'checked' : ''}>
+                        <label class="form-check-label" for="health_status1">Здоров</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="health_status" id="health_status2" value="SICK" ${appointmentDTO.healthStatus eq HealthStatus.SICK ? 'checked' : ''}>
-                      <label class="form-check-label" for="health_status2">Нуждается в лечении</label>
-                    </div>
+                        <input class="form-check-input" type="radio" name="health_status" id="health_status2" value="SICK" ${appointmentDTO.healthStatus eq HealthStatus.SICK ? 'checked' : ''}>
+                        <label class="form-check-label" for="health_status2">Нуждается в лечении</label>
                     </div>
                 </div>
             </div>
@@ -148,11 +146,11 @@
             </div>
         </div>
     </div>
-
+</div>
 
 </main>
 
-    <%@include file="layouts/footer.jsp"%>
+<%@include file="../layouts/footer.jsp"%>
     <script src="${pageContext.request.contextPath}/static/js/appointment.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/select2/css/select2.min.css">
     <script src="${pageContext.request.contextPath}/static/select2/js/select2.min.js"></script>
@@ -186,9 +184,9 @@
 
     <script>
         jQuery(function($){
+
             $(document).ready(function(){
                 if ($('#current_diagnosis_code').val() !== ''){
-
                     $('.js-diseases-search').select2("trigger", "select", {data : {id: $('#current_diagnosis_code').val(),
                                                                                     text: $('#current_diagnosis_name').val()}});
                 }

@@ -6,12 +6,12 @@
 <html>
 <head>
     <title>Профиль пользователя</title>
-    <%@include file="layouts/head.jsp"%>
+    <%@include file="../layouts/head.jsp"%>
 </head>
 
 <body class="bg-light">
-<%@include file="layouts/header.jsp"%>
-<link href="static/css/userprofile.css" rel="stylesheet">
+<%@include file="../layouts/header.jsp"%>
+<link href="../static/css/userprofile.css" rel="stylesheet">
 
 <input type="hidden" id="user_id" value="${requestScope.user.id}">
 <main class="container-md pt-5">
@@ -65,25 +65,25 @@
 
             <!--begin::tabs overview-->
             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                <%@include file="layouts/userprofile/basicinfo.jsp"%>
+                <%@include file="../layouts/userprofile/basicinfo.jsp"%>
             </div>
             <!--end::tabs overview-->
 
             <!--begin::tabs auth-->
             <div class="tab-pane fade" id="auth" role="tabpanel" aria-labelledby="auth-tab">
-                <%@include file="layouts/userprofile/auth.jsp"%>
+                <%@include file="../layouts/userprofile/auth.jsp"%>
             </div>
             <!--begin::tabs auth-->
 
             <!--begin::tabs address-->
             <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-                <%@include file="layouts/userprofile/address.jsp"%>
+                <%@include file="../layouts/userprofile/address.jsp"%>
             </div>
             <!--end::tabs address-->
 
             <!--begin::tabs passport-->
             <div class="tab-pane fade" id="passport" role="tabpanel" aria-labelledby="passport-tab">
-                <%@include file="layouts/userprofile/passport.jsp"%>
+                <%@include file="../layouts/userprofile/passport.jsp"%>
             </div>
             <!--end::tabs passport-->
 
@@ -95,7 +95,7 @@
 <!--end::tabs container-->
 
 </main>
-    <%@include file="layouts/footer.jsp"%>
+    <%@include file="../layouts/footer.jsp"%>
 
 <script>
     jQuery(function($){

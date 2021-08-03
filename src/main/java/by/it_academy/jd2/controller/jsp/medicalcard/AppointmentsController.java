@@ -1,9 +1,7 @@
 package by.it_academy.jd2.controller.jsp.medicalcard;
 
 import by.it_academy.jd2.service.api.IAppointmentsService;
-import by.it_academy.jd2.service.api.IDiseasesService;
 import by.it_academy.jd2.service.api.IMedicalCardService;
-import by.it_academy.jd2.service.api.IUserService;
 import by.it_academy.jd2.service.dto.AppointmentDTO;
 import by.it_academy.jd2.service.dto.UserBasicDataDTO;
 import org.springframework.stereotype.Controller;
@@ -33,6 +31,6 @@ public class AppointmentsController {
         model.addAttribute("medicalCardId", medicalCardId);
         model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(medicalCardId)));
 
-        return "appointment";
+        return "medicalcard/appointment";
     }
 }

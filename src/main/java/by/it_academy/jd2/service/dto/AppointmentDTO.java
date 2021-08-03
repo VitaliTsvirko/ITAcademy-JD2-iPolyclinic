@@ -1,21 +1,12 @@
 package by.it_academy.jd2.service.dto;
 
 import by.it_academy.jd2.domain.Appointment;
-import by.it_academy.jd2.domain.Diseases;
-import by.it_academy.jd2.domain.MedicalCard;
-import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.AppointmentType;
 import by.it_academy.jd2.domain.enumeration.HealthStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**

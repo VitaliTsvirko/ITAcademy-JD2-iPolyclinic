@@ -4,13 +4,13 @@
 <html>
  <head>
    <title>Авторизация</title>
-   <%@include file="layouts/head.jsp"%>
+   <%@include file="../layouts/head.jsp"%>
  </head>
 
  <body class="bg-light">
-    <%@include file="layouts/header.jsp"%>
+    <%@include file="../layouts/header.jsp"%>
 
-    <link href="static/css/auth.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/static/css/auth.css" rel="stylesheet">
 
     <main class="container-md pt-5">
 
@@ -56,10 +56,10 @@
                                 <div class="text-center text-muted text-uppercase fw-bolder my-2">или</div>
 
                                 <button class="btn btn-lg btn-block btn-primary border-0" style="color: #7e8299; background-color: #f5f8fa;" type="submit">
-                                    <a><img alt="Logo" src="static/image/google-icon.svg" class="h-15 me-3">Войти через Google</a>
+                                    <a><img alt="Logo" src="${pageContext.request.contextPath}/static/image/google-icon.svg" class="h-15 me-3">Войти через Google</a>
                                 </button>
                                 <button onclick="window.location.href = '${pageContext.request.contextPath}/oauth2/authorization/ca9c89a8c5895c9416fb9105d9617790d88c0ec7';" class="btn btn-lg btn-block btn-primary border-0 mb-2" style="color: #7e8299; background-color: #f5f8fa;" type="submit">
-                                    <a><img alt="Logo" src="static/image/github-icon.svg" class=" h-15 me-3">Войти через GitHub</a>
+                                    <a><img alt="Logo" src="${pageContext.request.contextPath}/static/image/github-icon.svg" class=" h-15 me-3">Войти через GitHub</a>
                                 </button>
 
                             </div>
@@ -71,7 +71,7 @@
 
     </main>
 
-<%@include file="layouts/footer.jsp"%>
+<%@include file="../layouts/footer.jsp"%>
  </body>
 
 </html>

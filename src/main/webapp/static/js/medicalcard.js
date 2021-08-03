@@ -1,6 +1,4 @@
-var requestUrl = BASE_URL + '/api/mcard/';
-var id = 1;
-
+const requestUrl = BASE_URL + '/api/mcard/';
 
 jQuery(function($){
     $(document).ready(function(){

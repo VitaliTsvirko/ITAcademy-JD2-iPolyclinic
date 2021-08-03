@@ -1,4 +1,4 @@
-var requestUrl = BASE_URL + '/api/userprofile/';
+const requestUrl = BASE_URL + '/api/userprofile/';
 
 function updateBasicUserData(id) {
     jQuery(function ($) {

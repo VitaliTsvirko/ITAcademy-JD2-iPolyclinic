@@ -2,8 +2,6 @@ package by.it_academy.jd2.core;
 
 import by.it_academy.jd2.domain.Countries;
 import by.it_academy.jd2.repository.ICountriesRepository;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.stream.Collectors;

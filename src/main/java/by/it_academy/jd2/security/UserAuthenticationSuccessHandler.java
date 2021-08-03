@@ -4,7 +4,6 @@ import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.repository.IUsersRepository;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;

@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/diseases")
 public class DiseasesRestController {
 
-    private IDiseasesService diseasesService;
+    private final IDiseasesService diseasesService;
 
     public DiseasesRestController(IDiseasesService diseasesService) {
         this.diseasesService = diseasesService;

@@ -9,8 +9,8 @@ jQuery(function($){
 
 // функция для создания значений формы в формате json
 $.fn.serializeObject = function() {
-    var o = {};
-    var a = this.serializeArray();
+    let o = {};
+    let a = this.serializeArray();
     $.each(a, function() {
         if (o[this.name] !== undefined) {
             if (!o[this.name].push) {

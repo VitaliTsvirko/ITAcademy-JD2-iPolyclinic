@@ -4,7 +4,7 @@ public enum GenderType {
     MALE ("Мужской"),
     FEMALE ("Женский");
 
-    String genderName;
+    final String genderName;
 
     GenderType(String genderName){
         this.genderName = genderName;

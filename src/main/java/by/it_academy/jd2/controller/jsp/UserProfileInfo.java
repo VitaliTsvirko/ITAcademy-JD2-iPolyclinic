@@ -1,8 +1,5 @@
 package by.it_academy.jd2.controller.jsp;
 
-import by.it_academy.jd2.domain.User;
-import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
-import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.service.api.ICountryService;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.Optional;
 
@@ -46,7 +42,7 @@ public class UserProfileInfo {
             model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
             model.addAttribute("user", userService.getUserById(id));
 
-            return "userprofile";
+            return "users/userprofile";
         } catch (UsernameNotFoundException e){
             return "error";
         }

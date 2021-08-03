@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
  */
 @Controller
 @RequestMapping("/work")
-public class MdWorkPlaceController {
+public class DoctorWorkplaceController {
 
     private final IUserService userService;
 
     private final ICountryService countryService;
 
-    public MdWorkPlaceController(IUserService userService, ICountryService countryService) {
+    public DoctorWorkplaceController(IUserService userService, ICountryService countryService) {
         this.userService = userService;
         this.countryService = countryService;
     }
@@ -38,6 +38,6 @@ public class MdWorkPlaceController {
         model.addAttribute("usersList", allPatients);
         model.addAttribute("appointmentsCounts", appointmentsCounts);
 
-        return "userslist";
+        return "users/userslist";
     }
 }

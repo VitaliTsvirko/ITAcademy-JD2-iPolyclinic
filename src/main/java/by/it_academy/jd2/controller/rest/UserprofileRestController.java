@@ -15,19 +15,17 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.UnsupportedEncodingException;
-
 /**
  * Created by Vitali Tsvirko
  */
 @RestController
 @RequestMapping("/api/userprofile/")
-public class UserRestController {
+public class UserprofileRestController {
 
 
     private final IUserService userService;
 
-    public UserRestController(IUserService userService) {
+    public UserprofileRestController(IUserService userService) {
         this.userService = userService;
     }
 
@@ -59,7 +57,7 @@ public class UserRestController {
 
 
     @PostMapping("/{id}/address")
-    public ResponseEntity<Object> createAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id) throws UnsupportedEncodingException {
+    public ResponseEntity<Object> createAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id) {
         try{
             return new ResponseEntity<>(new AddressDTO(userService.createAddress(userService.getUserById(id), addressDTO)), HttpStatus.OK);
         } catch (UsernameNotFoundException e){
@@ -86,7 +84,7 @@ public class UserRestController {
 
 
     @PutMapping("/{id}/address")
-    public ResponseEntity<Object> updateAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id) throws UnsupportedEncodingException {
+    public ResponseEntity<Object> updateAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id) {
         try{
             return new ResponseEntity<>(new AddressDTO(userService.updateAddress(userService.getUserById(id), addressDTO)), HttpStatus.OK);
         } catch (UsernameNotFoundException e){

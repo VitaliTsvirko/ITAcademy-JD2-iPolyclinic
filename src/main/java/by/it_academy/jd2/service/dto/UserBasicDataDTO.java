@@ -1,17 +1,11 @@
 package by.it_academy.jd2.service.dto;
 
-import by.it_academy.jd2.domain.Address;
-import by.it_academy.jd2.domain.MedicalCard;
-import by.it_academy.jd2.domain.Passport;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
-import by.it_academy.jd2.domain.enumeration.HealthStatus;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Email;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 

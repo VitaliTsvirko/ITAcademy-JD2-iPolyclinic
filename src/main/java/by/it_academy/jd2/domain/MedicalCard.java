@@ -3,7 +3,6 @@ package by.it_academy.jd2.domain;
 import jakarta.validation.constraints.Min;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 

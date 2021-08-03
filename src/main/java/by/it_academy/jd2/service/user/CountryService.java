@@ -3,7 +3,6 @@ package by.it_academy.jd2.service.user;
 import by.it_academy.jd2.domain.Countries;
 import by.it_academy.jd2.repository.ICountriesRepository;
 import by.it_academy.jd2.service.api.ICountryService;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;

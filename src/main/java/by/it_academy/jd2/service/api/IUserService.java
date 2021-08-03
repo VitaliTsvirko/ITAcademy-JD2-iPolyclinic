@@ -15,25 +15,20 @@ import java.util.Optional;
  */
 public interface IUserService {
     User createUser(String phoneNo, String password);
-
     User getUserById(Optional<Long> id) throws UsernameNotFoundException;
     User getUserById(Long id) throws UsernameNotFoundException;
-
     User getAuthorizedUser();
 
-    void deleteAddress(User user);
+    List<User> getAllUsers();
+    List<User> getAllPatients();
 
     Address createAddress(User user, AddressDTO addressDTO);
-
     Address updateAddress(User user, AddressDTO addressDTO);
-
+    void deleteAddress(User user);
 
     Passport createPassport(User user, PassportDTO passportDTO);
     Passport updatePassport(User user, PassportDTO passportDTO);
     void deletePassport(User user);
-
-    List<User> getAllUsers();
-    List<User> getAllPatients();
 
     User confirmPassportDataByUserId (Long userId);
 }

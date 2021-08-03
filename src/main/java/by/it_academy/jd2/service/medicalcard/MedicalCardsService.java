@@ -1,19 +1,14 @@
 package by.it_academy.jd2.service.medicalcard;
 
-import by.it_academy.jd2.core.exceptions.AppointmentNotFoundException;
 import by.it_academy.jd2.core.exceptions.MedicalCardNotFoundException;
 import by.it_academy.jd2.domain.Appointment;
 import by.it_academy.jd2.domain.MedicalCard;
 import by.it_academy.jd2.domain.User;
-import by.it_academy.jd2.repository.IAppointmentsRepository;
 import by.it_academy.jd2.repository.IMedicalCardRepository;
 import by.it_academy.jd2.service.api.IMedicalCardService;
-import by.it_academy.jd2.service.api.IUserService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Service

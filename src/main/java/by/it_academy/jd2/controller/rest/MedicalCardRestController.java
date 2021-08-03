@@ -16,11 +16,9 @@ import java.util.stream.Collectors;
 public class MedicalCardRestController {
 
     private final IMedicalCardService medicalCardService;
-    private final IUserService userService;
 
-    public MedicalCardRestController(IMedicalCardService medicalCardService, IUserService userService) {
+    public MedicalCardRestController(IMedicalCardService medicalCardService) {
         this.medicalCardService = medicalCardService;
-        this.userService = userService;
     }
 
     @GetMapping("/{id}/user")

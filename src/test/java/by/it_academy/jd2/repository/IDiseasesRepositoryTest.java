@@ -16,8 +16,6 @@ import javax.transaction.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ExtendWith(value = {SpringExtension.class})
 @ContextConfiguration(
