@@ -27,7 +27,9 @@ function savePassportData(id) {
                     //hide buttons
                     $('#tap-passport-data').removeClass("collapse");
                     $('#div-passport-add-btn').addClass("collapse");
+
                     $("#confirm-passport-btn").removeClass("collapse");
+                    $("#passport-tab-badge").removeClass("collapse");
 
                     //update user basic info
                     updateBasicUserData(id);
@@ -97,6 +99,7 @@ function confirmPassportData(id) {
                     $("#userprofile-alert").alert('close')
                     //hide confirm button
                     $("#confirm-passport-btn").addClass("collapse");
+                    $("#passport-tab-badge").addClass("collapse");
 
                     updateBasicUserData(id);
 

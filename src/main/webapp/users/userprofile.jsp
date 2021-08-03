@@ -51,7 +51,10 @@
                 <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="false">Адрес</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="passport-tab" data-bs-toggle="tab" href="#passport" role="tab" aria-controls="passport" aria-selected="false">Паспортные данные</a>
+                <a class="nav-link" id="passport-tab" data-bs-toggle="tab" href="#passport" role="tab" aria-controls="passport" aria-selected="false">
+                    Паспортные данные
+                    <i id="passport-tab-badge" class="bi bi-exclamation-circle-fill" style="color: #842029" data-bs-toggle="tooltip" title="Паспортные данные не подверждены"></i>
+                </a>
             </li>
         </ul>
         <!--end::tabs header-->
