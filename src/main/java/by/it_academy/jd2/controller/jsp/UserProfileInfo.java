@@ -1,5 +1,6 @@
 package by.it_academy.jd2.controller.jsp;
 
+import by.it_academy.jd2.security.SecurityAccessHandler;
 import by.it_academy.jd2.service.api.ICountryService;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,10 +22,12 @@ public class UserProfileInfo {
 
     private final IUserService userService;
     private final ICountryService countryService;
+    private final SecurityAccessHandler securityAccessHandler;
 
-    public UserProfileInfo(IUserService userService, ICountryService countryService) {
+    public UserProfileInfo(IUserService userService, ICountryService countryService, SecurityAccessHandler securityAccessHandler) {
         this.userService = userService;
         this.countryService = countryService;
+        this.securityAccessHandler = securityAccessHandler;
     }
 
     /**
@@ -41,6 +44,8 @@ public class UserProfileInfo {
         try {
             model.addAttribute("countriesMap", countryService.getAllCountriesOrderByShotName());
             model.addAttribute("user", userService.getUserById(id));
+            model.addAttribute("allowPassportConfirm", securityAccessHandler.isAllowPassportConfirm(id));
+            model.addAttribute("allowEditPassportData", securityAccessHandler.isAllowEditPassportData(id));
 
             return "users/userprofile";
         } catch (UsernameNotFoundException e){

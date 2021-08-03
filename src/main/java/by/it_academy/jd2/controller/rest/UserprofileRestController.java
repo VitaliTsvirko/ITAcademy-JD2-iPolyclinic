@@ -31,7 +31,6 @@ public class UserprofileRestController {
 
 
     @GetMapping(value = "/{id}/basic", produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<UserBasicDataDTO> readUserBasicDataById(@PathVariable Long id){
         try{
             return new ResponseEntity<>(new UserBasicDataDTO(userService.getUserById(id)), HttpStatus.OK);

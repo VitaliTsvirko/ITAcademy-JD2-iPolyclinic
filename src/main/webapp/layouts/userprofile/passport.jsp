@@ -8,12 +8,16 @@
     <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#passportModalForm">Добавить</button>
 </div>
 
+<c:if test="${requestScope.allowEditPassportData}">
 <div class="${empty requestScope.user.passport ? 'collapse' : ''}" id="tap-passport-data">
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#passportModalForm">Измениить</button>
         <button type="button" class="btn btn-danger" onclick='deletePassport($("#user_id").val())'>Удалить</button>
-        <button type="button" id="confirm-passport-btn" class="btn btn-success ${requestScope.user.state eq ApplicationUserState.PASSPORT_DATA_IS_INPUT ? '' : 'collapse'}" onclick='confirmPassportData($("#user_id").val())'>Подвердить</button>
+        <c:if test="${requestScope.allowPassportConfirm}">
+            <button type="button" id="confirm-passport-btn" class="btn btn-success ${requestScope.user.state eq ApplicationUserState.PASSPORT_DATA_IS_INPUT ? '' : 'collapse'}" onclick='confirmPassportData($("#user_id").val())'>Подвердить</button>
+        </c:if>
     </div>
+</c:if>
 
     <div class="row">
         <div class="col-lg-6">

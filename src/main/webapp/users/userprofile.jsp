@@ -25,7 +25,7 @@
         </div>
 
         <!--begin::notification-->
-        <c:if test="${user.state != ApplicationUserState.ACTIVATED }">
+        <c:if test="${user.state != ApplicationUserState.ACTIVATED}">
             <div id="userprofile-alert" class="alert alert-danger d-flex align-items-center mx-4" role="alert">
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                 <div>
@@ -53,7 +53,7 @@
             <li class="nav-item" role="presentation">
                 <a class="nav-link" id="passport-tab" data-bs-toggle="tab" href="#passport" role="tab" aria-controls="passport" aria-selected="false">
                     Паспортные данные
-                    <i id="passport-tab-badge" class="bi bi-exclamation-circle-fill" style="color: #842029" data-bs-toggle="tooltip" title="Паспортные данные не подверждены"></i>
+                    <i id="passport-tab-badge" class="bi bi-exclamation-circle-fill ${user.state != ApplicationUserState.ACTIVATED ? '' : 'collapse'}" style="color: #842029" data-bs-toggle="tooltip" title="Паспортные данные не подверждены"></i>
                 </a>
             </li>
         </ul>
