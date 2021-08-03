@@ -65,25 +65,25 @@
 
             <!--begin::tabs overview-->
             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                <%@include file="layouts/userprofile/view/basicinfo.jsp"%>
+                <%@include file="layouts/userprofile/basicinfo.jsp"%>
             </div>
             <!--end::tabs overview-->
 
             <!--begin::tabs auth-->
             <div class="tab-pane fade" id="auth" role="tabpanel" aria-labelledby="auth-tab">
-                <%@include file="layouts/userprofile/view/auth.jsp"%>
+                <%@include file="layouts/userprofile/auth.jsp"%>
             </div>
             <!--begin::tabs auth-->
 
             <!--begin::tabs address-->
             <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-                <%@include file="layouts/userprofile/view/address.jsp"%>
+                <%@include file="layouts/userprofile/address.jsp"%>
             </div>
             <!--end::tabs address-->
 
             <!--begin::tabs passport-->
             <div class="tab-pane fade" id="passport" role="tabpanel" aria-labelledby="passport-tab">
-                <%@include file="layouts/userprofile/view/passport.jsp"%>
+                <%@include file="layouts/userprofile/passport.jsp"%>
             </div>
             <!--end::tabs passport-->
 

@@ -62,6 +62,9 @@ function deleteAddress(id) {
                 $('#tap-address-data').addClass("collapse");
                 $('#div-address-add-btn').removeClass("collapse");
 
+                //update user basic info
+                updateBasicUserData(id);
+
                 injectAlert("address-tab-alert", "Данные успешно удалены", AlertsTypes.SUCCESS);
             },
             error: function(xhr, resp, text) {
