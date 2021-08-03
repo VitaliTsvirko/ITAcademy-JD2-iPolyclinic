@@ -14,14 +14,14 @@
 
 <main class="container-md pt-5">
 
-    <div class="card mb-2">
+    <div class="card w-75 mx-auto mb-2">
         <h5 class="card-header" id="patient_full_name"><i class="bi bi-gender-male">${patientData.fullName}</i></h5>
         <div class="card-body">
             <%@include file="../layouts/medicalcard.jsp"%>
         </div>
     </div>
 
-    <div class="card">
+    <div class="card w-75 mx-auto">
         <div class="table-responsive">
             <table class="table table-hover" id="patient_appointments">
                 <thead>
