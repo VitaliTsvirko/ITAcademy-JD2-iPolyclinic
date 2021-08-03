@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.NumberUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -183,6 +184,8 @@ public class UserService implements IUserService {
 
                             passportsRepository.save(newPassport);
                             existingUser.setPassport(newPassport);
+
+                            existingUser.setState(ApplicationUserState.PASSPORT_DATA_IS_INPUT);
                         }
                 );
 
@@ -222,6 +225,8 @@ public class UserService implements IUserService {
             userPassport.setIssueDate(passportDTO.getIssueDate());
             userPassport.setExpirationDate(passportDTO.getExpirationDate());
             userPassport.setGenderType(passportDTO.getGenderType());
+
+            existUser.setState(ApplicationUserState.PASSPORT_DATA_IS_INPUT);
         });
 
         return usersRepository.getById(user.getId()).getPassport();
@@ -230,25 +235,15 @@ public class UserService implements IUserService {
 
     @Override
     public User confirmPassportDataByUserId (Long userId){
-        User user = usersRepository.findById(userId).orElseThrow(
-                () -> new UsernameNotFoundException("User with id " + userId + "not found")
-        );
+        return usersRepository.findById(userId).map(user -> {
+                if (user.getPassport() != null) {
+                    user.setState(ApplicationUserState.ACTIVATED);
+                } else {
+                    throw new IllegalArgumentException("Passport data is not entered");
+                }
 
-        if (user.getPassport() == null) {
-            throw new IllegalArgumentException("Passport data is not entered");
-        }
-
-        user.setState(ApplicationUserState.PASSPORT_DATA_VERIFIED);
-
-        MedicalCard medicalCard = new MedicalCard();
-        medicalCard.setUser(user);
-        medicalCardRepository.save(medicalCard);
-
-        user.setMedicalCard(medicalCard);
-
-        user.setState(ApplicationUserState.ACTIVATED);
-
-        return user;
+                return user;
+            }).orElseThrow(() -> new UsernameNotFoundException("User with id " + userId + "not found"));
     }
 
 

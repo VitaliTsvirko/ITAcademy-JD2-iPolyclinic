@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="by.it_academy.jd2.domain.enumeration.GenderType" %>
+<%@ page import="by.it_academy.jd2.domain.enumeration.ApplicationUserState" %>
 
 <div id="passport-tab-alert" class="mt-3"></div>
 
@@ -11,6 +12,7 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#passportModalForm">Измениить</button>
         <button type="button" class="btn btn-danger" onclick='deletePassport($("#user_id").val())'>Удалить</button>
+        <button type="button" id="confirm-passport-btn" class="btn btn-success ${requestScope.user.state eq ApplicationUserState.PASSPORT_DATA_IS_INPUT ? '' : 'collapse'}" onclick='confirmPassportData($("#user_id").val())'>Подвердить</button>
     </div>
 
     <div class="row">

@@ -27,6 +27,7 @@ function savePassportData(id) {
                     //hide buttons
                     $('#tap-passport-data').removeClass("collapse");
                     $('#div-passport-add-btn').addClass("collapse");
+                    $("#confirm-passport-btn").removeClass("collapse");
 
                     //update user basic info
                     updateBasicUserData(id);
@@ -72,6 +73,37 @@ function deletePassport(id) {
                 injectAlert("passport-tab-alert", "Данные успешно удалены", AlertsTypes.SUCCESS);
             },
             error: function(xhr, resp, text) {
+                injectAlert("passport-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
+            }
+        });
+        return false;
+    });
+}
+
+
+
+function confirmPassportData(id) {
+    jQuery(function ($) {
+        $.ajax({
+            url: requestPassportUrl + id + '/passport/confirm',
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: '{}',
+            success: function (result) {
+                if (!$.isEmptyObject(result)){
+                    //update user basic info
+
+                    //close alert
+                    $("#userprofile-alert").alert('close')
+                    //hide confirm button
+                    $("#confirm-passport-btn").addClass("collapse");
+
+                    updateBasicUserData(id);
+
+                    injectAlert("passport-tab-alert", "Данные паспорта подтверждены. Аккаунт активирован.", AlertsTypes.SUCCESS);
+                }
+            },
+            error: function (xhr, resp, text) {
                 injectAlert("passport-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
             }
         });

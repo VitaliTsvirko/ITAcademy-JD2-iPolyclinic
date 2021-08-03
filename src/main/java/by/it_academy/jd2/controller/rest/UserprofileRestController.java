@@ -40,22 +40,6 @@ public class UserprofileRestController {
         }
     }
 
-
-    @PostMapping("/{id}/confirm/passport")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<UserBasicDataDTO> confirmPassportData(@PathVariable Long id){
-        //check user not found
-        try{
-            UserBasicDataDTO userBasicDataDTO = new UserBasicDataDTO(userService.confirmPassportDataByUserId(id));
-            return new ResponseEntity<>(userBasicDataDTO, HttpStatus.OK);
-        } catch (UsernameNotFoundException e){
-            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-        } catch (IllegalArgumentException e){
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
-    }
-
-
     @PostMapping("/{id}/address")
     public ResponseEntity<Object> createAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id) {
         try{
@@ -155,6 +139,20 @@ public class UserprofileRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
+    @PostMapping("/{id}/passport/confirm")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR')")
+    public ResponseEntity<UserBasicDataDTO> confirmPassportData(@PathVariable Long id){
+        try{
+            UserBasicDataDTO userBasicDataDTO = new UserBasicDataDTO(userService.confirmPassportDataByUserId(id));
+            return new ResponseEntity<>(userBasicDataDTO, HttpStatus.OK);
+        } catch (UsernameNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        } catch (IllegalArgumentException e){
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
 
 
 }
