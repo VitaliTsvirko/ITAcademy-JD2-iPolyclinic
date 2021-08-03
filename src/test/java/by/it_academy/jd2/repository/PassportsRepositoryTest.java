@@ -7,7 +7,7 @@ import by.it_academy.jd2.domain.Countries;
 import by.it_academy.jd2.domain.Passport;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
-import by.it_academy.jd2.domain.enumeration.Sex;
+import by.it_academy.jd2.domain.enumeration.GenderType;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -125,7 +125,7 @@ class PassportsRepositoryTest {
         passport.setDateOfBirth(LocalDate.of(1986,10,12));
         passport.setIssueDate(LocalDate.of(2000, 1, 1));
         passport.setExpirationDate(LocalDate.of(2030,1,1));
-        passport.setSex(Sex.MALE);
+        passport.setGenderType(GenderType.MALE);
 
         User user = new User();
 

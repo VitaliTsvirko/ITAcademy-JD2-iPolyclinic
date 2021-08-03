@@ -3,7 +3,7 @@ package by.it_academy.jd2.repository;
 import by.it_academy.jd2.config.PersistentConfig;
 import by.it_academy.jd2.domain.*;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
-import by.it_academy.jd2.domain.enumeration.Sex;
+import by.it_academy.jd2.domain.enumeration.GenderType;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -110,7 +110,7 @@ class IUsersRepositoryTest {
                 passport.setDateOfBirth(LocalDate.of(1986, 1, index + 1));
                 passport.setIssueDate(LocalDate.of(2021, 1, index + 1));
                 passport.setExpirationDate(LocalDate.of(2021, 1, index + 1));
-                passport.setSex(Sex.MALE);
+                passport.setGenderType(GenderType.MALE);
                 passport.setPassportNo(passportNoPrefix + index);
                 passport.setPersonalNo(personalNoPrefix + index);
 
@@ -174,7 +174,7 @@ class IUsersRepositoryTest {
             passport.setDateOfBirth(LocalDate.of(1986, 1, 1));
             passport.setIssueDate(LocalDate.of(2021, 1, 1));
             passport.setExpirationDate(LocalDate.of(2021, 1, 1));
-            passport.setSex(Sex.MALE);
+            passport.setGenderType(GenderType.MALE);
             passport.setPassportNo("123456");
             passport.setPersonalNo("010203040506E017PB6");
 

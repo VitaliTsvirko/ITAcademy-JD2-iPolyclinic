@@ -3,7 +3,7 @@ package by.it_academy.jd2.service.user;
 import by.it_academy.jd2.core.exceptions.UsernameAlreadyUsedException;
 import by.it_academy.jd2.domain.*;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
-import by.it_academy.jd2.domain.enumeration.Sex;
+import by.it_academy.jd2.domain.enumeration.GenderType;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.repository.*;
 import by.it_academy.jd2.security.SecurityUtils;
@@ -179,8 +179,7 @@ public class UserService implements IUserService {
                             newPassport.setCountryOfIssue(countryDTO);
                             newPassport.setIssueDate(passportDTO.getIssueDate());
                             newPassport.setExpirationDate(passportDTO.getExpirationDate());
-
-                            newPassport.setSex(Sex.MALE);
+                            newPassport.setGenderType(passportDTO.getGenderType());
 
                             passportsRepository.save(newPassport);
                             existingUser.setPassport(newPassport);
@@ -222,6 +221,7 @@ public class UserService implements IUserService {
             userPassport.setCountryOfIssue(countryDTO);
             userPassport.setIssueDate(passportDTO.getIssueDate());
             userPassport.setExpirationDate(passportDTO.getExpirationDate());
+            userPassport.setGenderType(passportDTO.getGenderType());
         });
 
         return usersRepository.getById(user.getId()).getPassport();

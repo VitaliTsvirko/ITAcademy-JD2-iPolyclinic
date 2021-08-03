@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="by.it_academy.jd2.domain.enumeration.GenderType" %>
 
 <div id="passport-tab-alert" class="mt-3"></div>
 
@@ -34,7 +35,15 @@
                     <span id="patronymic" class="fw-bolder fs-6 text-dark">${requestScope.user.passport.patronymic}</span>
                 </div>
             </div>
+
+            <div class="row mb-7 p-3">
+                <label class="col-4 col-form-label required fw-bold fs-6 text-muted">Пол</label>
+                <div class="col-8">
+                    <span id="gender_name" class="fw-bolder fs-6 text-dark">${requestScope.user.passport.genderType.genderName}</span>
+                </div>
+            </div>
         </div>
+
 
         <div class="col-lg-6">
             <div class="row mb-7 p-3">
@@ -136,7 +145,26 @@
                                     <input name="patronymic" type="text" class="form-control form-control-lg form-control-solid" value="${requestScope.user.passport.patronymic}">
                                 </div>
                             </div>
+
+                            <div class="row mb-7 p-3">
+                                <div class="col-4">
+                                    <label class="fw-bold fs-6">Пол</label>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender_type" id="type1" value="MALE" ${requestScope.user.passport.genderType eq GenderType.MALE ? 'checked' : ''} >
+                                        <label class="form-check-label" for="type1">Муж.</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender_type" id="type2" value="FEMALE" ${requestScope.user.passport.genderType eq GenderType.FEMALE ? 'checked' : ''}>
+                                        <label class="form-check-label" for="type2">Жен.</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
+
 
                         <div class="col-lg-6">
                             <div class="row mb-7 p-3">

@@ -1,7 +1,7 @@
 package by.it_academy.jd2.service.dto;
 
 import by.it_academy.jd2.domain.Passport;
-import by.it_academy.jd2.domain.enumeration.Sex;
+import by.it_academy.jd2.domain.enumeration.GenderType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -40,8 +40,12 @@ public class PassportDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
-    @JsonProperty("sex")
-    private Sex sex;
+    @JsonProperty("gender_type")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private GenderType genderType;
+
+    @JsonProperty("gender_name")
+    private String genderName;
 
     @JsonProperty("issue_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -70,6 +74,7 @@ public class PassportDTO {
             this.setCountryOfIssue(passport.getCountryOfIssue().getShotName());
             this.setIssueDate(passport.getIssueDate());
             this.setExpirationDate(passport.getExpirationDate());
+            this.setGenderType(passport.getGenderType());
         }
     }
 
@@ -145,12 +150,13 @@ public class PassportDTO {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Sex getSex() {
-        return sex;
+    public GenderType getGenderType() {
+        return genderType;
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
+    public void setGenderType(GenderType genderType) {
+        this.genderType = genderType;
+        this.genderName = genderType.getGenderName();
     }
 
     public LocalDate getIssueDate() {
@@ -175,5 +181,9 @@ public class PassportDTO {
 
     public void setPlaceOfBirth(String placeOfBirth) {
         this.placeOfBirth = placeOfBirth;
+    }
+
+    public String getGenderName() {
+        return genderName;
     }
 }

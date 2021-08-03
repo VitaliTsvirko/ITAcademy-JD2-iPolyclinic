@@ -1,6 +1,6 @@
 package by.it_academy.jd2.domain;
 
-import by.it_academy.jd2.domain.enumeration.Sex;
+import by.it_academy.jd2.domain.enumeration.GenderType;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -49,7 +49,7 @@ public class Passport implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "sex")
-    private Sex sex;
+    private GenderType genderType;
 
     @Column(name = "issue_date", nullable = false)
     private LocalDate issueDate;
@@ -141,12 +141,12 @@ public class Passport implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Sex getSex() {
-        return sex;
+    public GenderType getGenderType() {
+        return genderType;
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
+    public void setGenderType(GenderType genderType) {
+        this.genderType = genderType;
     }
 
     public LocalDate getIssueDate() {
