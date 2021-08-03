@@ -218,6 +218,7 @@
                                 <label class="col-4 col-form-label required fw-bold fs-6">Страна выдачи</label>
                                 <div class="col-8">
                                     <select class="form-select" name="country_of_issue_code" aria-label="Страна" required>
+                                        <option value="">Укажите страну</option>
                                         <c:forEach items="${requestScope.countriesMap}" var="country">
                                             <option ${country.key.equalsIgnoreCase(requestScope.user.address.country.code) ? "selected" : ""} value="${country.key}">${country.value}</option>
                                         </c:forEach>

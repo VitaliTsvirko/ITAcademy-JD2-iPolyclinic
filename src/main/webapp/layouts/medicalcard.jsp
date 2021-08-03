@@ -5,7 +5,7 @@
     <div class="col-lg-6">
         <p class="card-text m-0">${patientData.age} лет, ${patientData.dateOfBirth}</p>
         <p class="bi bi-telephone-fill m-0">${patientData.phoneNo}</p>
-        <p class="bi bi-house-fill m-0"></p>
+        <p class="bi bi-house-fill m-0">${patientData.fullAddress}</p>
     </div>
     <div class="col-lg-4">
         <p class="card-text m-0">Рост: <span>${empty medicalCardHeight ? '---' : medicalCardHeight}</span> см</p>

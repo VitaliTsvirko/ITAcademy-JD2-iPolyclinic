@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by Vitali Tsvirko
@@ -39,6 +41,9 @@ public class UserBasicDataDTO {
     @JsonProperty("user_role")
     private UserRoles userRole;
 
+    @JsonProperty("full_address")
+    private String fullAddress;
+
     public UserBasicDataDTO() {
     }
 
@@ -53,6 +58,17 @@ public class UserBasicDataDTO {
                 this.fullName = user.getPassport().getSurname() + " " + user.getPassport().getName() + " " + user.getPassport().getPatronymic();
                 this.dateOfBirth = user.getPassport().getDateOfBirth();
                 this.age = Period.between(dateOfBirth, LocalDate.now()).getYears();
+            }
+
+            if (user.getAddress() != null) {
+                this.fullAddress = Stream.of(user.getAddress().getCountry().getShotName(),
+                                                user.getAddress().getCity(),
+                                                user.getAddress().getStreet(),
+                                                user.getAddress().getHomeNo(),
+                                                user.getAddress().getCorpsNo().toString(),
+                                                user.getAddress().getFlatNo().toString())
+                                            .filter(s -> s != null && !s.isEmpty())
+                                            .collect(Collectors.joining(", "));
             }
         }
     }
@@ -120,5 +136,13 @@ public class UserBasicDataDTO {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getFullAddress() {
+        return fullAddress;
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 }
