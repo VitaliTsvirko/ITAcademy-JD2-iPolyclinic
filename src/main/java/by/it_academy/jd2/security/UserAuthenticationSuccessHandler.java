@@ -36,10 +36,6 @@ public class UserAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 
             session.setAttribute("user", loginUser);
 
-            if (loginUser.getUserRole().equals(UserRoles.ADMIN)) {
-                session.setAttribute("userRoleIsAdmin", true);
-            }
-
             //redirect to request page
             SavedRequest saveRequest = new HttpSessionRequestCache().getRequest(request, response);
             if (saveRequest == null){

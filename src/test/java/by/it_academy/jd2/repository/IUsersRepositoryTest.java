@@ -8,6 +8,7 @@ import by.it_academy.jd2.domain.enumeration.UserRoles;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import org.postgresql.util.PGInterval;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -183,6 +184,29 @@ class IUsersRepositoryTest {
             user.setPassport(passport);
 
         });
+    }
+
+
+    @Test
+    void userMetrics(){
+
+        long count = usersRepository.count();
+
+        Long aLong = usersRepository.countByUserRoleEquals(UserRoles.USER);
+        Long aLong1 = usersRepository.countByUserRoleEquals(UserRoles.DOCTOR);
+        Long aLong2 = usersRepository.countByUserRoleEquals(UserRoles.ADMIN);
+
+        System.out.println(count);
+        System.out.println(aLong);
+        System.out.println(aLong1);
+        System.out.println(aLong2);
+
+
+        Double aDouble = usersRepository.avgAgeByUserRole(UserRoles.DOCTOR.toString());
+
+        System.out.println(aDouble);
+
+
     }
 
 }

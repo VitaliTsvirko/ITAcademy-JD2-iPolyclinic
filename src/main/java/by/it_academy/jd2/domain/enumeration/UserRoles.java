@@ -8,5 +8,6 @@ public enum UserRoles{ //implements GrantedAuthority {
     ADMIN,
     USER,
     DOCTOR,
+    MANAGER,
     ANONYMOUS
 }

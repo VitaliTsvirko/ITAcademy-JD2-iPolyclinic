@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<link href="<c:url value='/static/css/navbar.css'/>" rel="stylesheet">
-<link href="<c:url value='/static/css/style.css'/>" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="<c:url value='/static/js/core/core.js'/>" type="application/javascript"></script>
+<%@ page import="by.it_academy.jd2.domain.enumeration.UserRoles" %>
 
 <header>
     <div class="navigation-wrap bg-white mb-2">
@@ -51,13 +44,31 @@
                                 <li class="nav-item mx-3 dropdown">
                                     <a class="nav-link dropdown-toggle" id="dropdown01" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Личный кабинет</a>
                                     <c:choose>
-                                        <c:when test="${not empty sessionScope.userRoleIsAdmin}">
+                                        <c:when test="${sessionScope.user.userRole eq UserRoles.ADMIN}">
                                             <ul class="dropdown-menu" aria-labelledby="dropdown01" >
                                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile">Профиль</a>
                                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/users">Пользователи</a>
                                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Выйти</a>
                                             </ul>
                                         </c:when>
+
+                                        <c:when test="${sessionScope.user.userRole eq UserRoles.MANAGER}">
+                                            <ul class="dropdown-menu" aria-labelledby="dropdown01" >
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile">Профиль</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/management">Статистика</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Выйти</a>
+                                            </ul>
+                                        </c:when>
+
+                                        <c:when test="${sessionScope.user.userRole eq UserRoles.USER or sessionScope.user.userRole eq UserRoles.DOCTOR}">
+                                            <ul class="dropdown-menu" aria-labelledby="dropdown01" >
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile">Профиль</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/medicalcard/${sessionScope.user.medicalCard.id}">Медкарта</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/userhealth">Статистика</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Выйти</a>
+                                            </ul>
+                                        </c:when>
+
                                         <c:otherwise>
                                             <ul class="dropdown-menu" aria-labelledby="dropdown01" >
                                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile">Профиль</a>
@@ -67,9 +78,11 @@
                                     </c:choose>
                                 </li>
 
-                                <li class="nav-item mx-3">
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/work">Рабочее место</a>
-                                </li>
+                                <c:if test="${sessionScope.user.userRole eq UserRoles.DOCTOR}">
+                                    <li class="nav-item mx-3">
+                                        <a class="nav-link" href="${pageContext.request.contextPath}/work">Рабочее место</a>
+                                    </li>
+                                </c:if>
 
                             </c:otherwise>
                         </c:choose>
