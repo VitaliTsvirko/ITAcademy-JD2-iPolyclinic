@@ -19,7 +19,7 @@
 
 <body class="bg-light">
 <%@include file="/layouts/header.jsp"%>
-<input type="hidden" id="user_id" value="${requestScope.user.id}">
+<input type="hidden" id="user_id" value="${requestScope.userId}">
 <main class="container-md pt-5">
     <div class="row row-cols-4 row-cols-lg-5 g-4">
         <div class="col">
@@ -28,8 +28,8 @@
                     <h5 class="card-title d-flex justify-content-between align-items-center">Обращений</h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
-                        <p class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">162</p>
-                        <p class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p id="appointment_total" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">${requestScope.appointmentTotal}</p>
+                        <p id="appointment_last_date" class="fs-6 m-0 text-black-50">01/01/2021</p>
                     </div>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                     <h5 class="card-title d-flex justify-content-between align-items-center">ИМТ</h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
-                        <p class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
-                        <p class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p id="body_mass_index" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
+                        <p id="body_mass_index_ts" class="fs-6 m-0 text-black-50">01/01/2021</p>
                     </div>
                 </div>
             </div>
@@ -57,8 +57,8 @@
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
-                        <p class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
-                        <p class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p id="weight" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
+                        <p id="weight_ts" class="fs-6 m-0 text-black-50">01/01/2021</p>
                     </div>
                 </div>
             </div>
@@ -74,9 +74,9 @@
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p class="fs-2 m-0 fw-bolder d-flex justify-content-center">
-                            <span data-toggle="counterUp">65</span>/<span data-toggle="counterUp">65</span>
+                            <span id="systolic_blood_pressure" data-toggle="counterUp">65</span>/<span id="diastolic_blood_pressure" data-toggle="counterUp">65</span>
                         </p>
-                        <p class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p id="blood_pressure_ts" class="fs-6 m-0 text-black-50">01/01/2021</p>
                     </div>
                 </div>
             </div>
@@ -91,8 +91,8 @@
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
-                        <p class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
-                        <p class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p id="heart_rate" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
+                        <p id="heart_rate_ts" class="fs-6 m-0 text-black-50">01/01/2021</p>
                     </div>
                 </div>
             </div>
@@ -157,13 +157,7 @@
 </main>
 <%@include file="/layouts/footer.jsp"%>
 
-<script type="text/javascript">
-    // jQuery counterUp
-    $('[data-toggle="counterUp"]').counterUp({
-        delay: 15,
-        time: 1500
-    });
-</script>
+<script src="${pageContext.request.contextPath}/static/js/userhealth.js"></script>
 
 <script>
     jQuery(function ($) {

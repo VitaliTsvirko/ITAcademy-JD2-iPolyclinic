@@ -3,6 +3,7 @@ package by.it_academy.jd2.domain;
 import jakarta.validation.constraints.Min;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,13 +24,8 @@ public class MedicalCard {
     @OneToMany(mappedBy = "medicalCard", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Appointment> appointments = new HashSet<>();
 
-    @Column(name = "height")
-    @Min(0)
-    private Integer height;
-
-    @Column(name = "weight")
-    @Min(0)
-    private Integer weight;
+    @OneToMany(mappedBy = "medicalCard", fetch = FetchType.EAGER)
+    private Collection<UserHealthMetrics> metrics;
 
     @Column(name = "allergy")
     private String allergy;
@@ -62,27 +58,19 @@ public class MedicalCard {
         this.appointments.add(appointment);
     }
 
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
     public String getAllergy() {
         return allergy;
     }
 
     public void setAllergy(String allergy) {
         this.allergy = allergy;
+    }
+
+    public Collection<UserHealthMetrics> getMetrics() {
+        return metrics;
+    }
+
+    public void setMetrics(Collection<UserHealthMetrics> metrics) {
+        this.metrics = metrics;
     }
 }

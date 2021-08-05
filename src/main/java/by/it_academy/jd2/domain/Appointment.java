@@ -35,20 +35,9 @@ public class Appointment {
     @Column(name = "complaints")
     private String complaints;
 
-    @Column(name = "temperature")
-    @DecimalMin(value = "35")
-    @DecimalMax(value = "41")
-    private Float temperature;
-
-    @Column(name = "systolic_blood_pressure")
-    @Min(value = 100)
-    @Max(value = 300)
-    private Integer systolicBloodPressure;
-
-    @Column(name = "diastolic_blood_pressure")
-    @Min(value = 100)
-    @Max(value = 300)
-    private Integer diastolicBloodPressure;
+    @OneToOne
+    @JoinColumn(name ="user_health_metrics_id", foreignKey=@ForeignKey(name = "FK_appointment_user_health_metrics_id"))
+    private UserHealthMetrics userHealthMetrics;
 
     @OneToOne
     @JoinColumn(name = "disease_code", foreignKey=@ForeignKey(name = "FK_disease_code_id"))
@@ -105,30 +94,6 @@ public class Appointment {
         this.complaints = complaints;
     }
 
-    public Float getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(Float temperature) {
-        this.temperature = temperature;
-    }
-
-    public Integer getSystolicBloodPressure() {
-        return systolicBloodPressure;
-    }
-
-    public void setSystolicBloodPressure(Integer systolicBloodPressure) {
-        this.systolicBloodPressure = systolicBloodPressure;
-    }
-
-    public Integer getDiastolicBloodPressure() {
-        return diastolicBloodPressure;
-    }
-
-    public void setDiastolicBloodPressure(Integer diastolicBloodPressure) {
-        this.diastolicBloodPressure = diastolicBloodPressure;
-    }
-
     public Diseases getDiagnosis() {
         return diagnosis;
     }
@@ -159,5 +124,13 @@ public class Appointment {
 
     public void setMedicalCard(MedicalCard medicalCard) {
         this.medicalCard = medicalCard;
+    }
+
+    public UserHealthMetrics getUserHealthMetrics() {
+        return userHealthMetrics;
+    }
+
+    public void setUserHealthMetrics(UserHealthMetrics userHealthMetrics) {
+        this.userHealthMetrics = userHealthMetrics;
     }
 }

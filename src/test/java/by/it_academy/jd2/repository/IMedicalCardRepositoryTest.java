@@ -52,9 +52,9 @@ class IMedicalCardRepositoryTest {
                     appointment.setDoctor(doctor);
                     appointment.setComplaints("Боль в животе_2");
                     appointment.setHealthStatus(HealthStatus.SICK);
-                    appointment.setTemperature(36.6F);
+                    /*appointment.setTemperature(36.6F);
                     appointment.setDiastolicBloodPressure(80);
-                    appointment.setSystolicBloodPressure(120);
+                    appointment.setSystolicBloodPressure(120);*/
                     appointment.setMedicalCard(md);
 
                     appointmentsRepository.save(appointment);

@@ -53,9 +53,9 @@ public class AppointmentsService implements IAppointmentsService {
         return appointmentsRepository.findById(appointmentDTO.getId())
                 .map(record -> {
                                 record.setComplaints(appointmentDTO.getComplaints());
-                                record.setTemperature(appointmentDTO.getTemperature());
+                                /*record.setTemperature(appointmentDTO.getTemperature());
                                 record.setSystolicBloodPressure(appointmentDTO.getSystolicBloodPressure());
-                                record.setDiastolicBloodPressure(appointmentDTO.getDiastolicBloodPressure());
+                                record.setDiastolicBloodPressure(appointmentDTO.getDiastolicBloodPressure());*/
 
                                 Diseases disease = diseasesRepository.findById(appointmentDTO.getDiagnosisCode())
                                         .orElseThrow(() -> new EntityNotFoundException());

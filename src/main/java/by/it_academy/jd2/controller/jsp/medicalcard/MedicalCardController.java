@@ -43,8 +43,8 @@ public class MedicalCardController {
         model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(id)));
 
         model.addAttribute("medicalCardId", id);
-        model.addAttribute("medicalCardHeight", medicalCardService.getMedicalCardById(id).getHeight());
-        model.addAttribute("medicalCardWeight", medicalCardService.getMedicalCardById(id).getWeight());
+        model.addAttribute("medicalCardHeight", 0L);
+        model.addAttribute("medicalCardWeight", 0L);
         model.addAttribute("medicalCardAllergy", medicalCardService.getMedicalCardById(id).getAllergy());
 
         return "medicalcard/medicalcard";
@@ -58,8 +58,8 @@ public class MedicalCardController {
                             new AppointmentDTO(appointmentsService.createAppointment(userService.getAuthorizedUser(), id)));
 
         model.addAttribute("medicalCardId", id);
-        model.addAttribute("medicalCardHeight", medicalCardService.getMedicalCardById(id).getHeight());
-        model.addAttribute("medicalCardWeight", medicalCardService.getMedicalCardById(id).getWeight());
+        model.addAttribute("medicalCardHeight", 0L);
+        model.addAttribute("medicalCardWeight", 0L);
         model.addAttribute("medicalCardAllergy", medicalCardService.getMedicalCardById(id).getAllergy());
 
         model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(id)));

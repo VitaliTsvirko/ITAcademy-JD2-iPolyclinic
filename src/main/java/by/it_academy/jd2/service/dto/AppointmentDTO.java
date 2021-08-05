@@ -80,9 +80,6 @@ public class AppointmentDTO {
             }
             this.type = appointment.getType();
             this.complaints = appointment.getComplaints();
-            this.temperature = appointment.getTemperature();
-            this.diastolicBloodPressure = appointment.getDiastolicBloodPressure();
-            this.systolicBloodPressure = appointment.getSystolicBloodPressure();
             if (appointment.getDiagnosis() != null){
                 this.diagnosisCode = appointment.getDiagnosis().getCode();
                 this.diagnosisName = appointment.getDiagnosis().getName();
