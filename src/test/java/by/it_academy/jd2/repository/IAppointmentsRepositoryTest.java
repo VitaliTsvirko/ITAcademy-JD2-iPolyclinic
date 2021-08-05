@@ -2,6 +2,7 @@ package by.it_academy.jd2.repository;
 
 import by.it_academy.jd2.config.JacksonConfig;
 import by.it_academy.jd2.config.PersistentConfig;
+import by.it_academy.jd2.domain.Appointment;
 import by.it_academy.jd2.service.api.IAppointmentsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,6 +44,9 @@ class IAppointmentsRepositoryTest {
 
     @Autowired
     private IAppointmentsRepository appointmentsRepository;
+
+    @Autowired
+    private IMedicalCardRepository medicalCardRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -112,6 +116,20 @@ class IAppointmentsRepositoryTest {
 
         System.out.println(s);
 
+
+    }
+
+
+    @Test
+    void getAllAppById(){
+        Optional<Set<Appointment>> appointments = medicalCardRepository.findById(9L)
+                .map(mc -> mc.getAppointments());
+
+
+        List<Appointment> appointments2 = appointmentsRepository.findByMedicalCardIdOrderByDateTimeDesc(9L);
+
+
+        System.out.println(appointments2.size());
 
     }
 

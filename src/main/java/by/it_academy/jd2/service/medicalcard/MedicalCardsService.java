@@ -4,12 +4,13 @@ import by.it_academy.jd2.core.exceptions.MedicalCardNotFoundException;
 import by.it_academy.jd2.domain.Appointment;
 import by.it_academy.jd2.domain.MedicalCard;
 import by.it_academy.jd2.domain.User;
+import by.it_academy.jd2.repository.IAppointmentsRepository;
 import by.it_academy.jd2.repository.IMedicalCardRepository;
 import by.it_academy.jd2.service.api.IMedicalCardService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 @Transactional
@@ -17,8 +18,11 @@ public class MedicalCardsService implements IMedicalCardService {
 
     private final IMedicalCardRepository medicalCardRepository;
 
-    public MedicalCardsService(IMedicalCardRepository medicalCardRepository) {
+    private final IAppointmentsRepository appointmentsRepository;
+
+    public MedicalCardsService(IMedicalCardRepository medicalCardRepository, IAppointmentsRepository appointmentsRepository) {
         this.medicalCardRepository = medicalCardRepository;
+        this.appointmentsRepository = appointmentsRepository;
     }
 
     public MedicalCard getMedicalCardByUserId(Long userId){
@@ -34,10 +38,8 @@ public class MedicalCardsService implements IMedicalCardService {
 
     @Override
     @Transactional(readOnly = true)
-    public Set<Appointment> getAllAppointments(Long id){
-        return medicalCardRepository.findById(id)
-                            .map(mc -> mc.getAppointments())
-                            .orElseThrow(() -> new MedicalCardNotFoundException("Medical card was not found"));
+    public List<Appointment> getAllAppointments(Long id){
+        return appointmentsRepository.findByMedicalCardIdOrderByDateTimeDesc(id);
     }
 
     @Override
