@@ -80,7 +80,7 @@
 
                                 <c:if test="${sessionScope.user.userRole eq UserRoles.DOCTOR}">
                                     <li class="nav-item mx-3">
-                                        <a class="nav-link" href="${pageContext.request.contextPath}/work">Рабочее место</a>
+                                        <a class="nav-link" href="${pageContext.request.contextPath}/patients">Рабочее место</a>
                                     </li>
                                 </c:if>
 

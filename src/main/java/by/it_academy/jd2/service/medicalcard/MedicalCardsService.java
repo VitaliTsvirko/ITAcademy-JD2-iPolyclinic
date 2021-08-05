@@ -39,7 +39,7 @@ public class MedicalCardsService implements IMedicalCardService {
     @Override
     @Transactional(readOnly = true)
     public List<Appointment> getAllAppointments(Long id){
-        return appointmentsRepository.findByMedicalCardIdOrderByDateTimeDesc(id);
+        return appointmentsRepository.findAllAppointmentsByMedicalCardIdOrderByDateTimeDesc(id);
     }
 
     @Override

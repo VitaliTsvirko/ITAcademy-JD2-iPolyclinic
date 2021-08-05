@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/medicalcard/**").authenticated()
                 .antMatchers("/appointment/**").authenticated()
                 .antMatchers("/management/**").hasAnyAuthority(UserRoles.ADMIN.name(), UserRoles.MANAGER.name())
-                .antMatchers("/work/**").hasAnyAuthority(UserRoles.ADMIN.name(), UserRoles.DOCTOR.name())
+                .antMatchers("/patients/**").hasAnyAuthority(UserRoles.ADMIN.name(), UserRoles.DOCTOR.name())
                 .antMatchers("/admin/**").hasAuthority(UserRoles.ADMIN.name())
                 .antMatchers("/login/**").permitAll()
                 .antMatchers("/signup").permitAll()

@@ -29,6 +29,12 @@ public class UserBasicDataDTO {
     @JsonProperty("age")
     private Integer age;
 
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("surname")
+    private String surname;
+
     @JsonProperty("full_name")
     private String fullName;
 
@@ -44,6 +50,9 @@ public class UserBasicDataDTO {
     @JsonProperty("full_address")
     private String fullAddress;
 
+    @JsonProperty("medical_card_id")
+    private Long medicalCardId;
+
     public UserBasicDataDTO() {
     }
 
@@ -55,6 +64,8 @@ public class UserBasicDataDTO {
             this.userRole = user.getUserRole();
             this.state = user.getState();
             if (user.getPassport() != null){
+                this.name = user.getPassport().getName();
+                this.surname = user.getPassport().getSurname();
                 this.fullName = user.getPassport().getSurname() + " " + user.getPassport().getName() + " " + user.getPassport().getPatronymic();
                 this.dateOfBirth = user.getPassport().getDateOfBirth();
                 this.age = Period.between(dateOfBirth, LocalDate.now()).getYears();
@@ -70,6 +81,8 @@ public class UserBasicDataDTO {
                                             .filter(s -> s != null && !s.isEmpty())
                                             .collect(Collectors.joining(", "));
             }
+
+            this.medicalCardId = user.getMedicalCard().getId();
         }
     }
 
@@ -144,5 +157,30 @@ public class UserBasicDataDTO {
 
     public void setFullAddress(String fullAddress) {
         this.fullAddress = fullAddress;
+    }
+
+    public Long getMedicalCardId() {
+        return medicalCardId;
+    }
+
+    public void setMedicalCardId(Long medicalCardId) {
+        this.medicalCardId = medicalCardId;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }

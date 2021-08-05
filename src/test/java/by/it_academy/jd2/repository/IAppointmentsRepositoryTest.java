@@ -126,7 +126,7 @@ class IAppointmentsRepositoryTest {
                 .map(mc -> mc.getAppointments());
 
 
-        List<Appointment> appointments2 = appointmentsRepository.findByMedicalCardIdOrderByDateTimeDesc(9L);
+        List<Appointment> appointments2 = appointmentsRepository.findAllAppointmentsByMedicalCardIdOrderByDateTimeDesc(9L);
 
 
         System.out.println(appointments2.size());

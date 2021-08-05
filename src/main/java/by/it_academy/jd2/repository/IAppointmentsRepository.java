@@ -13,7 +13,7 @@ import java.util.Map;
 @Repository
 public interface IAppointmentsRepository extends JpaRepository<Appointment, Long> {
 
-    List<Appointment> findByMedicalCardIdOrderByDateTimeDesc(Long id);
+    List<Appointment> findAllAppointmentsByMedicalCardIdOrderByDateTimeDesc(Long id);
 
 /*
     @Query(value = "SELECT date_trunc( :interval, appointments.date_time), count(*) \n" +

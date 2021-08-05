@@ -18,7 +18,7 @@
 
         <div class="card-header border-0 cursor-pointer m-0 p-0">
             <div class="card-title m-3">
-                <h3 class="fw-bolder mb-3 fs-4">Пользователи</h3>
+                <h3 class="fw-bolder mb-3 fs-4">Пациенты</h3>
             </div>
         </div>
         <!--begin::card body-->
@@ -30,28 +30,30 @@
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Логин</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Фамилия</th>
+                        <th scope="col">Телефон</th>
+                        <th scope="col">Возраст</th>
                         <th scope="col">Обращений</th>
                         <th scope="col">---</th>
                     </tr>
                     </thead>
                     <tbody>
 
-                    <c:forEach items="${usersList}" var="usr">
+                    <c:forEach items="${patientsList}" var="patient">
                         <tr>
-                            <th scope="row">${usr.id}</th>
-                            <td>${usr.phoneNo}</td>
-                            <td>${usr.passport.name}</td>
-                            <td>${usr.passport.surname}</td>
-                            <td>${appointmentsCounts[usr.id]}</td>
+                            <th scope="row">${patient.id}</th>
+                            <td>${patient.name}</td>
+                            <td>${patient.surname}</td>
+                            <td>${patient.phoneNo}</td>
+                            <td>${patient.age}</td>
+                            <td>${appointmentsCounts[patient.id]}</td>
                             <td>
-                              <a href="${pageContext.request.contextPath}/userprofile/${usr.id}" target="_blank"> <span class="badge rounded-pill bg-info text-dark">Профиль</span></a>
+                              <a href="${pageContext.request.contextPath}/userprofile/${patient.id}" target="_blank"> <span class="badge rounded-pill bg-info text-dark">Профиль</span></a>
                               <span> </span>
-                              <a href="${pageContext.request.contextPath}/medicalcard/${usr.medicalCard.id}" target="_blank"> <span class="badge rounded-pill bg-success">Медкарта</span></a>
+                              <a href="${pageContext.request.contextPath}/medicalcard/${patient.medicalCardId}" target="_blank"> <span class="badge rounded-pill bg-success">Медкарта</span></a>
                               <span> </span>
-                              <a href="${pageContext.request.contextPath}/medicalcard/${usr.medicalCard.id}/appointment/new" target="_blank"> <span class="badge rounded-pill bg-primary">+Прием</span></a>
+                              <a href="${pageContext.request.contextPath}/medicalcard/${patient.medicalCardId}/appointment/new" target="_blank"> <span class="badge rounded-pill bg-primary">+Прием</span></a>
                             </td>
                         </tr>
                     </c:forEach>

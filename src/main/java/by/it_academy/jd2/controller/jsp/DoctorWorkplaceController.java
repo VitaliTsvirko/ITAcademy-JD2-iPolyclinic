@@ -1,8 +1,8 @@
 package by.it_academy.jd2.controller.jsp;
 
 import by.it_academy.jd2.domain.User;
-import by.it_academy.jd2.service.api.ICountryService;
 import by.it_academy.jd2.service.api.IUserService;
+import by.it_academy.jd2.service.dto.UserBasicDataDTO;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * Created by Vitali Tsvirko
  */
 @Controller
-@RequestMapping("/work")
+@RequestMapping("/patients")
 public class DoctorWorkplaceController {
 
     private final IUserService userService;
@@ -31,12 +31,16 @@ public class DoctorWorkplaceController {
     public String getPatientManagementPage(Model model){
         List<User> allPatients = userService.getAllPatients();
 
+        List<UserBasicDataDTO> allPatientsDTO = allPatients.stream()
+                                                    .map(user -> new UserBasicDataDTO(user)).collect(Collectors.toList());
+
         Map<Long, Integer> appointmentsCounts = allPatients.stream()
                                                     .collect(Collectors.
                                                             toMap(usr -> usr.getId(), usr -> usr.getMedicalCard().getAppointments().size()));
-        model.addAttribute("usersList", allPatients);
+
+        model.addAttribute("patientsList", allPatientsDTO);
         model.addAttribute("appointmentsCounts", appointmentsCounts);
 
-        return "users/userslist";
+        return "users/patients";
     }
 }
