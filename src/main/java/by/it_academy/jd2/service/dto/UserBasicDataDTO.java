@@ -76,8 +76,8 @@ public class UserBasicDataDTO {
                                                 user.getAddress().getCity(),
                                                 user.getAddress().getStreet(),
                                                 user.getAddress().getHomeNo(),
-                                                user.getAddress().getCorpsNo().toString(),
-                                                user.getAddress().getFlatNo().toString())
+                                                user.getAddress().getCorpsNo() == null ? "" : user.getAddress().getCorpsNo().toString(),
+                                                user.getAddress().getFlatNo() == null ? "" : user.getAddress().getFlatNo().toString())
                                             .filter(s -> s != null && !s.isEmpty())
                                             .collect(Collectors.joining(", "));
             }

@@ -220,7 +220,7 @@
                                     <select class="form-select" name="country_of_issue_code" aria-label="Страна" required>
                                         <option value="">Укажите страну</option>
                                         <c:forEach items="${requestScope.countriesMap}" var="country">
-                                            <option ${country.key.equalsIgnoreCase(requestScope.user.address.country.code) ? "selected" : ""} value="${country.key}">${country.value}</option>
+                                            <option ${country.key.equalsIgnoreCase(requestScope.user.passport.countryOfIssue.code) ? "selected" : ""} value="${country.key}">${country.value}</option>
                                         </c:forEach>
                                     </select>
                                 </div>

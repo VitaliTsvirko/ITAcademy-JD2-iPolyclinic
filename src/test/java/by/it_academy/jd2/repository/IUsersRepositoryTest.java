@@ -82,14 +82,14 @@ class IUsersRepositoryTest {
 
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-/*        User admin = new User();
+        User admin = new User();
 
         admin.setPhoneNo("admin");
         admin.setPassword(passwordEncoder.encode("admin"));
         admin.setState(ApplicationUserState.SIGNUP);
         admin.setUserRole(UserRoles.ADMIN);
 
-        usersRepository.save(admin);*/
+        usersRepository.save(admin);
 
 
         this.usersCreator(1, "user", "123",

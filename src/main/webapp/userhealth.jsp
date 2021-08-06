@@ -142,7 +142,48 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+
+
+                    <div class="row pt-5">
+                        <div class="row mb-7 p-3">
+                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Вес</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                            </div>
+                        </div>
+
+                        <div class="row mb-7 p-3">
+                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Рост</label>
+                            <div class="col-lg-10">
+                                <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-7 p-3">
+                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Давление</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-7 p-3">
+                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Давление</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-7 p-3">
+                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Пульс</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                        </div>
+                    </div>
+
+
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
