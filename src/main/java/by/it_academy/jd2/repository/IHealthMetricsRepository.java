@@ -1,5 +1,6 @@
 package by.it_academy.jd2.repository;
 
+import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
 import by.it_academy.jd2.domain.HealthMetrics;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,4 +19,8 @@ public interface IHealthMetricsRepository extends JpaRepository<HealthMetrics, L
             "GROUP BY metric_type)",
             nativeQuery = true)
     List<String[]> findLastUserMetricsByMedicalCardId(@Param("medical_card_id") Long id);
+
+
+    List<HealthMetrics> findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampDesc(HealthMetricsTypes metricType, Long medicalcardId);
+
 }

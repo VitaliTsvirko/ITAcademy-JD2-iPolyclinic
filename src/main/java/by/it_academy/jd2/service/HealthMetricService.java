@@ -111,6 +111,14 @@ public class HealthMetricService {
     }
 
 
+    public List<HealthMetricEntityDTO> getMetricDataByUserIdAndMetricType(Long userId, HealthMetricsTypes metricType){
+        return medicalCardRepository.findByUserId(userId).map(medicalCard ->
+                        healthMetricsRepository.findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampDesc(metricType, medicalCard.getId()).stream().map(
+                                entity -> new HealthMetricEntityDTO(entity)).collect(Collectors.toList())
+                        ).orElseThrow(() -> new MedicalCardNotFoundException("Medical card of user with id = " + userId + " was nor found"));
+    }
+
+
     /**
      * Данный метод выполеят преобразование {@link List<HealthMetricEntityDTO>} в {@link UserHealthMetricDTO}
      * для дальнейшей работы с {@link by.it_academy.jd2.core.healthmetrics.HealthMetricsHandler}

@@ -1,6 +1,7 @@
 package by.it_academy.jd2.core.healthmetrics.dto;
 
 import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
+import by.it_academy.jd2.domain.HealthMetrics;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -37,6 +38,13 @@ public class HealthMetricEntityDTO {
         this.value = value;
         this.timestamp = timestamp;
     }
+
+    public HealthMetricEntityDTO(HealthMetrics entity) {
+        this.type = entity.getTypes();
+        this.value = entity.getValue();
+        this.timestamp = entity.getTimestamp();
+    }
+
 
     public HealthMetricsTypes getType() {
         return type;

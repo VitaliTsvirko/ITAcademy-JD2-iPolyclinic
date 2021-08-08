@@ -36,4 +36,14 @@ public class UserHealthController {
 
         return "userhealth";
     }
+
+
+    @GetMapping("/info")
+    public String getInfoPage(Model model){
+        User user = userService.getAuthorizedUser();
+
+        model.addAttribute("userId", user.getId());
+
+        return "metricinfo";
+    }
 }
