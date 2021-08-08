@@ -1,6 +1,14 @@
 const requestMetricsUrl = BASE_URL + '/api/user/';
 
-
+const analysisTextStyles = new Map ([
+    ["LLOW", "text-danger"],
+    ["LOW", "text-warning"],
+    ["OK", "text-success"],
+    ["HIGH", "text-warning"],
+    ["HHIGH", "text-danger"],
+    ["UNDEFINED", "text-muted"],
+    ["NOT_APPLICABLE", "text-muted"]
+]);
 
 jQuery(function ($) {
     $(document).ready(function() {
@@ -73,6 +81,8 @@ function updateUserHealthBasicMetric(data){
             $.each(data, function(index, item) {
                 $('#' + item.type + "_value").text(Math.round(item.value * 10)/10);
                 $('#' + item.type + "_timestamp").text(item.timestamp.split(" ")[0]);
+                $('#' + item.type + "_analysis_text").text(item.comment);
+                $('#' + item.type + "_analysis_text").addClass(analysisTextStyles.get(item.status));
             });
 
             // jQuery counterUp

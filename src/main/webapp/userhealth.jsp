@@ -61,7 +61,8 @@
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
-                        <p id="${HealthMetricsTypes.WEIGHT}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
+                        <p id="${HealthMetricsTypes.WEIGHT}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.WEIGHT}_analysis_text" class="fs-6 m-0 d-flex justify-content-center"></p>
                         <p id="${HealthMetricsTypes.WEIGHT}_timestamp" class="fs-6 m-0 text-black-50">01/01/2021</p>
                     </div>
                 </div>
@@ -78,6 +79,7 @@
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p id="${HealthMetricsTypes.HEIGHT}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.HEIGHT}_analysis_text" class="fs-6 m-0 d-flex justify-content-center"></p>
                         <p id="${HealthMetricsTypes.HEIGHT}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
@@ -112,6 +114,7 @@
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p id="${HealthMetricsTypes.HEART_RATE}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.HEART_RATE}_analysis_text" class="fs-6 m-0 d-flex justify-content-center"></p>
                         <p id="${HealthMetricsTypes.HEART_RATE}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
@@ -126,6 +129,7 @@
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p id="${HealthMetricsTypes.BODY_TEMPERATURE}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.BODY_TEMPERATURE}_analysis_text" class="fs-6 m-0 d-flex justify-content-center"></p>
                         <p id="${HealthMetricsTypes.BODY_TEMPERATURE}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
@@ -139,6 +143,7 @@
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p id="${HealthMetricsTypes.BMI}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.BMI}_analysis_text" class="fs-6 m-0 d-flex justify-content-center"></p>
                         <p id="${HealthMetricsTypes.BMI}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
@@ -152,6 +157,7 @@
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p id="${HealthMetricsTypes.PHYS_LEVEL}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.PHYS_LEVEL}_analysis_text" class="fs-6 m-0 d-flex justify-content-center"></p>
                         <p id="${HealthMetricsTypes.PHYS_LEVEL}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
@@ -166,6 +172,7 @@
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p id="${HealthMetricsTypes.FUNC_CHANGE}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.FUNC_CHANGE}_analysis_text" class="fs-6 m-0 d-flex justify-content-center"></p>
                         <p id="${HealthMetricsTypes.FUNC_CHANGE}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
