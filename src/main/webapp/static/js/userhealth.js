@@ -42,22 +42,24 @@ function addMetrics() {
 
         let form_data = JSON.stringify(metrics);
 
-        $.ajax({
-            url: BASE_URL + '/api/user/' + id + '/healthmetrics',
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            data: form_data,
-            success: function (result, textStatus, jqXHR) {
-                //injectAlert("address-tab-alert", "Данные успешно обновлены", AlertsTypes.SUCCESS);
-                //readBasicUserData(id);
-                updateUserHealthBasicMetric(result);
-                alert('Данные успешно сохранены')
-            },
-            error: function (xhr, resp, text) {
-                //injectAlert("address-tab-alert", "Ошибка!" + xhr.responseJSON.message, AlertsTypes.ERROR);
-                alert('Ошибка')
-            }
-        });
+        if (metrics.length !== 0) {
+            $.ajax({
+                url: BASE_URL + '/api/user/' + id + '/healthmetrics',
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                data: form_data,
+                success: function (result, textStatus, jqXHR) {
+                    //injectAlert("address-tab-alert", "Данные успешно обновлены", AlertsTypes.SUCCESS);
+                    //readBasicUserData(id);
+                    updateUserHealthBasicMetric(result);
+                    alert('Данные успешно сохранены')
+                },
+                error: function (xhr, resp, text) {
+                    //injectAlert("address-tab-alert", "Ошибка!" + xhr.responseJSON.message, AlertsTypes.ERROR);
+                    alert('Ошибка')
+                }
+            });
+        }
         return false;
     });
 }
