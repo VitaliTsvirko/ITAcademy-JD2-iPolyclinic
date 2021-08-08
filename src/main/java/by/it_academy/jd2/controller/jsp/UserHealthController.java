@@ -7,6 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.util.Optional;
+
 /**
  * Created by Vitali Tsvirko
  */
@@ -27,6 +32,7 @@ public class UserHealthController {
 
         model.addAttribute("userId", user.getId());
         model.addAttribute("appointmentTotal", user.getMedicalCard().getAppointments().size());
+        model.addAttribute("userAge", user.getPassport() != null ? Period.between(user.getPassport().getDateOfBirth(), LocalDate.now()).getYears() : "---");
 
         return "userhealth";
     }

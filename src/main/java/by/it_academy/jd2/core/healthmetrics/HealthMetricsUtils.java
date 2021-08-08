@@ -1,211 +1,137 @@
 package by.it_academy.jd2.core.healthmetrics;
 
-import by.it_academy.jd2.core.healthmetrics.dto.MetricDTO;
-import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricStatus;
-import by.it_academy.jd2.domain.enumeration.GenderType;
-
-import static by.it_academy.jd2.core.healthmetrics.HealthMetricsValidator.isInRange;
-
-import java.util.Map;
-
-
-/**
- * https://kpfu.ru/staff_files/F1073379016/fiziologicheskie_osnovy_diagnostiki_funkcionalnoj_sostoyaniya_organizma.pdf
- *
- * https://dyn.ru/publications/AssessmentOfTheLevelOfHealth.pdf
- *
- */
+import java.util.Optional;
 
 public class HealthMetricsUtils {
 
-    /**
-     * Тектовые значения оценки физического состояния
-     */
-    public static Map<HealthMetricStatus, String> physicalLevelIndexStatus = Map.of(
-            HealthMetricStatus.LLOW, "Ниже среднего",
-            HealthMetricStatus.LOW, "Низкий",
-            HealthMetricStatus.OK, "Средний",
-            HealthMetricStatus.HIGH, "Высокий",
-            HealthMetricStatus.HHIGH, "Выше среднего");
+    public static Double WEIGHT_MIN = 0.0;
+    public static Double WEIGHT_MAX = 1000.0;
 
+    public static Double HEIGHT_MIN = 0.0;
+    public static Double HEIGHT_MAX = 300.0;
 
-    /**
-     * Данные метод расчитывает Индекс массы тела (ИМТ), а так же анализ рузельтата:
-     *  меньше 15 – острый дефицит массы;
-     *  от 15 до 20 – дефицит массы;
-     *  от 20 до 24 – нормальный;
-     *  от 25 до 30 – избыточная массы.
-     *  свыше 30 – ожирение организма и отдельных его частей.
-     *
-     * @param weight масса тела, кг
-     * @param height - рост, cм
-     * @return {@link MetricDTO} с результатом расчета и анализом
-     * @throws IllegalArgumentException если параметры рост и вес находяться вне доспустимого диапазона
-     */
-    public MetricDTO bodyMassIndex (Double weight,  Double height) throws IllegalArgumentException{
-        HealthMetricsValidator.validateHeightValue(height);
-        HealthMetricsValidator.validateWeightValue(weight);
+    public static Integer SYS_AD_MIN = 40;
+    public static Integer SYS_AD_MAX = 300;
 
-        height /= 100.0; //covert height to meter
+    public static Integer DIA_AD_MAX = 300;
+    public static Integer DIA_AD_MIN = 40;
 
-        double value = weight / (height * height);
+    public static Integer HEART_RATE_MAX = 300;
+    public static Integer HEART_RATE_MIN = 20;
 
-        MetricDTO result = new MetricDTO();
-        result.setValue(value);
+    public static Integer AGE_MIN = 0;
+    public static Integer AGE_MAX = 150;
 
-        if (value < 15){
-            result.setStatus(HealthMetricStatus.LLOW);
-            result.setComment("Острый дефицит массы");
-        } else if (isInRange(value, 15, 20)) {
-            result.setStatus(HealthMetricStatus.LOW);
-            result.setComment("Дефицит массы");
-        } else if (isInRange(value, 20, 24)){
-            result.setStatus(HealthMetricStatus.OK);
-            result.setComment("Нормальный");
-        } else if (isInRange(value, 25, 30)){
-            result.setStatus(HealthMetricStatus.HIGH);
-            result.setComment("Избыточная масса");
-        } else {
-            result.setStatus(HealthMetricStatus.HHIGH);
-            result.setComment("Ожирение организма и отдельных его частей");
-        }
+    private HealthMetricsUtils(){
 
-        return result;
     }
 
 
     /**
-     * Данный метод возвращает {@link MetricDTO} пульса
-     * @param heartRate пульс, ударов в минту
-     * @return {@link MetricDTO} пульса
-     * @throws IllegalArgumentException если параметры пульса находяться вне доспустимого диапазона
-     * @see HealthMetricsValidator
-     */
-    public MetricDTO heartRateIndex(Integer heartRate) throws IllegalArgumentException{
-        HealthMetricsValidator.validateHeartRate(heartRate);
-
-        MetricDTO result = new MetricDTO();
-        result.setValue(Double.valueOf(heartRate));
-
-        if (heartRate < 60) {
-            result.setStatus(HealthMetricStatus.LOW);
-            result.setComment("Редкий");
-        } else if (isInRange(heartRate, 60.0,90.0)){
-            result.setStatus(HealthMetricStatus.OK);
-            result.setComment("Умеренный");
-        } else {
-            result.setStatus(HealthMetricStatus.HIGH);
-            result.setComment("Частый");
-        }
-
-        return result;
-    }
-
-    /**
-     * Данный метод расчитывает и возвращает {@link MetricDTO} оценку физического состояния
-     * расчитанную по методике Д. Н. Давиденко.
-     *
-     * @param heartRate пульс, уд/мин
-     * @param sysAD систолическое артериальное давление, мм рт.ст
-     * @param diaAD диастолическое артериальное давление, мм рт.ст
-     * @param weight вес, кг
+     * Данный метод выполняет проверку значения роста
      * @param height рост, см
-     * @param age возраст, лет
-     * @param genderType пол
-     * @return {@link MetricDTO} с индексом физического состояния
      * @throws IllegalArgumentException если параметры находяться вне доспустимого диапазона
      */
-    public MetricDTO physicalLevelIndex(Integer heartRate, Integer sysAD, Integer diaAD, Double weight,  Double height, Integer age, GenderType genderType) throws IllegalArgumentException{
-        HealthMetricsValidator.validateHeightValue(height);
-        HealthMetricsValidator.validateWeightValue(weight);
-        HealthMetricsValidator.validateBloodPressureValues(sysAD, diaAD);
-        HealthMetricsValidator.validateHeartRate(heartRate);
-        HealthMetricsValidator.validateAge(age);
-
-        double avgAD = diaAD + (sysAD - diaAD) / 3.0;
-
-        double value = (700.0 - 3*heartRate - 2.5*avgAD -2.7*age + 0.28*weight) / (350.0 - 2.6*age + 0.21*height);
-
-        MetricDTO result = new MetricDTO();
-        result.setValue(value);
-
-        if (genderType.equals(GenderType.MALE)){
-            if (isInRange(value, 0.225, 0.375)) {
-                result.setStatus(HealthMetricStatus.LOW);
-            } else if (isInRange(value, 0.376, 0.525)){
-                result.setStatus(HealthMetricStatus.LLOW);
-            } else if (isInRange(value, 0.526, 0.675)){
-                result.setStatus(HealthMetricStatus.OK);
-            } else if (isInRange(value, 0.676, 0.825)) {
-                result.setStatus(HealthMetricStatus.HIGH);
-            } else if (value > 0.826) {
-                result.setStatus(HealthMetricStatus.HHIGH);
-            } else {
-                result.setStatus(HealthMetricStatus.UNDEFINED);
-            }
+    public static void validateHeightValue(Double height) throws IllegalArgumentException{
+        if (height == null){
+            throw new IllegalArgumentException("Height is empty or zero");
         }
 
-        if (genderType.equals(GenderType.FEMALE)){
-            if (isInRange(value, 0.157, 0.26)) {
-                result.setStatus(HealthMetricStatus.LOW);
-            } else if (isInRange(value, 0.261, 0.365)){
-                result.setStatus(HealthMetricStatus.LLOW);
-            } else if (isInRange(value, 0.366, 0.475)){
-                result.setStatus(HealthMetricStatus.OK);
-            } else if (isInRange(value, 0.476, 0.575)) {
-                result.setStatus(HealthMetricStatus.HIGH);
-            } else if (value > 0.576) {
-                result.setStatus(HealthMetricStatus.HHIGH);
-            } else {
-                result.setStatus(HealthMetricStatus.UNDEFINED);
-            }
+        if(isNotInRange(height, HEIGHT_MIN, HEIGHT_MAX)){
+            throw new IllegalArgumentException("Height is out of valid range");
+        }
+    }
+
+    /**
+     * Данный метод выполняет проверку значения веса
+     * @param weight вес, кг
+     * @throws IllegalArgumentException если параметры находяться вне доспустимого диапазона
+     */
+    public static void validateWeightValue(Double weight) throws IllegalArgumentException{
+        if (weight == null){
+            throw new IllegalArgumentException("Weight is empty or zero");
         }
 
-        result.setComment(physicalLevelIndexStatus.get(result.getStatus()));
-
-        return result;
+        if(isNotInRange(weight, WEIGHT_MIN, WEIGHT_MAX)){
+            throw new IllegalArgumentException("Weight is out of valid range");
+        }
     }
 
 
     /**
-     * Данный метод расчитывает индекс функциональных изменений
-     * Индекс расчиствается по методике А.П.Берсеневой и используется для оценки уровня функционирования
-     * системы кровообращения и определения ее адаптационного потенциала
-     *
-     * @param heartRate пульс, уд/мин
+     * Данный метод выполняет проверку значения артериального давления
      * @param sysAD систолическое артериальное давление, мм рт.ст
      * @param diaAD диастолическое артериальное давление, мм рт.ст
-     * @param weight вес, кг
-     * @param height рост, см
-     * @param age возраст, лет
-     * @return {@link MetricDTO} с индексом функциональных изменений
      * @throws IllegalArgumentException если параметры находяться вне доспустимого диапазона
      */
-    public MetricDTO functionalChangesIndex (Integer heartRate, Integer sysAD, Integer diaAD, Double weight,  Double height, Integer age) throws IllegalArgumentException{
-        HealthMetricsValidator.validateHeightValue(height);
-        HealthMetricsValidator.validateWeightValue(weight);
-        HealthMetricsValidator.validateBloodPressureValues(sysAD, diaAD);
-        HealthMetricsValidator.validateHeartRate(heartRate);
-        HealthMetricsValidator.validateAge(age);
-
-        double value = 0.01*heartRate + 0.014*sysAD + 0.008*diaAD + 0.014*age + 0.009*weight - 0.009*height - 0.27;
-
-        MetricDTO result = new MetricDTO();
-        result.setValue(value);
-
-        if (value < 2.59){
-            result.setStatus(HealthMetricStatus.OK);
-            result.setComment("Норма");
-        } else if (isInRange(value, 2.6, 3.09)){
-            result.setStatus(HealthMetricStatus.HIGH);
-            result.setComment("Напряжение механизмов адаптации");
-        } else {
-            result.setStatus(HealthMetricStatus.HHIGH);
-            result.setComment("Неудовлетворительная адаптация");
+    public static void validateBloodPressureValues(Integer sysAD, Integer diaAD){
+        if (sysAD == null || diaAD == null){
+            throw new IllegalArgumentException("one of AD value is null");
         }
 
-        return result;
+        if(isNotInRange(sysAD, SYS_AD_MIN, SYS_AD_MAX)){
+            throw new IllegalArgumentException("sysAD is out of valid range");
+        }
 
+        if(isNotInRange(diaAD, DIA_AD_MIN, DIA_AD_MAX)){
+            throw new IllegalArgumentException("diaAD is out of valid range");
+        }
+    }
+
+
+    /**
+     * Данный метод выполняет проверку значения пульса
+     * @param heartRate пульс, уд/мин
+     * @throws IllegalArgumentException если параметры находяться вне доспустимого диапазона
+     */
+    public static void validateHeartRate(Integer heartRate){
+        if (heartRate == null){
+            throw new IllegalArgumentException("HeartRate value is null");
+        }
+
+        if(isNotInRange(heartRate, HEART_RATE_MIN, HEART_RATE_MAX)){
+            throw new IllegalArgumentException("HeartRate is out of valid range");
+        }
+    }
+
+
+    /**
+     * Данный метод выполняет проверку значения пульса
+     * @param age возраст, лет
+     * @throws IllegalArgumentException если параметры находяться вне доспустимого диапазона
+     */
+    public static void validateAge(Integer age){
+        if (age == null){
+            throw new IllegalArgumentException("Age value is null");
+        }
+
+        if(isNotInRange(age, AGE_MIN, AGE_MAX)){
+            throw new IllegalArgumentException("Age is out of valid range");
+        }
+    }
+
+
+    /**
+     * Данные метод выполняет проверку нахождения числа в диапазоне
+     * @param x число
+     * @param lower нижний передел
+     * @param upper верхний предел
+     * @return true если значение находиться в диапазоне, false если значение находиться вне диапазона
+     */
+    public static boolean isInRange(double x, double lower, double upper) {
+        return lower < x && x < upper;
+    }
+
+
+    /**
+     * Данные метод выполняет проверку нахождения числа вне диапазона
+     * @param x число
+     * @param lower нижний передел
+     * @param upper верхний предел
+     * @return true если значение находиться вне диапазона, false если значение находиться в диапазоне
+     */
+    public static boolean isNotInRange(double x, double lower, double upper) {
+        return !isInRange(x, lower, upper);
     }
 
 }

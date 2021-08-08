@@ -2,6 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="by.it_academy.jd2.domain.enumeration.ApplicationUserState" %>
+<%@ page import="by.it_academy.jd2.domain.enumeration.HealthStatus" %>
+<%@ page import="by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes" %>
+<%@ page import="by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricStatus" %>
+<%@ page import="by.it_academy.jd2.core.healthmetrics.HealthMetricsUtils" %>
 
 <html>
 <head>
@@ -38,11 +42,11 @@
         <div class="col">
             <div class="card h-100 border-0">
                 <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">ИМТ</h5>
+                    <h5 class="card-title d-flex justify-content-between align-items-center">Возраст</h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
-                        <p id="body_mass_index" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
-                        <p id="body_mass_index_ts" class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">${requestScope.userAge}</p>
+                        <p class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
             </div>
@@ -57,8 +61,24 @@
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
-                        <p id="weight" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
-                        <p id="weight_ts" class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p id="${HealthMetricsTypes.WEIGHT}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
+                        <p id="${HealthMetricsTypes.WEIGHT}_timestamp" class="fs-6 m-0 text-black-50">01/01/2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 border-0">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">
+                        Рост
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
+                    </h5>
+                    <div class="flex-center">
+                        <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
+                        <p id="${HealthMetricsTypes.HEIGHT}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.HEIGHT}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
             </div>
@@ -69,14 +89,14 @@
                 <div class="card-body">
                     <h5 class="card-title d-flex justify-content-between align-items-center">
                         Давление
-                        <button type="button" class="btn btn-light"><i class="bi bi-plus-circle"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p class="fs-2 m-0 fw-bolder d-flex justify-content-center">
-                            <span id="systolic_blood_pressure" data-toggle="counterUp">65</span>/<span id="diastolic_blood_pressure" data-toggle="counterUp">65</span>
+                            <span id="${HealthMetricsTypes.AD_SYS}_value" data-toggle="counterUp"></span>/<span id="${HealthMetricsTypes.AD_DIA}_value" data-toggle="counterUp"></span>
                         </p>
-                        <p id="blood_pressure_ts" class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p id="${HealthMetricsTypes.AD_SYS}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
             </div>
@@ -87,17 +107,70 @@
                 <div class="card-body">
                     <h5 class="card-title d-flex justify-content-between align-items-center">
                         Пульс
-                        <button type="button" class="btn btn-light"><i class="bi bi-plus-circle"></i></button>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
-                        <p id="heart_rate" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">65</p>
-                        <p id="heart_rate_ts" class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p id="${HealthMetricsTypes.HEART_RATE}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.HEART_RATE}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
             </div>
         </div>
 
+
+        <div class="col">
+            <div class="card h-100 border-0">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">Температура</h5>
+                    <div class="flex-center">
+                        <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
+                        <p id="${HealthMetricsTypes.BODY_TEMPERATURE}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.BODY_TEMPERATURE}_timestamp" class="fs-6 m-0 text-black-50"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 border-0">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">ИМТ</h5>
+                    <div class="flex-center">
+                        <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
+                        <p id="${HealthMetricsTypes.BMI}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.BMI}_timestamp" class="fs-6 m-0 text-black-50"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100 border-0">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">${HealthMetricsTypes.PHYS_LEVEL.description}</h5>
+                    <div class="flex-center">
+                        <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
+                        <p id="${HealthMetricsTypes.PHYS_LEVEL}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.PHYS_LEVEL}_timestamp" class="fs-6 m-0 text-black-50"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <div class="card h-100 border-0">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">${HealthMetricsTypes.FUNC_CHANGE.description}</h5>
+                    <div class="flex-center">
+                        <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
+                        <p id="${HealthMetricsTypes.FUNC_CHANGE}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.FUNC_CHANGE}_timestamp" class="fs-6 m-0 text-black-50"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="col-12">
             <div class="card border-0">
@@ -110,8 +183,6 @@
                         </div>
                     </h5>
                     <canvas id="bar-chart" width="800" height="200"></canvas>
-
-
                 </div>
             </div>
         </div>
@@ -138,60 +209,53 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Добавление данных</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
-
-                    <div class="row pt-5">
-                        <div class="row mb-7 p-3">
-                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Вес</label>
-                            <div class="col-lg-10">
-                                <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                    <form id='form-user-metrics' action='#' method='post'>
+                        <div class="row mb-7 p-2">
+                            <label class="col-lg-5 col-form-label required fw-bold fs-6">Вес</label>
+                            <div class="col-lg-4">
+                                <input type="number" name="${HealthMetricsTypes.WEIGHT}" min="${HealthMetricsUtils.WEIGHT_MIN}" max="${HealthMetricsUtils.WEIGHT_MAX}"  placeholder="${HealthMetricsTypes.WEIGHT.unit}" class="form-control form-control-lg form-control-solid" />
                             </div>
                         </div>
-
-                        <div class="row mb-7 p-3">
-                            <label class="col-lg-2 col-form-label required fw-bold fs-6">Рост</label>
-                            <div class="col-lg-10">
-                                <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                        <div class="row mb-7 p-2">
+                            <label class="col-lg-5 col-form-label required fw-bold fs-6">Рост</label>
+                            <div class="col-lg-4">
+                                <input type="number" name="${HealthMetricsTypes.HEIGHT}" min="${HealthMetricsUtils.HEIGHT_MIN}" max="${HealthMetricsUtils.HEIGHT_MAX}"  placeholder="${HealthMetricsTypes.HEIGHT.unit}" class="form-control form-control-lg form-control-solid"/>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row mb-7 p-3">
-                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Давление</label>
-                        <div class="col-lg-10">
-                            <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                        <hr>
+                        <div class="row mb-7 p-2">
+                            <label class="col-lg-5 col-form-label required fw-bold fs-6">Cистолическое АД</label>
+                            <div class="col-lg-4">
+                                <input type="number" name="${HealthMetricsTypes.AD_SYS}" min="${HealthMetricsUtils.DIA_AD_MIN}" max="${HealthMetricsUtils.SYS_AD_MAX}"  placeholder="${HealthMetricsTypes.AD_SYS.unit}" class="form-control form-control-lg form-control-solid"/>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row mb-7 p-3">
-                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Давление</label>
-                        <div class="col-lg-10">
-                            <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                        <div class="row mb-7 p-2">
+                            <label class="col-lg-5 col-form-label required fw-bold fs-6">Диастолическое АД</label>
+                            <div class="col-lg-4">
+                                <input type="numer" name="${HealthMetricsTypes.AD_DIA}" min="${HealthMetricsUtils.DIA_AD_MIN}" max="${HealthMetricsUtils.DIA_AD_MAX}"  placeholder="${HealthMetricsTypes.AD_DIA.unit}" class="form-control form-control-lg form-control-solid"/>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row mb-7 p-3">
-                        <label class="col-lg-2 col-form-label required fw-bold fs-6">Пульс</label>
-                        <div class="col-lg-10">
-                            <input type="text" name="city" class="form-control form-control-lg form-control-solid"/>
+                        <hr>
+                        <div class="row mb-7 p-2">
+                            <label class="col-lg-5 col-form-label required fw-bold fs-6">Пульс</label>
+                            <div class="col-lg-4">
+                                <input type="text" name="${HealthMetricsTypes.HEART_RATE}" min="${HealthMetricsUtils.HEART_RATE_MIN}" max="${HealthMetricsUtils.HEART_RATE_MAX}"  placeholder="${HealthMetricsTypes.HEART_RATE.unit}" class="form-control form-control-lg form-control-solid"/>
+                            </div>
                         </div>
-                    </div>
-
-
-
-
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick="addMetrics()">Добавить</button>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 

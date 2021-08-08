@@ -1,5 +1,7 @@
 package by.it_academy.jd2.config;
 
+import by.it_academy.jd2.core.healthmetrics.HealthMetricsCalculator;
+import by.it_academy.jd2.core.healthmetrics.HealthMetricsHandler;
 import by.it_academy.jd2.repository.ICountriesRepository;
 import by.it_academy.jd2.repository.IDiseasesRepository;
 import by.it_academy.jd2.utils.countries.InitStaticDBData;
@@ -31,6 +33,11 @@ public class RootConfig {
                 Path.of("d:\\01. Vitali\\03. Inf\\01. Java\\01. IT-Academy\\02. JD2\\03. Projects\\IPolyclinic\\src\\main\\java\\by\\it_academy\\jd2\\utils\\mkb10.csv"));
     }*/
 
+
+    @Bean
+    public HealthMetricsHandler healthMetricsHandler(){
+        return new HealthMetricsHandler(new HealthMetricsCalculator());
+    }
 
 
 }

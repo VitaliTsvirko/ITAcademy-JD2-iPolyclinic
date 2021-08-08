@@ -1,8 +1,8 @@
 package by.it_academy.jd2.repository;
 
 import by.it_academy.jd2.config.PersistentConfig;
-import by.it_academy.jd2.core.healthmetrics.dto.UserLastMetricsDTO;
-import by.it_academy.jd2.core.healthmetrics.enumeration.UserHealthMetricsTypes;
+import by.it_academy.jd2.core.healthmetrics.dto.HealthMetricEntityDTO;
+import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
 import by.it_academy.jd2.domain.HealthMetrics;
 import by.it_academy.jd2.domain.MedicalCard;
 import by.it_academy.jd2.domain.User;
@@ -19,6 +19,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ExtendWith(value = {SpringExtension.class})
@@ -74,7 +75,7 @@ class IHealthMetricsRepositoryTest {
         metric.setCreatedBy(user);
         metric.setMedicalCard(medicalCard);
 
-        metric.setTypes(UserHealthMetricsTypes.HEIGHT);
+        metric.setTypes(HealthMetricsTypes.HEIGHT);
         metric.setValue(176.0);
         metric.setTimestamp(LocalDateTime.now().minusDays(30));
 
@@ -89,14 +90,7 @@ class IHealthMetricsRepositoryTest {
     }
 
 
-    @Test()
-    void getLastMetric(){
-        List<String[]> lastUserMetrics = healthMetricsRepository.findLastUserMetrics(161L);
 
-        //List<UserLastMetricsDTO> lastUserMetricsDTO = healthMetricsRepository.findLastUserMetricsDTO(161L);
-
-        System.out.println(lastUserMetrics.size());
-    }
 
 
 }

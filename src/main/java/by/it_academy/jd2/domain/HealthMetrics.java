@@ -1,25 +1,13 @@
 package by.it_academy.jd2.domain;
 
-import by.it_academy.jd2.core.healthmetrics.dto.UserLastMetricsDTO;
-import by.it_academy.jd2.core.healthmetrics.enumeration.UserHealthMetricsTypes;
+import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@SqlResultSetMapping(name="findLastUserMetricsResult",
-        classes={
-                @ConstructorResult(targetClass= UserLastMetricsDTO.class, columns={
-                        @ColumnResult(name="timestamp", type=LocalDateTime.class),
-                        @ColumnResult(name="metric_type", type=UserHealthMetricsTypes.class),
-                        @ColumnResult(name="metric_value", type=Double.class)
-                })
-        })
 @Entity
 @Table(name = "user_health_metrics_2")
 public class HealthMetrics {
-
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +15,7 @@ public class HealthMetrics {
 
     @Column(name = "metric_type", nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserHealthMetricsTypes types;
+    private HealthMetricsTypes types;
 
     @Column(name = "metric_value", nullable = false)
     private Double value;
@@ -43,6 +31,17 @@ public class HealthMetrics {
     @JoinColumn(name="medicalcard_id", nullable=false, foreignKey=@ForeignKey(name = "FK_user_health_metrics_medical_card_id"))
     private MedicalCard medicalCard;
 
+    public HealthMetrics(){
+
+    }
+
+    public HealthMetrics(HealthMetricsTypes types, Double value, LocalDateTime timestamp, User createdBy, MedicalCard medicalCard) {
+        this.types = types;
+        this.value = value;
+        this.timestamp = timestamp;
+        this.createdBy = createdBy;
+        this.medicalCard = medicalCard;
+    }
 
     public Long getId() {
         return id;
@@ -52,11 +51,11 @@ public class HealthMetrics {
         this.id = id;
     }
 
-    public UserHealthMetricsTypes getTypes() {
+    public HealthMetricsTypes getTypes() {
         return types;
     }
 
-    public void setTypes(UserHealthMetricsTypes types) {
+    public void setTypes(HealthMetricsTypes types) {
         this.types = types;
     }
 
