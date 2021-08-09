@@ -24,6 +24,8 @@
 <body class="bg-light">
 <%@include file="/layouts/header.jsp"%>
 <input type="hidden" id="user_id" value="${requestScope.userId}">
+<input type="hidden" id="metric_type" value="${HealthMetricsTypes.valueOf(requestScope.metricType)}">
+<input type="hidden" id="metric_name" value="${HealthMetricsTypes.valueOf(requestScope.metricType).description}">
 <main class="container-md pt-5">
 
 
@@ -32,11 +34,12 @@
         <div class="col-3">
             <div class="card h-100 border-0">
                 <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">Обращений</h5>
+                    <h5 class="card-title d-flex justify-content-between align-items-center"><h5 class="card-title d-flex justify-content-between align-items-center">${HealthMetricsTypes.valueOf(requestScope.metricType).description}</h5></h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
-                        <p class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp">162</p>
-                        <p class="fs-6 m-0 text-black-50">01/01/2021</p>
+                        <p id="${HealthMetricsTypes.valueOf(requestScope.metricType)}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
+                        <p id="${HealthMetricsTypes.valueOf(requestScope.metricType)}_analysis_text" class="fs-6 m-0 d-flex justify-content-center"></p>
+                        <p id="${HealthMetricsTypes.valueOf(requestScope.metricType)}_timestamp" class="fs-6 m-0 text-black-50"></p>
                     </div>
                 </div>
             </div>
@@ -45,9 +48,9 @@
         <div class="col-9">
             <div class="card h-100 border-0">
                 <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">ИМТ</h5>
+                    <h5 class="card-title d-flex justify-content-between align-items-center">${HealthMetricsTypes.valueOf(requestScope.metricType).description}</h5>
                     <div class="flex-center">
-                        <p class="fs-6 m-0 text-black-50">sdkjfhkldjshflkjhsdalkhflskadhf dh fskjdlhf kjlsadh fjkasdh fjkahsd fjksdh kjhasd jhasdl khflksdajh flksadjh flkjashd flkjashd flkjasdh fklsadjhfsjdhf lsd</p>
+                        <p class="fs-6 m-0 text-black-50">${requestScope.metricDescription}</p>
                     </div>
                 </div>
             </div>
@@ -58,7 +61,7 @@
         <div class="col-12">
             <div class="card border-0">
                 <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center"> Давление и пульс </h5>
+                    <h5 class="card-title d-flex justify-content-between align-items-center">${HealthMetricsTypes.valueOf(requestScope.metricType).description}</h5>
                     <canvas id="line-chart" width="800" height="300"></canvas>
                 </div>
             </div>
@@ -71,8 +74,10 @@
                 $(document).ready(function() {
 
                     let id = $("#user_id").val();
+                    let metric_type = $("#metric_type").val();
+                    let metric_name = $("#metric_name").val();
 
-                    $.getJSON(BASE_URL + '/api/user/' + id + '/healthmetrics/weights', function (result, textStatus, jqXHR) {
+                    $.getJSON(BASE_URL + '/api/user/' + id + '/healthmetrics/' + metric_type, function (result, textStatus, jqXHR) {
                         if (!$.isEmptyObject(result)) {
                             //store data to page
                             new Chart(document.getElementById("line-chart"), {
@@ -81,7 +86,7 @@
                                     labels: result.date,
                                     datasets: [{
                                         data: result.values,
-                                        label: "Вес",
+                                        label: metric_name,
                                         borderColor: "#03A9F4",
                                         fill: false,
                                         cubicInterpolationMode: 'monotone',

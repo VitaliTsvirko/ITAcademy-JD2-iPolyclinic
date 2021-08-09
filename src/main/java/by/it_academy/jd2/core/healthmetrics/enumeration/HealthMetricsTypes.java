@@ -9,8 +9,8 @@ import by.it_academy.jd2.core.healthmetrics.analysers.IHealthMetricAnalyser;
 import java.util.Optional;
 
 public enum HealthMetricsTypes {
-    HEIGHT ("Вес", "кг", null),
-    WEIGHT ("Рост", "см", null),
+    WEIGHT ("Вес", "кг", null),
+    HEIGHT ("Рост", "см", null),
     HEART_RATE ("Пульс", "уд/мин", new HeartRateIndexAnalyser()),
     AD_SYS ("Cистолическое артериальное давление", "мм рт.ст", null),
     AD_DIA ("Диастолическое артериальное давление", "мм рт.ст", null),

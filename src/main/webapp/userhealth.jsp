@@ -57,7 +57,10 @@
                 <div class="card-body">
                     <h5 class="card-title d-flex justify-content-between align-items-center">
                         Вес
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
+                        <div>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
+                            <a href="${pageContext.request.contextPath}/userhealth/${requestScope.userId}/healthmetrics/${HealthMetricsTypes.WEIGHT.name().toLowerCase()}" target="_blank"><span class="btn btn-light"><i class="bi bi-info-circle-fill"></i></span></a>
+                        </div>
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
@@ -74,7 +77,10 @@
                 <div class="card-body">
                     <h5 class="card-title d-flex justify-content-between align-items-center">
                         Рост
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
+                        <div>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
+                            <a href="${pageContext.request.contextPath}/userhealth/${requestScope.userId}/healthmetrics/${HealthMetricsTypes.HEIGHT.name().toLowerCase()}" target="_blank"><span class="btn btn-light"><i class="bi bi-info-circle-fill"></i></span></a>
+                        </div>
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
@@ -91,7 +97,10 @@
                 <div class="card-body">
                     <h5 class="card-title d-flex justify-content-between align-items-center">
                         Давление
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
+                        <div>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
+                            <a href="${pageContext.request.contextPath}/userhealth/${requestScope.userId}/healthmetrics/${HealthMetricsTypes.AD_SYS.name().toLowerCase()}" target="_blank"><span class="btn btn-light"><i class="bi bi-info-circle-fill"></i></span></a>
+                        </div>
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
@@ -109,7 +118,10 @@
                 <div class="card-body">
                     <h5 class="card-title d-flex justify-content-between align-items-center">
                         Пульс
-                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
+                        <div>
+                            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addUserMetrics"><i class="bi bi-plus-circle"></i></button>
+                            <a href="${pageContext.request.contextPath}/userhealth/${requestScope.userId}/healthmetrics/${HealthMetricsTypes.HEART_RATE.name().toLowerCase()}" target="_blank"><span class="btn btn-light"><i class="bi bi-info-circle-fill"></i></span></a>
+                        </div>
                     </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
@@ -139,7 +151,10 @@
         <div class="col">
             <div class="card h-100 border-0">
                 <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">ИМТ</h5>
+                    <h5 class="card-title d-flex justify-content-between align-items-center">
+                        ИМТ
+                        <a href="${pageContext.request.contextPath}/userhealth/${requestScope.userId}/healthmetrics/${HealthMetricsTypes.BMI.name().toLowerCase()}" target="_blank"><span class="btn btn-light"><i class="bi bi-info-circle-fill"></i></span></a>
+                    </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p id="${HealthMetricsTypes.BMI}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
@@ -153,7 +168,10 @@
         <div class="col">
             <div class="card h-100 border-0">
                 <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">${HealthMetricsTypes.PHYS_LEVEL.description}</h5>
+                    <h5 class="card-title d-flex justify-content-between align-items-center">
+                        ${HealthMetricsTypes.PHYS_LEVEL.description}
+                        <a href="${pageContext.request.contextPath}/userhealth/${requestScope.userId}/healthmetrics/${HealthMetricsTypes.PHYS_LEVEL.name().toLowerCase()}" target="_blank"><span class="btn btn-light"><i class="bi bi-info-circle-fill"></i></span></a>
+                    </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p id="${HealthMetricsTypes.PHYS_LEVEL}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
@@ -168,7 +186,10 @@
         <div class="col">
             <div class="card h-100 border-0">
                 <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">${HealthMetricsTypes.FUNC_CHANGE.description}</h5>
+                    <h5 class="card-title d-flex justify-content-between align-items-center">
+                        ${HealthMetricsTypes.FUNC_CHANGE.description}
+                        <a href="${pageContext.request.contextPath}/userhealth/${requestScope.userId}/healthmetrics/${HealthMetricsTypes.FUNC_CHANGE.name().toLowerCase()}" target="_blank"><span class="btn btn-light"><i class="bi bi-info-circle-fill"></i></span></a>
+                    </h5>
                     <div class="flex-center">
                         <span class="svg-icon svg-icon-3 svg-icon-success me-2"></span>
                         <p id="${HealthMetricsTypes.FUNC_CHANGE}_value" class="fs-2 m-0 fw-bolder d-flex justify-content-center" data-toggle="counterUp"></p>
@@ -193,24 +214,7 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="col-12">
-            <div class="card border-0">
-                <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">
-                        Давление и пульс
-                        <div>
-                            <button type="button" class="btn btn-light"><i class="bi bi-table"></i></button>
-                            <button type="button" class="btn btn-light"><i class="bi bi-bar-chart-fill"></i></button>
-                        </div>
-                    </h5>
-                    <canvas id="line-chart" width="800" height="200"></canvas>
-                </div>
-            </div>
-        </div>
     </div>
-
 
     <div class="modal fade" id="addUserMetrics" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -304,47 +308,6 @@
         });
     });
 </script>
-
-
-<script>
-    new Chart(document.getElementById("line-chart"), {
-        type: 'line',
-        data: {
-            labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
-            datasets: [{
-                data: [120,126,140,120,132,133,133,140,150,120,133,133,140,150,120],
-                label: "Давление",
-                borderColor: "#03A9F4",
-                fill: false,
-                cubicInterpolationMode: 'monotone',
-                tension: 0.4
-            }, {
-                data: [80,90,100,80,80,90,86,100,76,82,83,84,85,78,90],
-                label: "Давление",
-                borderColor: "#5C6BC0",
-                fill: false,
-                cubicInterpolationMode: 'monotone',
-                tension: 0.4
-            }, {
-                data: [77,77,89,87,93,106,105,103,112,140,122,87,90,77,65],
-                label: "Пульс",
-                borderColor: "#FF5722",
-                backgroundColor: "#FFEBEE",
-                fill: true,
-                cubicInterpolationMode: 'monotone',
-                tension: 0.4
-            }
-            ]
-        },
-        options: {
-            title: { display: false}
-        },
-        interaction: {
-            intersect: false,
-        },
-    });
-</script>
-
 
 </body>
 </html>

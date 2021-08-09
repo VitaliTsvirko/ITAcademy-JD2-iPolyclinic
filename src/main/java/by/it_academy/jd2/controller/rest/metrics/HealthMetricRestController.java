@@ -1,5 +1,6 @@
 package by.it_academy.jd2.controller.rest.metrics;
 
+import by.it_academy.jd2.config.Constants;
 import by.it_academy.jd2.core.healthmetrics.dto.HealthMetricEntityDTO;
 import by.it_academy.jd2.core.healthmetrics.dto.UserHealthMetricDTO;
 import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
@@ -46,13 +47,13 @@ public class HealthMetricRestController {
 
 
 
-    @GetMapping("/{userId}/healthmetrics/weights")
-    public ResponseEntity<?> readWeightsByUserId(@PathVariable Long userId) throws JsonProcessingException {
-        List<HealthMetricEntityDTO> data = healthMetricService.getMetricDataByUserIdAndMetricType(userId, HealthMetricsTypes.WEIGHT);
+    @GetMapping("/{userId}/healthmetrics/{type}")
+    public ResponseEntity<?> readWeightsByUserId(@PathVariable Long userId, @PathVariable HealthMetricsTypes type) throws JsonProcessingException {
+        List<HealthMetricEntityDTO> data = healthMetricService.getMetricDataByUserIdAndMetricType(userId, type);
 
         Map<String, List<String>> chartData = new HashMap<>();
 
-        chartData.put("date", data.stream().map(dto -> dto.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME)).collect(Collectors.toList()));
+        chartData.put("date", data.stream().map(dto -> dto.getTimestamp().format(DateTimeFormatter.ofPattern(Constants.dateTimeFormat))).collect(Collectors.toList()));
         chartData.put("values", data.stream().map(dto -> dto.getValue().toString()).collect(Collectors.toList()));
 
         String chartDataString = objectMapper.writeValueAsString(chartData);
