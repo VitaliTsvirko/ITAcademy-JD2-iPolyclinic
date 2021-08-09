@@ -1,9 +1,26 @@
-<footer class="footer mt-auto py-3 fixed-bottom bg-light" style="color: rgb(109,204,163)">
-<%--  <div class="d-flex flex-row-reverse" style="padding-right: 20px;">
-    <span class="text-muted">&copy; VTsvirko, 2021.</span>
-  </div>--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<footer class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+  <!--begin::Container-->
+  <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+    <!--begin::Copyright-->
+    <div class="text-dark order-2 order-md-1">
+      <span class="text-muted fw-bold me-1">2021&copy;</span>
+      <span class="text-gray-800 text-hover-primary">Vitali Tsvirko</span>
+    </div>
+    <!--end::Copyright-->
+    <!--begin::Menu-->
+    <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
+      <li class="menu-item">
+        <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">О нас</a>
+      </li>
+      <li class="menu-item">
+        <a href="https://keenthemes.com/support" target="_blank" class="menu-link px-2">Контакты</a>
+      </li>
+    </ul>
+    <!--end::Menu-->
+  </div>
+  <!--end::Container-->
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -17,4 +34,7 @@
     </symbol>
   </svg>
 
+  <!--begin::Global Script Bundle(used by all pages)-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <!--end::Global Script Bundle(used by all pages)-->
 </footer>

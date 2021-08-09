@@ -7,17 +7,29 @@
     <%@include file="layouts/head.jsp"%>
 </head>
 
+<!--begin::Body-->
 <body class="bg-light">
-    <%@include file="layouts/header.jsp"%>
+    <!--begin::Main-->
+    <div class="d-flex flex-column flex-root">
 
-    <main class="container-md pt-5">
+        <!--begin::Navigation-->
+        <%@include file="layouts/header.jsp"%>
+        <!--end::Navigation-->
 
-        <div class="text-center py-5 px-3">
-           <p>Умная поликлиника</p>
+        <!--begin::Content-->
+        <div class="d-flex flex-column flex-column-fluid text-center p-10 py-lg-20">
+            <main class="container">
+                Умная поликлиника
+            </main>
         </div>
+        <!--end::Content-->
 
-    </main>
+        <!--begin::Footer-->
+        <%@include file="layouts/footer.jsp"%>
+        <!--end::Footer-->
 
-<%@include file="layouts/footer.jsp"%>
+    </div>
+    <!--end::Main-->
 </body>
+<!--end::Body-->
 </html>

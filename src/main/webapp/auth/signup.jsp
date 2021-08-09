@@ -3,67 +3,83 @@
 
 <html>
 <head>
-     <title>Регистрация</title>
-    <%@include file="../layouts/head.jsp"%>
+    <title>Регистрация</title>
+    <%@include file="/layouts/head.jsp"%>
 </head>
 
+<!--begin::Body-->
 <body class="bg-light">
-<%@include file="../layouts/header.jsp"%>
-<link href="../static/css/auth.css" rel="stylesheet">
+<!--begin::Main-->
+<div class="d-flex flex-column flex-root">
 
-<main class="container-md pt-5">
-    <div class="vh-80">
-        <div class="container py-5 h-80">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card shadow p-3 mb-5 bg-body rounded border-0" style="border-radius: .5rem!important;">
-                        <div class="card-body p-4 text-center">
+    <!--begin::Navigation-->
+    <%@include file="/layouts/header.jsp"%>
 
-                            <div class="fs-3 m-2">
-                                Зарегистрироваться
-                            </div>
-                            <div class="fs-7 mb-2 pb-3">
-                                Есть аккаунт, <a href="${pageContext.request.contextPath}/auth/login.jsp">войти</a>
-                            </div>
+    <link href="${pageContext.request.contextPath}/static/css/auth.css" rel="stylesheet">
+    <!--end::Navigation-->
 
-                            <c:if test="${not empty requestScope.error}">
-                                <div class="alert alert-danger d-flex align-items-center mx-4" role="alert">
-                                        ${requestScope.error}
-                                </div>
-                            </c:if>
+    <!--begin::Content-->
+    <div class="d-flex flex-column flex-column-fluid text-center p-10 py-lg-20">
+        <main class="container">
 
-                            <div>
-                                <form action="signup" method="POST" class="auth-form">
-                                    <div class="form-outline mb-4">
-                                        <label for="inputName">Номер телефона</label>
-                                        <input type="tel" name="phoneNo" id="inputName" pattern="\+375\-[0-9]{2}\-[0-9]{3}\-[0-9]{2}\-[0-9]{2}" class="form-control input-block" placeholder="+375(__)___-__-__" required autofocus >
-                                    </div>
-                                    <div class="form-outline mb-4">
-                                        <label for="inputPassword">Пароль</label>
-                                        <input type="password" name="password" id="inputPassword" class="form-control input-block" required>
-                                    </div>
-                                    <div class="form-outline mb-4">
-                                        <label for="inputPassword">Подтвертиде, пароль</label>
-                                        <input type="password" name="confirmPassword" id="inputConfirmPassword" class="form-control input-block" required>
-                                    </div>
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Зарегистрироваться</button>
-                                </form>
-                            </div>
+            <div class="w-lg-500px bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
 
-                            <div class="text-center text-muted text-uppercase fw-bolder my-2">или</div>
+                <form class="form w-100" method="POST" action="signup">
+                    <c:if test="${not empty requestScope.error}">
+                        <div class="alert alert-danger d-flex align-items-center mx-4" role="alert">
+                                ${requestScope.error}
+                        </div>
+                    </c:if>
 
-                            <button class="btn btn-lg btn-block btn-primary border-0" style="color: #7e8299; background-color: #f5f8fa;" type="submit"><a><img alt="Logo" src="${pageContext.request.contextPath}/static/image/google-icon.svg" class="h-15 me-3">Войти через Google</a></button>
-                            <button class="btn btn-lg btn-block btn-primary border-0 mb-2" style="color: #7e8299; background-color: #f5f8fa;" type="submit"><a><img alt="Logo" src="${pageContext.request.contextPath}/static/image/github-icon.svg" class="h-15 me-3">Войти через GitHub</a></button>
+                    <div class="text-center mb-10">
+                        <h3 class="text-dark mb-3">Зарегистрироваться</h3>
+                        <div class="text-gray-400 fw-bold fs-5">
+                            Есть аккаунт, <a href="${pageContext.request.contextPath}/auth/login.jsp">войти</a>
                         </div>
                     </div>
-                </div>
+
+                    <!--begin::Input group-->
+                    <div class="fv-row mb-7 text-start">
+                        <label class="form-label fs-5 fw-bolder text-dark">Номер телефона</label>
+                        <input type="tel" name="phoneNo" id="inputName" pattern="\+375\-[0-9]{2}\-[0-9]{3}\-[0-9]{2}\-[0-9]{2}" class="form-control form-control-lg form-control-solid" required autofocus/>
+                    </div>
+                    <div class="fv-row mb-7 text-start">
+                        <label class="form-label fw-bolder text-dark fs-5 mb-0">Пароль</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control form-control-lg form-control-solid" required/>
+                    </div>
+                    <div class="fv-row mb-7 text-start">
+                        <label class="form-label fw-bolder text-dark fs-5 mb-0">Подтвертиде, пароль</label>
+                        <input type="password" name="confirmPassword" id="inputConfirmPassword" class="form-control form-control-lg form-control-solid" required/>
+                    </div>
+
+                    <!--end::Input-->
+
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-lg btn-primary w-100 mb-2">Зарегистрироваться</button>
+                        <div class="text-center text-muted text-uppercase fw-bolder mb-2">или</div>
+                        <button class="btn btn-lg btn-block btn-primary border-0 w-100 mb-2" style="color: #7e8299; background-color: #f5f8fa;" type="submit">
+                            <a><img alt="Logo" src="${pageContext.request.contextPath}/static/image/google-icon.svg" class="h-15 me-3">Войти через Google</a>
+                        </button>
+                        <button onclick="window.location.href = '${pageContext.request.contextPath}/oauth2/authorization/ca9c89a8c5895c9416fb9105d9617790d88c0ec7';" class="btn btn-lg btn-block btn-primary border-0 mb-2 w-100" style="color: #7e8299; background-color: #f5f8fa;" type="submit">
+                            <a><img alt="Logo" src="${pageContext.request.contextPath}/static/image/github-icon.svg" class=" h-15 me-3">Войти через GitHub</a>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end::Form-->
             </div>
-        </div>
+
+        </main>
     </div>
+    <!--end::Content-->
 
-</main>
+    <!--begin::Footer-->
+    <%@include file="/layouts/footer.jsp"%>
+    <!--end::Footer-->
 
-<%@include file="../layouts/footer.jsp"%>
+</div>
+<!--end::Main-->
 </body>
 
 <script>
@@ -81,6 +97,7 @@
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
 </script>
-</html>
 
+<!--end::Body-->
+</html>
 

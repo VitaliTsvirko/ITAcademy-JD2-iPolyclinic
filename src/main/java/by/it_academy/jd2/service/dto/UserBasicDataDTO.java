@@ -2,6 +2,7 @@ package by.it_academy.jd2.service.dto;
 
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.domain.enumeration.ApplicationUserState;
+import by.it_academy.jd2.domain.enumeration.GenderType;
 import by.it_academy.jd2.domain.enumeration.UserRoles;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,6 +54,9 @@ public class UserBasicDataDTO {
     @JsonProperty("medical_card_id")
     private Long medicalCardId;
 
+    @JsonProperty("gender_type")
+    private GenderType genderType;
+
     public UserBasicDataDTO() {
     }
 
@@ -69,6 +73,7 @@ public class UserBasicDataDTO {
                 this.fullName = user.getPassport().getSurname() + " " + user.getPassport().getName() + " " + user.getPassport().getPatronymic();
                 this.dateOfBirth = user.getPassport().getDateOfBirth();
                 this.age = Period.between(dateOfBirth, LocalDate.now()).getYears();
+                this.genderType = user.getPassport().getGenderType();
             }
 
             if (user.getAddress() != null) {
@@ -182,5 +187,13 @@ public class UserBasicDataDTO {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public GenderType getGenderType() {
+        return genderType;
+    }
+
+    public void setGenderType(GenderType genderType) {
+        this.genderType = genderType;
     }
 }

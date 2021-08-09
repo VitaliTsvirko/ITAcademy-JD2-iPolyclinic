@@ -16,22 +16,22 @@
                     <ul class="navbar-nav ms-auto py-4 py-md-0">
 
                         <li class="nav-item mx-3">
-                            <a class="nav-link" href="#">О нас</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}">О нас</a>
                         </li>
                         <li class="nav-item mx-3">
-                            <a class="nav-link" href="#">Отделения</a>
-                        </li>
-
-                        <li class="nav-item mx-3">
-                            <a class="nav-link" href="#">Наши врачи</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}">Отделения</a>
                         </li>
 
                         <li class="nav-item mx-3">
-                            <a class="nav-link" href="#">Записаться на прием</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}">Наши врачи</a>
                         </li>
 
                         <li class="nav-item mx-3">
-                            <a class="nav-link" href="#">Новости</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}">Записаться на прием</a>
+                        </li>
+
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="${pageContext.request.contextPath}">Новости</a>
                         </li>
 
                         <c:choose>
@@ -80,7 +80,7 @@
 
                                 <c:if test="${sessionScope.user.userRole eq UserRoles.DOCTOR}">
                                     <li class="nav-item mx-3">
-                                        <a class="nav-link" href="${pageContext.request.contextPath}/patients">Рабочее место</a>
+                                        <a class="nav-link" href="${pageContext.request.contextPath}/patients">Портал врача</a>
                                     </li>
                                 </c:if>
 
