@@ -25,14 +25,16 @@ function saveAddressData(id) {
 
                     //hide buttons
                     $('#tap-address-data').removeClass("collapse");
-                    $('#div-address-add-btn').addClass("collapse");
+                    $('#address-add-btn').addClass("collapse");
+                    $('#address-edit-btn').removeClass("collapse");
+                    $('#address-delete-btn').removeClass("collapse");
 
                     injectAlert("address-tab-alert", "Данные успешно обновлены", AlertsTypes.SUCCESS);
                 }
                 //readBasicUserData(id);
             },
             error: function (xhr, resp, text) {
-                injectAlert("address-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
+                injectAlert("address-tab-alert", "Ошибка. Проверьте, возможно не заполнено одно из обязательных полей!", AlertsTypes.ERROR);
             }
         });
         return false;
@@ -60,7 +62,9 @@ function deleteAddress(id) {
 
                 //hide buttons
                 $('#tap-address-data').addClass("collapse");
-                $('#div-address-add-btn').removeClass("collapse");
+                $('#address-add-btn').removeClass("collapse");
+                $('#address-edit-btn').addClass("collapse");
+                $('#address-delete-btn').addClass("collapse");
 
                 //update user basic info
                 updateBasicUserData(id);

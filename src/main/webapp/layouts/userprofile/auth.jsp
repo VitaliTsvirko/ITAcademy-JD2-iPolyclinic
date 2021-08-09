@@ -1,15 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<div class="row mb-7">
-    <label class="col-lg-2 col-form-label required fw-bold fs-6">Телефон</label>
-    <div class="col-lg-6">
-        <input type="text" name="phoneNo" class="form-control form-control-lg form-control-solid mb-3" value="${requestScope.user.phoneNo}" readonly>
+<div class="card mb-5 mb-xl-10">
+    <!--begin::Card header-->
+    <div class="card-header cursor-pointer">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">Авторизация</h3>
+        </div>
     </div>
-</div>
+    <!--begin::Card header-->
+    <!--begin::Card body-->
+    <div class="card-body p-9 text-start">
 
-<div class="row mb-7">
-    <label class="col-lg-2 col-form-label required fw-bold fs-6">Пароль</label>
-    <div class="col-lg-6">
-        <input type="password" name="password" class="form-control form-control-lg form-control-solid mb-3" value="password" readonly>
+        <div class="row mb-7">
+            <label class="col-lg-3 fw-bold text-muted">Логин</label>
+            <div class="col-lg-9">
+                <span class="fw-bolder fs-5 text-dark">${requestScope.user.phoneNo}</span>
+            </div>
+        </div>
+        <div class="row mb-7">
+            <label class="col-lg-3 fw-bold text-muted">Пароль</label>
+            <div class="col-lg-9">
+                <span class="fw-bolder fs-5 text-dark">*********</span>
+            </div>
+        </div>
+
     </div>
 </div>

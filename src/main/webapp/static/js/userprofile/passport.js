@@ -26,10 +26,15 @@ function savePassportData(id) {
 
                     //hide buttons
                     $('#tap-passport-data').removeClass("collapse");
-                    $('#div-passport-add-btn').addClass("collapse");
+                    $('#passport-add-btn').addClass("collapse");
+                    $('#passport-edit-btn').removeClass("collapse");
+                    $('#passport-delete-btn').removeClass("collapse");
 
                     $("#confirm-passport-btn").removeClass("collapse");
-                    $("#passport-tab-badge").removeClass("collapse");
+
+                    $("#user-status-badge").addClass("badge-warning");
+                    $("#user-status-badge").removeClass("badge-success");
+                    $("#user-status-badge").text("Не подтвержден");
 
                     //update user basic info
                     updateBasicUserData(id);
@@ -38,7 +43,7 @@ function savePassportData(id) {
                 }
             },
             error: function (xhr, resp, text) {
-                injectAlert("passport-tab-alert", "Ошибка. Попробуйте снова!", AlertsTypes.ERROR);
+                injectAlert("passport-tab-alert", "Ошибка. Проверьте, возможно не заполнено одно из обязательных полей!", AlertsTypes.ERROR);
             }
         });
         return false;
@@ -70,7 +75,13 @@ function deletePassport(id) {
 
                 //hide buttons
                 $('#tap-passport-data').addClass("collapse");
-                $('#div-passport-add-btn').removeClass("collapse");
+                $('#passport-add-btn').removeClass("collapse");
+                $('#passport-edit-btn').addClass("collapse");
+                $('#passport-delete-btn').addClass("collapse");
+
+                $("#user-status-badge").addClass("badge-warning");
+                $("#user-status-badge").removeClass("badge-success");
+                $("#user-status-badge").text("Не подтвержден");
 
                 injectAlert("passport-tab-alert", "Данные успешно удалены", AlertsTypes.SUCCESS);
             },
@@ -99,7 +110,9 @@ function confirmPassportData(id) {
                     $("#userprofile-alert").alert('close')
                     //hide confirm button
                     $("#confirm-passport-btn").addClass("collapse");
-                    $("#passport-tab-badge").addClass("collapse");
+                    $("#user-status-badge").removeClass("badge-warning");
+                    $("#user-status-badge").addClass("badge-success");
+                    $("#user-status-badge").text("Подтвержден");
 
                     updateBasicUserData(id);
 

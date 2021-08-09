@@ -7,6 +7,7 @@ function updateBasicUserData(id) {
                 //store data to page
                 $.each(data, function (key, val) {
                     $('#info-' + key).text(val);
+                    $('#head-' + key).text(val);
                 });
             }
 

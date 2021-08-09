@@ -36,6 +36,7 @@
                             <th scope="col">Имя</th>
                             <th scope="col">Фамилия</th>
                             <th scope="col">Телефон</th>
+                            <th scope="col">Статус</th>
                             <th scope="col">Паспорт</th>
                             <th scope="col">Роль</th>
                             <th scope="col">---</th>
@@ -51,19 +52,17 @@
                                 <td>
                                     <c:choose>
                                         <c:when test="${usr.state eq ApplicationUserState.SIGNUP}">
-                                            <i>---</i>
+                                            <span class="badge badge-dark fw-bolder ms-2 fs-8 py-1 px-3" title="Паспортные данные не заданы">---</span>
                                         </c:when>
-
                                         <c:when test="${usr.state eq ApplicationUserState.PASSPORT_DATA_VERIFIED or usr.state eq ApplicationUserState.ACTIVATED}">
-                                            <i class="bi bi-check-circle-fill" style="color: #2ea44f" data-bs-toggle="tooltip" title="Паспортные данные подверждены"></i>
+                                            <span class="badge badge-success fw-bolder ms-2 fs-8 py-1 px-3" title="Паспортные данные подверждены">Подвержден</span>
                                         </c:when>
-
                                         <c:otherwise>
-                                            <i class="bi bi-exclamation-circle-fill" style="color: #842029" data-bs-toggle="tooltip" title="Паспортные данные не подверждены"></i>
+                                            <span class="badge badge-warning fw-bolder ms-2 fs-8 py-1 px-3" title="Паспортные данные не подверждены">Не подвержден</span>
                                         </c:otherwise>
                                     </c:choose>
-                                        ${usr.passport.passportNo}
                                 </td>
+                                <td>${usr.passport.passportNo}</td>
                                 <td>${usr.userRole}</td>
                                 <td>
                                     <a href="${pageContext.request.contextPath}/userprofile/${usr.id}" target="_blank"> <span class="btn btn-light-info fw-bold me-2">Профиль</span></a>

@@ -12,10 +12,10 @@
     <!--begin::Menu-->
     <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
       <li class="menu-item">
-        <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">О нас</a>
+        <a href="#" class="menu-link px-2">О нас</a>
       </li>
       <li class="menu-item">
-        <a href="https://keenthemes.com/support" target="_blank" class="menu-link px-2">Контакты</a>
+        <a href="#" class="menu-link px-2">Контакты</a>
       </li>
     </ul>
     <!--end::Menu-->

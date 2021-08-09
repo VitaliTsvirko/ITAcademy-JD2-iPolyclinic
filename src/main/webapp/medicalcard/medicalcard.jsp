@@ -34,7 +34,7 @@
                         </c:choose>
                     </div>
                 </div>
-                <div class="card-body text-start">
+                <div class="card-body fs-5 text-start">
                     <%@include file="../layouts/medicalcard.jsp"%>
                 </div>
             </div>

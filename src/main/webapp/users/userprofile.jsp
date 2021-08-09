@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="by.it_academy.jd2.domain.enumeration.ApplicationUserState" %>
 
 <html>
 <head>
     <title>Профиль пользователя</title>
     <%@include file="../layouts/head.jsp"%>
-    <link href="../static/css/userprofile.css" rel="stylesheet">
 </head>
 
 <!--begin::Body-->
 <body class="bg-light">
 <!--begin::Main-->
-<div class="d-flex flex-column flex-root">
-
+<main class="d-flex flex-column flex-root">
     <!--begin::Navigation-->
     <%@include file="../layouts/header.jsp"%>
     <!--end::Navigation-->
@@ -22,99 +21,101 @@
         <input type="hidden" id="user_id" value="${requestScope.user.id}">
         <main class="container">
 
-
-            <!--begin::tabs container-->
             <div class="card mb-5 mb-xl-10">
+                <div class="card-body pt-9 pb-0">
+                    <!--begin::Details-->
+                    <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+                        <!--begin::Info-->
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex align-items-center mb-0">
+                                        <span id="head-full_name" class="text-gray-800 text-hover-primary fs-3 fw-bolder me-1">${requestScope.user.passport.name} ${requestScope.user.passport.surname} ${requestScope.user.passport.patronymic}</span>
+                                        <c:choose>
+                                            <c:when test="${requestScope.user.state eq ApplicationUserState.ACTIVATED}">
+                                                <span id="user-status-badge" class="badge badge-success fw-bolder ms-2 fs-8 py-1 px-3">Подвержден</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span id="user-status-badge" class="badge badge-warning fw-bolder ms-2 fs-8 py-1 px-3">Не подвержден</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                    <div class="d-flex flex-wrap fw-bold fs-5">
+										<span class="d-flex align-items-center text-gray-400 text-hover-primary fs-5">
+											<i class="bi bi-file-person fs-4 me-2"></i> ${requestScope.user.userRole.roleName}
+										</span>
+                                    </div>
 
-                <div id="userProfileModalTabsHeader" class="card-header border-0 cursor-pointer m-0 p-0">
-                    <div class="card-title m-3">
-                        <h3 class="fw-bolder mb-3 fs-4">Профиль пользователя</h3>
-                    </div>
-
-                    <!--begin::notification-->
-                    <c:if test="${user.state != ApplicationUserState.ACTIVATED}">
-                        <div id="userprofile-alert" class="alert alert-danger d-flex align-items-center mx-4" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-                            <div>
-                                Ваш аккаунт не активирован. <br> Для доступа ко всем функциям необходимо обратиться в учреждение здравоохранения с паспортом или иным документом удостоверяющим личность.
+                                </div>
                             </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
                         </div>
-                    </c:if>
-                    <!--end::notification-->
-
-
-                    <!--begin::tabs header-->
-                    <ul class="nav nav-tabs m-0" id="tab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Основные</a>
-                        </li>
-
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="auth-tab" data-bs-toggle="tab" href="#auth" role="tab" aria-controls="auth" aria-selected="false">Авторизация</a>
-                        </li>
-
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="false">Адрес</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="passport-tab" data-bs-toggle="tab" href="#passport" role="tab" aria-controls="passport" aria-selected="false">
-                                Паспортные данные
-                                <i id="passport-tab-badge" class="bi bi-exclamation-circle-fill ${user.state != ApplicationUserState.ACTIVATED ? '' : 'collapse'}" style="color: #842029" data-bs-toggle="tooltip" title="Паспортные данные не подверждены"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end::tabs header-->
-                </div>
-                <!--end::tabs header-->
-
-                <!--begin::card body-->
-                <div class="card-body border-top p-3">
-                    <!--begin::tabs content-->
-                    <div class="tab-content mx-4" id="tabContent">
-
-                        <!--begin::tabs overview-->
-                        <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                            <%@include file="../layouts/userprofile/basicinfo.jsp"%>
-                        </div>
-                        <!--end::tabs overview-->
-
-                        <!--begin::tabs auth-->
-                        <div class="tab-pane fade" id="auth" role="tabpanel" aria-labelledby="auth-tab">
-                            <%@include file="../layouts/userprofile/auth.jsp"%>
-                        </div>
-                        <!--begin::tabs auth-->
-
-                        <!--begin::tabs address-->
-                        <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-                            <%@include file="../layouts/userprofile/address.jsp"%>
-                        </div>
-                        <!--end::tabs address-->
-
-                        <!--begin::tabs passport-->
-                        <div class="tab-pane fade" id="passport" role="tabpanel" aria-labelledby="passport-tab">
-                            <%@include file="../layouts/userprofile/passport.jsp"%>
-                        </div>
-                        <!--end::tabs passport-->
-
+                        <!--end::Info-->
                     </div>
-                    <!--end::tabs content-->
+                    <!--end::Details-->
+
+                    <!--begin::Navs-->
+                    <div id="userProfileModalTabsHeader" class="d-flex overflow-auto h-55px">
+                        <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder flex-nowrap">
+                            <!--begin::Nav item-->
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary me-6 active" data-bs-toggle="tab" href="#overview">Обзор</a>
+                            </li>
+                            <!--end::Nav item-->
+                            <!--begin::Nav item-->
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary me-6" data-bs-toggle="tab" href="#auth">Авторизация</a>
+                            </li>
+                            <!--end::Nav item-->
+                            <!--begin::Nav item-->
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary me-6" data-bs-toggle="tab" href="#address">Адрес</a>
+                            </li>
+                            <!--end::Nav item-->
+                            <!--begin::Nav item-->
+                            <li class="nav-item">
+                                <a class="nav-link text-active-primary me-6" data-bs-toggle="tab" href="#passport">Паспортные данные</a>
+                            </li>
+                            <!--end::Nav item-->
+                        </ul>
+                    </div>
+                    <!--begin::Navs-->
+
                 </div>
-                <!--end::card body-->
             </div>
-            <!--end::tabs container-->
 
+            <div class="tab-content" id="tabContent" >
+                <!--begin::tabs overview-->
+                <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                    <%@include file="../layouts/userprofile/basicinfo.jsp"%>
+                </div>
+                <!--end::tabs overview-->
 
+                <!--begin::tabs auth-->
+                <div class="tab-pane fade" id="auth" role="tabpanel">
+                    <%@include file="../layouts/userprofile/auth.jsp"%>
+                </div>
+                <!--end::tabs auth-->
 
+                <!--begin::tabs address-->
+                <div class="tab-pane fade" id="address" role="tabpanel">
+                    <%@include file="../layouts/userprofile/address.jsp"%>
+                </div>
+                <!--end::tabs address-->
+
+                <!--begin::tabs passport-->
+                <div class="tab-pane fade" id="passport" role="tabpanel">
+                    <%@include file="../layouts/userprofile/passport.jsp"%>
+                </div>
+                <!--end::tabs passport-->
+            </div>
         </main>
+        <!--end::Content-->
     </div>
-    <!--end::Content-->
 
     <!--begin::Footer-->
     <%@include file="../layouts/footer.jsp"%>
     <!--end::Footer-->
-
-</div>
+</main>
 <!--end::Main-->
 </body>
 <script>

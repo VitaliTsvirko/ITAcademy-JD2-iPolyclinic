@@ -87,7 +87,7 @@ public class UserBasicDataDTO {
                                             .collect(Collectors.joining(", "));
             }
 
-            this.medicalCardId = user.getMedicalCard().getId();
+            this.medicalCardId = user.getMedicalCard() == null ? null : user.getMedicalCard().getId();
         }
     }
 

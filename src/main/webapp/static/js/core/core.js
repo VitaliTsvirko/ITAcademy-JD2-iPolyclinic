@@ -28,6 +28,6 @@ $.fn.serializeObject = function() {
 function injectAlert(blockId, messageText, alertType){
     jQuery(function($){
         $('<div class="alert ' + alertType + ' alert-dismissible fade show" role="alert">' + messageText +
-            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>').appendTo('#' + blockId);
+            '<button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x fs-2"></i></button></div>').appendTo('#' + blockId);
     });
 }
