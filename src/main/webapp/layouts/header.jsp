@@ -55,7 +55,8 @@
                                         <c:when test="${sessionScope.user.userRole eq UserRoles.MANAGER}">
                                             <ul class="dropdown-menu" aria-labelledby="dropdown01" >
                                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/userprofile">Профиль</a>
-                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/management">Статистика</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/medicalcard/${sessionScope.user.medicalCard.id}">Медкарта</a>
+                                                <a class="dropdown-item" href="${pageContext.request.contextPath}/userhealth">Статистика</a>
                                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Выйти</a>
                                             </ul>
                                         </c:when>
@@ -84,6 +85,11 @@
                                     </li>
                                 </c:if>
 
+                                <c:if test="${sessionScope.user.userRole eq UserRoles.MANAGER}">
+                                    <li class="nav-item mx-3">
+                                        <a class="nav-link" href="${pageContext.request.contextPath}/management">Статистика</a>
+                                    </li>
+                                </c:if>
                             </c:otherwise>
                         </c:choose>
                     </ul>
