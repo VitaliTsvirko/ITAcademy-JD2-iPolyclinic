@@ -12,13 +12,13 @@
     <div class="card-body p-9 text-start">
 
         <div class="row mb-7">
-            <label class="col-lg-3 fw-bold text-muted">Логин</label>
+            <label class="col-lg-3 fw-bold fs-5 text-muted">Логин</label>
             <div class="col-lg-9">
                 <span class="fw-bolder fs-5 text-dark">${requestScope.user.phoneNo}</span>
             </div>
         </div>
         <div class="row mb-7">
-            <label class="col-lg-3 fw-bold text-muted">Пароль</label>
+            <label class="col-lg-3 fw-bold fs-5 text-muted">Пароль</label>
             <div class="col-lg-9">
                 <span class="fw-bolder fs-5 text-dark">*********</span>
             </div>
