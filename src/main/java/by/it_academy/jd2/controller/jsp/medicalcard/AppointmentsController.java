@@ -1,5 +1,6 @@
 package by.it_academy.jd2.controller.jsp.medicalcard;
 
+import by.it_academy.jd2.domain.MedicalCard;
 import by.it_academy.jd2.service.api.IAppointmentsService;
 import by.it_academy.jd2.service.api.IMedicalCardService;
 import by.it_academy.jd2.service.dto.AppointmentDTO;
@@ -28,10 +29,11 @@ public class AppointmentsController {
     public String getAppointmentPageById(@PathVariable Long id, Model model){
         model.addAttribute("appointmentDTO", new AppointmentDTO(appointmentsService.readAppointmentById(id)));
 
-        Long medicalCardId = appointmentsService.readAppointmentById(id).getMedicalCard().getId();
+        MedicalCard medicalCard = appointmentsService.readAppointmentById(id).getMedicalCard();
 
-        model.addAttribute("medicalCardId", medicalCardId);
-        model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(medicalCardId)));
+        model.addAttribute("medicalCardId", medicalCard.getId());
+        model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(medicalCard.getId())));
+        model.addAttribute("userId", medicalCard.getUser().getId());
 
         return "medicalcard/appointment";
     }
