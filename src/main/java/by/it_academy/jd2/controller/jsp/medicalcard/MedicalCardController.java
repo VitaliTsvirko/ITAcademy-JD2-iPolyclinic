@@ -35,6 +35,7 @@ public class MedicalCardController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestUserMedicalId(#id)")
     public String getMedicalCardById(@PathVariable Long id, Model model){
         model.addAttribute("appointmentsList", medicalCardService.getAllAppointments(id)
                                                     .stream()
@@ -43,8 +44,6 @@ public class MedicalCardController {
         model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(id)));
 
         model.addAttribute("medicalCardId", id);
-        model.addAttribute("medicalCardHeight", 0L);
-        model.addAttribute("medicalCardWeight", 0L);
         model.addAttribute("medicalCardAllergy", medicalCardService.getMedicalCardById(id).getAllergy());
 
         return "medicalcard/medicalcard";
@@ -58,12 +57,9 @@ public class MedicalCardController {
                             new AppointmentDTO(appointmentsService.createAppointment(userService.getAuthorizedUser(), id)));
 
         model.addAttribute("medicalCardId", id);
-        model.addAttribute("medicalCardHeight", 0L);
-        model.addAttribute("medicalCardWeight", 0L);
+        model.addAttribute("userId", medicalCardService.getMedicalCardById(id).getUser().getId());
         model.addAttribute("medicalCardAllergy", medicalCardService.getMedicalCardById(id).getAllergy());
-
         model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(id)));
-
         model.addAttribute("diseasesMap", diseasesService.getAllDiseases());
 
         return "medicalcard/appointment";

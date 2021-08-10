@@ -1,6 +1,7 @@
 package by.it_academy.jd2.controller.jsp;
 
 import by.it_academy.jd2.service.api.IUsersMetricsService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class ManagementController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
     public String getPage(Model model){
         model.addAttribute("usersMetrics", usersMetricsService.getUserMetrics());
 

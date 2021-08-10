@@ -38,15 +38,6 @@ public class AppointmentDTO {
     @JsonProperty("complaints")
     private String complaints;
 
-    @JsonProperty("temperature")
-    private Float temperature;
-
-    @JsonProperty("systolic_blood_pressure")
-    private Integer systolicBloodPressure;
-
-    @JsonProperty("diastolic_blood_pressure")
-    private Integer diastolicBloodPressure;
-
     @JsonProperty("diagnosis_code")
     private String diagnosisCode;
 
@@ -145,30 +136,6 @@ public class AppointmentDTO {
 
     public void setComplaints(String complaints) {
         this.complaints = complaints;
-    }
-
-    public Float getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(Float temperature) {
-        this.temperature = temperature;
-    }
-
-    public Integer getSystolicBloodPressure() {
-        return systolicBloodPressure;
-    }
-
-    public void setSystolicBloodPressure(Integer systolicBloodPressure) {
-        this.systolicBloodPressure = systolicBloodPressure;
-    }
-
-    public Integer getDiastolicBloodPressure() {
-        return diastolicBloodPressure;
-    }
-
-    public void setDiastolicBloodPressure(Integer diastolicBloodPressure) {
-        this.diastolicBloodPressure = diastolicBloodPressure;
     }
 
     public String getDiagnosisCode() {

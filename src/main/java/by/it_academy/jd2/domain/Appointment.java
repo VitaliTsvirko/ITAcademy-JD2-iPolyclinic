@@ -37,7 +37,7 @@ public class Appointment {
 
     @OneToOne
     @JoinColumn(name ="user_health_metrics_id", foreignKey=@ForeignKey(name = "FK_appointment_user_health_metrics_id"))
-    private UserHealthMetrics userHealthMetrics;
+    private HealthMetrics userHealthMetrics;
 
     @OneToOne
     @JoinColumn(name = "disease_code", foreignKey=@ForeignKey(name = "FK_disease_code_id"))
@@ -126,11 +126,11 @@ public class Appointment {
         this.medicalCard = medicalCard;
     }
 
-    public UserHealthMetrics getUserHealthMetrics() {
+    public HealthMetrics getHealthMetrics() {
         return userHealthMetrics;
     }
 
-    public void setUserHealthMetrics(UserHealthMetrics userHealthMetrics) {
+    public void setUserHealthMetrics(HealthMetrics userHealthMetrics) {
         this.userHealthMetrics = userHealthMetrics;
     }
 }

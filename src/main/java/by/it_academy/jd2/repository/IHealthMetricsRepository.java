@@ -21,6 +21,6 @@ public interface IHealthMetricsRepository extends JpaRepository<HealthMetrics, L
     List<String[]> findLastUserMetricsByMedicalCardId(@Param("medical_card_id") Long id);
 
 
-    List<HealthMetrics> findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampDesc(HealthMetricsTypes metricType, Long medicalcardId);
+    List<HealthMetrics> findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampAsc(HealthMetricsTypes metricType, Long medicalcardId);
 
 }

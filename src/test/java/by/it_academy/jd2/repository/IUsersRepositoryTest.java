@@ -51,9 +51,6 @@ class IUsersRepositoryTest {
     private IPassportsRepository passportsRepository;
 
     @Autowired
-    private IUserHealthMetricsRepository userHealthMetricsRepository;
-
-    @Autowired
     private IAppointmentsRepository appointmentsRepository;
 
     @Autowired
@@ -110,19 +107,6 @@ class IUsersRepositoryTest {
         Random random = new Random();
 
         for (int i = 0; i < 100; i++) {
-            UserHealthMetrics metrics = new UserHealthMetrics();
-
-            metrics.setCreatedBy(user);
-            metrics.setMedicalCard(user.getMedicalCard());
-            metrics.setTimestamp(LocalDateTime.now().minusDays(i));
-            metrics.setWeight(random.nextInt(100));
-            metrics.setHeight(random.nextInt(200));
-            metrics.setDiastolicBloodPressure(random.nextInt(120));
-            metrics.setSystolicBloodPressure(random.nextInt(200));
-            metrics.setHeartRate(random.nextInt(150));
-
-            userHealthMetricsRepository.save(metrics);
-
             Appointment appointment = new Appointment();
             appointment.setDateTime(LocalDateTime.now().minusDays(i));
             appointment.setDoctor(doctor);

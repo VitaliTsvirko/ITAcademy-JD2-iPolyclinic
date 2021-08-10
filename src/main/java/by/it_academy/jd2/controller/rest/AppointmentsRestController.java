@@ -27,7 +27,6 @@ public class AppointmentsRestController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('DOCTOR')")
     public ResponseEntity<AppointmentDTO> readAppointmentById(@PathVariable Long id){
         return new ResponseEntity<>(new AppointmentDTO(appointmentsService.readAppointmentById(id)), HttpStatus.OK);
     }

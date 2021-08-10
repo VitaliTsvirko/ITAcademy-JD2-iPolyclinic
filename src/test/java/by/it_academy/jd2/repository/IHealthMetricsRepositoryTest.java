@@ -92,7 +92,7 @@ class IHealthMetricsRepositoryTest {
 
     @Test()
     void getMetricByType(){
-        List<HealthMetrics> result = healthMetricsRepository.findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampDesc(HealthMetricsTypes.HEIGHT, 1L);
+        List<HealthMetrics> result = healthMetricsRepository.findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampAsc(HealthMetricsTypes.HEIGHT, 1L);
 
         List<HealthMetricEntityDTO> collect = result.stream().map(entity -> new HealthMetricEntityDTO(entity)).collect(Collectors.toList());
 

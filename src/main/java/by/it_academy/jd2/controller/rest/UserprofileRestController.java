@@ -31,6 +31,7 @@ public class UserprofileRestController {
 
 
     @GetMapping(value = "/{id}/basic", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<UserBasicDataDTO> readUserBasicDataById(@PathVariable Long id){
         try{
             return new ResponseEntity<>(new UserBasicDataDTO(userService.getUserById(id)), HttpStatus.OK);
@@ -40,6 +41,7 @@ public class UserprofileRestController {
     }
 
     @PostMapping("/{id}/address")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<Object> createAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id) {
         try{
             return new ResponseEntity<>(new AddressDTO(userService.createAddress(userService.getUserById(id), addressDTO)), HttpStatus.OK);
@@ -51,7 +53,7 @@ public class UserprofileRestController {
     }
 
     @GetMapping(value = "/{id}/address", produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<AddressDTO> readUserAddressByUserId(@PathVariable Long id){
         try{
             Address address = userService.getUserById(id).getAddress();
@@ -67,6 +69,7 @@ public class UserprofileRestController {
 
 
     @PutMapping("/{id}/address")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<Object> updateAddressByUserId(@RequestBody AddressDTO addressDTO, @PathVariable Long id) {
         try{
             return new ResponseEntity<>(new AddressDTO(userService.updateAddress(userService.getUserById(id), addressDTO)), HttpStatus.OK);
@@ -78,6 +81,7 @@ public class UserprofileRestController {
     }
 
     @DeleteMapping("/{id}/address")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<?> deleteAddress(@PathVariable Long id){
         try{
             userService.deleteAddress(userService.getUserById(id));
@@ -89,11 +93,8 @@ public class UserprofileRestController {
 
 
 
-
-
-
     @GetMapping(value = "/{id}/passport", produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<PassportDTO> readUserPassportByUserId(@PathVariable Long id){
         try{
             Passport passport = userService.getUserById(id).getPassport();
@@ -108,6 +109,7 @@ public class UserprofileRestController {
     }
 
     @PostMapping("/{id}/passport")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<Object> createPassportByUserId(@RequestBody PassportDTO passportDTO, @PathVariable Long id){
         try{
             return new ResponseEntity<>(new PassportDTO(userService.createPassport(userService.getUserById(id), passportDTO)), HttpStatus.OK);
@@ -119,6 +121,7 @@ public class UserprofileRestController {
     }
 
     @PutMapping("/{id}/passport")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<Object> updatePassportByUserId(@RequestBody PassportDTO passportDTO, @PathVariable Long id){
         try{
             return new ResponseEntity<>(new PassportDTO(userService.updatePassport(userService.getUserById(id), passportDTO)), HttpStatus.OK);
@@ -130,6 +133,7 @@ public class UserprofileRestController {
     }
 
     @DeleteMapping("/{id}/passport")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<?> deletePassport(@PathVariable Long id){
         try{
             userService.deletePassport(userService.getUserById(id));
@@ -151,7 +155,5 @@ public class UserprofileRestController {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
     }
-
-
 
 }

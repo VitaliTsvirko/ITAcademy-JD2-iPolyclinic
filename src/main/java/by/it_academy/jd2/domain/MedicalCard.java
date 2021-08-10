@@ -25,7 +25,7 @@ public class MedicalCard {
     private Set<Appointment> appointments = new HashSet<>();
 
     @OneToMany(mappedBy = "medicalCard", fetch = FetchType.EAGER)
-    private Collection<UserHealthMetrics> metrics;
+    private Collection<HealthMetrics> metrics;
 
     @Column(name = "allergy")
     private String allergy;
@@ -66,11 +66,11 @@ public class MedicalCard {
         this.allergy = allergy;
     }
 
-    public Collection<UserHealthMetrics> getMetrics() {
+    public Collection<HealthMetrics> getMetrics() {
         return metrics;
     }
 
-    public void setMetrics(Collection<UserHealthMetrics> metrics) {
+    public void setMetrics(Collection<HealthMetrics> metrics) {
         this.metrics = metrics;
     }
 }

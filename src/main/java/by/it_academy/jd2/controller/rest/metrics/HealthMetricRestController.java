@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -34,12 +35,14 @@ public class HealthMetricRestController {
     }
 
     @GetMapping("/{userId}/healthmetrics")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<?> readAllMetrics(@PathVariable Long userId){
         return new ResponseEntity<>(healthMetricService.getUserAnalysisHealthMetricsByUserId(userId), HttpStatus.OK);
     }
 
 
     @PostMapping("/{userId}/healthmetrics")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public ResponseEntity<?> writeMetrics(@RequestBody HealthMetricEntityDTO[] metricsDTO, @PathVariable Long userId){
         return new ResponseEntity<>(healthMetricService.addMetricsByUserId(Arrays.stream(metricsDTO).collect(Collectors.toList()), userId), HttpStatus.OK);
     }
@@ -48,7 +51,8 @@ public class HealthMetricRestController {
 
 
     @GetMapping("/{userId}/healthmetrics/{type}")
-    public ResponseEntity<?> readWeightsByUserId(@PathVariable Long userId, @PathVariable HealthMetricsTypes type) throws JsonProcessingException {
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
+    public ResponseEntity<?> readMetricByTypeAndByUserId(@PathVariable Long userId, @PathVariable HealthMetricsTypes type) throws JsonProcessingException {
         List<HealthMetricEntityDTO> data = healthMetricService.getMetricDataByUserIdAndMetricType(userId, type);
 
         Map<String, List<String>> chartData = new HashMap<>();
@@ -60,8 +64,5 @@ public class HealthMetricRestController {
 
         return new ResponseEntity<Object>(chartDataString, HttpStatus.OK);
     }
-
-
-
 
 }

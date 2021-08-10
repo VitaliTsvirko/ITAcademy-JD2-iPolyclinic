@@ -4,6 +4,7 @@ import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.service.HealthMetricService;
 import by.it_academy.jd2.service.api.IUserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,7 @@ public class UserHealthController {
 
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
     public String getPage(Model model){
         User user = userService.getAuthorizedUser();
 
@@ -44,8 +46,9 @@ public class UserHealthController {
 
 
     @GetMapping("/{userId}/healthmetrics/{type}")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#userId)")
     public String getMetricInfoPage(Model model, @PathVariable Long userId, @PathVariable String type){
-        User user = userService.getAuthorizedUser();
+        User user = userService.getUserById(userId);
 
         model.addAttribute("userId", user.getId());
         model.addAttribute("metricType", HealthMetricsTypes.valueOf(type.toUpperCase(Locale.ROOT)));

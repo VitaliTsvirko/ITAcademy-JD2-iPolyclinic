@@ -6,13 +6,6 @@ jQuery(function($){
     })
 });
 
-function injectAlert(blockId, messageText, alertType){
-    jQuery(function($){
-        $('<div class="alert ' + alertType + ' alert-dismissible fade show" role="alert">' + messageText +
-            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>').appendTo('#' + blockId);
-    });
-}
-
 function saveAppointmentData() {
     jQuery(function ($) {
         let id = $('#id').val();
@@ -21,9 +14,6 @@ function saveAppointmentData() {
             id: id,
             type: $('input[name=appointmentType]:checked', '#form-appointment').val(),
             complaints: $('#complaints').val(),
-            temperature: $('#temperature').val(),
-            systolic_blood_pressure: $('#systolicBloodPressure').val(),
-            diastolic_blood_pressure: $('#diastolicBloodPressure').val(),
             diagnosis_code: $('.js-diseases-search').val(),
             therapy: $('#therapy').val(),
             health_status: $('input[name=health_status]:checked', '#form-appointment').val()
@@ -37,12 +27,9 @@ function saveAppointmentData() {
             contentType: 'application/json; charset=utf-8',
             data: form_data,
             success: function (result) {
-                //injectAlert("address-tab-alert", "Данные успешно обновлены", AlertsTypes.SUCCESS);
-                //readBasicUserData(id);
                 alert('Данные успешно сохранены')
             },
             error: function (xhr, resp, text) {
-                //injectAlert("address-tab-alert", "Ошибка!" + xhr.responseJSON.message, AlertsTypes.ERROR);
                 alert('Ошибка')
             }
         });
@@ -50,6 +37,87 @@ function saveAppointmentData() {
     });
 }
 
+
+function addMetrics() {
+    jQuery(function ($) {
+        let id = $('#user_id').val();
+
+        let metrics = [];
+        $.each($('#form-user-metrics :input').serializeArray(), function(i, field) {
+            if (!$.isEmptyObject(field.value)){
+                let metric = {
+                    'type' : field.name,
+                    'value' : field.value
+                }
+                metrics.push(metric);
+            }
+        });
+
+        let form_data = JSON.stringify(metrics);
+
+        if (metrics.length !== 0) {
+            $.ajax({
+                url: BASE_URL + '/api/user/' + id + '/healthmetrics',
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                data: form_data,
+                success: function (result, textStatus, jqXHR) {
+                    //injectAlert("address-tab-alert", "Данные успешно обновлены", AlertsTypes.SUCCESS);
+                    //readBasicUserData(id);
+                    updateUserHealthBasicMetric(result);
+                    alert('Данные успешно сохранены')
+                },
+                error: function (xhr, resp, text) {
+                    //injectAlert("address-tab-alert", "Ошибка!" + xhr.responseJSON.message, AlertsTypes.ERROR);
+                    alert('Ошибка')
+                }
+            });
+        }
+        return false;
+    });
+}
+
+
+
+jQuery(function ($) {
+    $(document).ready(function() {
+        readUserHealthBasicMetric();
+    });
+});
+
+
+function readUserHealthBasicMetric(){
+    jQuery(function ($) {
+
+        let id = $("#user_id").val();
+
+        $.getJSON(BASE_URL + '/api/user/' + id + '/healthmetrics', function (result, textStatus, jqXHR) {
+            updateUserHealthBasicMetric(result);
+        }).fail(function(jqxhr, textStatus, error) {
+            alert( "Ошибка при получении данных.\nError detail:\nHTTP status " + jqxhr.status + "\n error: " + error);
+        })
+    });
+}
+
+
+function updateUserHealthBasicMetric(data){
+    jQuery(function ($) {
+        if (!$.isEmptyObject(data)) {
+            //store data to page
+            $.each(data, function(index, item) {
+                $('#' + item.type + "_value").text(Math.round(item.value * 10)/10);
+                $('#' + item.type + "_timestamp").text(item.timestamp.split(" ")[0]);
+            });
+
+            // jQuery counterUp
+            $('[data-toggle="counterUp"]').counterUp({
+                delay: 15,
+                time: 1500
+            });
+        }
+    });
+
+}
 
 
 

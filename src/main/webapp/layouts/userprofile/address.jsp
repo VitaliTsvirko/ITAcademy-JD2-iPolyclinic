@@ -2,7 +2,7 @@
 
 <div class="card mb-5 mb-xl-10">
     <!--begin::Card header-->
-    <div class="card-header cursor-pointer">
+    <div class="card-header">
         <div class="card-title m-0">
             <h3 class="fw-bolder m-0">Адрес</h3>
         </div>

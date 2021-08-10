@@ -17,6 +17,7 @@
     <!-- Charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js" integrity="sha512-asxKqQghC1oBShyhiBwA+YgotaSYKxGP1rcSYTDrB0U6DxwlJjU59B67U8+5/++uFjcuVM8Hh5cokLjZlhm3Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <input type="hidden" id="user_id" value="${requestScope.userId}">
 </head>
 
 <!--begin::Body-->
@@ -30,7 +31,6 @@
 
     <!--begin::Content-->
     <div class="d-flex flex-column flex-column-fluid text-center p-10 py-lg-20">
-        <input type="hidden" id="user_id" value="${requestScope.userId}">
         <main class="container">
 
             <div class="row row-cols-4 row-cols-lg-5 g-4">
@@ -213,56 +213,7 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="addUserMetrics" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Добавление данных</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id='form-user-metrics' action='#' method='post'>
-                                <div class="row mb-7 p-2">
-                                    <label class="col-lg-5 col-form-label required fw-bold fs-6">Вес</label>
-                                    <div class="col-lg-4">
-                                        <input type="number" name="${HealthMetricsTypes.WEIGHT}" min="${HealthMetricsUtils.WEIGHT_MIN}" max="${HealthMetricsUtils.WEIGHT_MAX}"  placeholder="${HealthMetricsTypes.WEIGHT.unit}" class="form-control form-control-lg form-control-solid" />
-                                    </div>
-                                </div>
-                                <div class="row mb-7 p-2">
-                                    <label class="col-lg-5 col-form-label required fw-bold fs-6">Рост</label>
-                                    <div class="col-lg-4">
-                                        <input type="number" name="${HealthMetricsTypes.HEIGHT}" min="${HealthMetricsUtils.HEIGHT_MIN}" max="${HealthMetricsUtils.HEIGHT_MAX}"  placeholder="${HealthMetricsTypes.HEIGHT.unit}" class="form-control form-control-lg form-control-solid"/>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row mb-7 p-2">
-                                    <label class="col-lg-5 col-form-label required fw-bold fs-6">Cистолическое АД</label>
-                                    <div class="col-lg-4">
-                                        <input type="number" name="${HealthMetricsTypes.AD_SYS}" min="${HealthMetricsUtils.DIA_AD_MIN}" max="${HealthMetricsUtils.SYS_AD_MAX}"  placeholder="${HealthMetricsTypes.AD_SYS.unit}" class="form-control form-control-lg form-control-solid"/>
-                                    </div>
-                                </div>
-                                <div class="row mb-7 p-2">
-                                    <label class="col-lg-5 col-form-label required fw-bold fs-6">Диастолическое АД</label>
-                                    <div class="col-lg-4">
-                                        <input type="numer" name="${HealthMetricsTypes.AD_DIA}" min="${HealthMetricsUtils.DIA_AD_MIN}" max="${HealthMetricsUtils.DIA_AD_MAX}"  placeholder="${HealthMetricsTypes.AD_DIA.unit}" class="form-control form-control-lg form-control-solid"/>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row mb-7 p-2">
-                                    <label class="col-lg-5 col-form-label required fw-bold fs-6">Пульс</label>
-                                    <div class="col-lg-4">
-                                        <input type="text" name="${HealthMetricsTypes.HEART_RATE}" min="${HealthMetricsUtils.HEART_RATE_MIN}" max="${HealthMetricsUtils.HEART_RATE_MAX}"  placeholder="${HealthMetricsTypes.HEART_RATE.unit}" class="form-control form-control-lg form-control-solid"/>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick="addMetrics()">Добавить</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%@include file="layouts/modal/addhealthmetrics.jsp"%>
 
 
 

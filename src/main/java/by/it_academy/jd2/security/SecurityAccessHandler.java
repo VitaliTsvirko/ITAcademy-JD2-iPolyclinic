@@ -28,6 +28,16 @@ public class SecurityAccessHandler {
             .orElse(true);
     }
 
+    public boolean isAuthenticationUserIdEqualsRequestUserMedicalId(Optional<Long> medicalCardId){
+        return medicalCardId.map(id -> {
+                    Long authorizedUserMedicalCardId = Optional.ofNullable(userService.getAuthorizedUser().getMedicalCard())
+                            .map(medicalcard -> medicalcard.getId())
+                            .orElse(null);
+
+                    return id.equals(authorizedUserMedicalCardId);
+                })
+                .orElse(false);
+    }
 
     public boolean isAllowPassportConfirm(Optional<Long> userId){
         User authorizedUser = userService.getAuthorizedUser();

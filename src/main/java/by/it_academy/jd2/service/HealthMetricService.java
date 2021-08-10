@@ -113,7 +113,7 @@ public class HealthMetricService {
 
     public List<HealthMetricEntityDTO> getMetricDataByUserIdAndMetricType(Long userId, HealthMetricsTypes metricType){
         return medicalCardRepository.findByUserId(userId).map(medicalCard ->
-                        healthMetricsRepository.findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampDesc(metricType, medicalCard.getId()).stream().map(
+                        healthMetricsRepository.findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampAsc(metricType, medicalCard.getId()).stream().map(
                                 entity -> new HealthMetricEntityDTO(entity)).collect(Collectors.toList())
                         ).orElseThrow(() -> new MedicalCardNotFoundException("Medical card of user with id = " + userId + " was nor found"));
     }
