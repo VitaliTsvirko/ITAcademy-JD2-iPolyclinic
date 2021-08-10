@@ -19,8 +19,8 @@ public class HealthMetricsHandler implements IHealthMetricHandler{
 
     private final HealthMetricsCalculator healthMetricsCalculator;
 
-    public HealthMetricsHandler(HealthMetricsCalculator healthMetricsHandler) {
-        this.healthMetricsCalculator = healthMetricsHandler;
+    public HealthMetricsHandler(HealthMetricsCalculator healthMetricsCalculator) {
+        this.healthMetricsCalculator = healthMetricsCalculator;
     }
 
     /**

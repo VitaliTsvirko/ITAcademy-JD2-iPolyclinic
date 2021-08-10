@@ -12,6 +12,7 @@ import by.it_academy.jd2.domain.enumeration.GenderType;
 import by.it_academy.jd2.repository.IHealthMetricsRepository;
 import by.it_academy.jd2.repository.IMedicalCardRepository;
 import by.it_academy.jd2.repository.IUsersRepository;
+import by.it_academy.jd2.service.api.IHealthMetricService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +29,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @Transactional
-public class HealthMetricService {
+public class HealthMetricService implements IHealthMetricService {
 
     private final IUsersRepository usersRepository;
 
@@ -45,7 +46,7 @@ public class HealthMetricService {
         this.medicalCardRepository = medicalCardRepository;
     }
 
-
+    @Override
     @Transactional(readOnly = true)
     public List<HealthMetricAnalysisDTO> getUserAnalysisHealthMetricsByUserId(Long userId){
         GenderType genderType = Optional.ofNullable(usersRepository.getById(userId).getPassport())
@@ -57,7 +58,7 @@ public class HealthMetricService {
         return analysisMetrics;
     }
 
-
+    @Override
     @Transactional(readOnly = true)
     public List<HealthMetricEntityDTO> getUserHealthMetricsByUserId(Long userId){
         return medicalCardRepository.findByUserId(userId)
@@ -72,7 +73,7 @@ public class HealthMetricService {
     }
 
 
-
+    @Override
     public List<HealthMetricAnalysisDTO> addMetricsByUserId(List<HealthMetricEntityDTO> metricEntityDTOS, Long userId){
         return medicalCardRepository.findByUserId(userId).map(medicalCard -> {
             metricEntityDTOS.forEach(metric -> {
@@ -110,10 +111,10 @@ public class HealthMetricService {
 
     }
 
-
+    @Override
     public List<HealthMetricEntityDTO> getMetricDataByUserIdAndMetricType(Long userId, HealthMetricsTypes metricType){
         return medicalCardRepository.findByUserId(userId).map(medicalCard ->
-                        healthMetricsRepository.findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampAsc(metricType, medicalCard.getId()).stream().map(
+                        healthMetricsRepository.findHealthMetricsByMetricTypeAndAndMedicalCardIdOrderByTimestampAsc(metricType, medicalCard.getId()).stream().map(
                                 entity -> new HealthMetricEntityDTO(entity)).collect(Collectors.toList())
                         ).orElseThrow(() -> new MedicalCardNotFoundException("Medical card of user with id = " + userId + " was nor found"));
     }

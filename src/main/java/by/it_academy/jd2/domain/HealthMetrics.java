@@ -4,9 +4,10 @@ import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
-@Table(name = "user_health_metrics_2")
+@Table(name = "user_health_metrics")
 public class HealthMetrics {
 
     @Id
@@ -15,7 +16,7 @@ public class HealthMetrics {
 
     @Column(name = "metric_type", nullable = false)
     @Enumerated(EnumType.STRING)
-    private HealthMetricsTypes types;
+    private HealthMetricsTypes metricType;
 
     @Column(name = "metric_value", nullable = false)
     private Double value;
@@ -36,7 +37,7 @@ public class HealthMetrics {
     }
 
     public HealthMetrics(HealthMetricsTypes types, Double value, LocalDateTime timestamp, User createdBy, MedicalCard medicalCard) {
-        this.types = types;
+        this.metricType = types;
         this.value = value;
         this.timestamp = timestamp;
         this.createdBy = createdBy;
@@ -51,12 +52,12 @@ public class HealthMetrics {
         this.id = id;
     }
 
-    public HealthMetricsTypes getTypes() {
-        return types;
+    public HealthMetricsTypes getMetricType() {
+        return metricType;
     }
 
-    public void setTypes(HealthMetricsTypes types) {
-        this.types = types;
+    public void setMetricType(HealthMetricsTypes metricType) {
+        this.metricType = metricType;
     }
 
     public Double getValue() {
@@ -89,5 +90,30 @@ public class HealthMetrics {
 
     public void setMedicalCard(MedicalCard medicalCard) {
         this.medicalCard = medicalCard;
+    }
+
+    @Override
+    public String toString() {
+        return "HealthMetrics{" +
+                "id=" + id +
+                ", metricType=" + metricType +
+                ", value=" + value +
+                ", timestamp=" + timestamp +
+                ", createdBy=" + createdBy +
+                ", medicalCard=" + medicalCard +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HealthMetrics metrics = (HealthMetrics) o;
+        return Objects.equals(id, metrics.id) && metricType == metrics.metricType && Objects.equals(value, metrics.value) && Objects.equals(timestamp, metrics.timestamp) && Objects.equals(createdBy, metrics.createdBy) && Objects.equals(medicalCard, metrics.medicalCard);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, metricType, value, timestamp, createdBy, medicalCard);
     }
 }

@@ -6,6 +6,7 @@ import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
 import by.it_academy.jd2.domain.HealthMetrics;
 import by.it_academy.jd2.domain.MedicalCard;
 import by.it_academy.jd2.domain.User;
+import by.it_academy.jd2.service.HealthMetricService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -39,60 +40,22 @@ class IHealthMetricsRepositoryTest {
     @Autowired
     private IMedicalCardRepository medicalCardRepository;
 
-
-
     @Test()
-    void createMetrics(){
-        User user = usersRepository.findByPhoneNo("user").get();
-        MedicalCard medicalCard = user.getMedicalCard();
+    void getLastMetricsByUserId(){
+        usersRepository.findById(84L).ifPresent(user -> {
+            MedicalCard medicalCard = user.getMedicalCard();
+            List<String[]> result = healthMetricsRepository.findLastUserMetricsByMedicalCardId(medicalCard.getId());
+            result.forEach(s -> System.out.println(s));
+            }
+        );
 
-       /* for (int i = 0; i < 10; i++) {
-            HealthMetrics metric = new HealthMetrics();
-            metric.setCreatedBy(user);
-            metric.setMedicalCard(medicalCard);
-
-            metric.setTypes(UserHealthMetricsTypes.HEART_RATE);
-            metric.setValue(70.0 + i * 10);
-            metric.setTimestamp(LocalDateTime.now().minusDays(i));
-
-            healthMetricsRepository.save(metric);
-        }
-
-        for (int i = 0; i < 10; i++) {
-            HealthMetrics metric = new HealthMetrics();
-            metric.setCreatedBy(user);
-            metric.setMedicalCard(medicalCard);
-
-            metric.setTypes(UserHealthMetricsTypes.WEIGHT);
-            metric.setValue(70.0 + i);
-            metric.setTimestamp(LocalDateTime.now().minusDays(i*2));
-
-            healthMetricsRepository.save(metric);
-        }
-*/
-
-        HealthMetrics metric = new HealthMetrics();
-        metric.setCreatedBy(user);
-        metric.setMedicalCard(medicalCard);
-
-        metric.setTypes(HealthMetricsTypes.HEIGHT);
-        metric.setValue(176.0);
-        metric.setTimestamp(LocalDateTime.now().minusDays(30));
-
-        healthMetricsRepository.save(metric);
-
-
-        /*
-        timestamp
-         */
-
-
+        System.out.printf("end");
     }
 
 
     @Test()
     void getMetricByType(){
-        List<HealthMetrics> result = healthMetricsRepository.findHealthMetricsByTypesAndAndMedicalCardIdOrderByTimestampAsc(HealthMetricsTypes.HEIGHT, 1L);
+        List<HealthMetrics> result = healthMetricsRepository.findHealthMetricsByMetricTypeAndAndMedicalCardIdOrderByTimestampAsc(HealthMetricsTypes.HEIGHT, 1L);
 
         List<HealthMetricEntityDTO> collect = result.stream().map(entity -> new HealthMetricEntityDTO(entity)).collect(Collectors.toList());
 

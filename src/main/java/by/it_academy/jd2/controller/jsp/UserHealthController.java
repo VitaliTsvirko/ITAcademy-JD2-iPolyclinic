@@ -3,6 +3,7 @@ package by.it_academy.jd2.controller.jsp;
 import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
 import by.it_academy.jd2.domain.User;
 import by.it_academy.jd2.service.HealthMetricService;
+import by.it_academy.jd2.service.api.IHealthMetricService;
 import by.it_academy.jd2.service.api.IUserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,9 @@ public class UserHealthController {
 
     private final IUserService userService;
 
-    private final HealthMetricService healthMetricService;
+    private final IHealthMetricService healthMetricService;
 
-    public UserHealthController(IUserService userService, HealthMetricService healthMetricService) {
+    public UserHealthController(IUserService userService, IHealthMetricService healthMetricService) {
         this.userService = userService;
         this.healthMetricService = healthMetricService;
     }

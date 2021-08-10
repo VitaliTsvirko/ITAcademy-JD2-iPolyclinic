@@ -4,6 +4,7 @@ import by.it_academy.jd2.config.Constants;
 import by.it_academy.jd2.core.healthmetrics.dto.HealthMetricEntityDTO;
 import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
 import by.it_academy.jd2.service.HealthMetricService;
+import by.it_academy.jd2.service.api.IHealthMetricService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -22,11 +23,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/user")
 public class HealthMetricRestController {
 
-    private final HealthMetricService healthMetricService;
+    private final IHealthMetricService healthMetricService;
 
     private final ObjectMapper objectMapper;
 
-    public HealthMetricRestController(HealthMetricService healthMetricService, ObjectMapper objectMapper) {
+    public HealthMetricRestController(IHealthMetricService healthMetricService, ObjectMapper objectMapper) {
         this.healthMetricService = healthMetricService;
         this.objectMapper = objectMapper;
     }

@@ -42,7 +42,7 @@ public class MedicalCardController {
                                                     .map(a -> new AppointmentDTO(a))
                                                     .collect(Collectors.toList()));
         model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(id)));
-
+        model.addAttribute("authUser", new UserBasicDataDTO(userService.getAuthorizedUser()));
         model.addAttribute("medicalCardId", id);
         model.addAttribute("medicalCardAllergy", medicalCardService.getMedicalCardById(id).getAllergy());
 

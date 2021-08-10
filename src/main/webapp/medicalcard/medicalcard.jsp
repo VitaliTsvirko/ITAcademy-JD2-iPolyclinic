@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="by.it_academy.jd2.domain.enumeration.GenderType" %>
+<%@ page import="by.it_academy.jd2.domain.enumeration.UserRoles" %>
 
 <html>
 <head>
@@ -51,7 +52,9 @@
                             <th scope="col">Диагноз</th>
                             <th scope="col">Рекомендовано</th>
                             <th scope="col">Заключение</th>
-                            <th scope="col">Действия</th>
+                            <c:if test="${not authUser.userRole.equals(UserRoles.USER)}">
+                                <th scope="col">Действия</th>
+                            </c:if>
                         </tr>
                         </thead>
                         <tbody class="fs-6 fw-bold text-gray-700">
@@ -64,9 +67,11 @@
                                 <td>${app.diagnosisName}</td>
                                 <td>${app.therapy}</td>
                                 <td>${app.healthStatus}</td>
-                                <td>
-                                    <a href="${pageContext.request.contextPath}/appointment/${app.id}" target="_blank"> <span class="btn btn-light-success fw-bold">Редактировать</span></a>
-                                </td>
+                                <c:if test="${not authUser.userRole.equals(UserRoles.USER)}">
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/appointment/${app.id}" target="_blank"> <span class="btn btn-light-success fw-bold">Редактировать</span></a>
+                                    </td>
+                                </c:if>
                             </tr>
                         </c:forEach>
                         </tbody>

@@ -60,7 +60,11 @@ function addMetrics() {
                     //injectAlert("address-tab-alert", "Данные успешно обновлены", AlertsTypes.SUCCESS);
                     //readBasicUserData(id);
                     updateUserHealthBasicMetric(result);
-                    alert('Данные успешно сохранены')
+                    alert('Данные успешно сохранены');
+
+                    //clear form
+                    $('#form-user-metrics')[0].reset();
+
                 },
                 error: function (xhr, resp, text) {
                     //injectAlert("address-tab-alert", "Ошибка!" + xhr.responseJSON.message, AlertsTypes.ERROR);

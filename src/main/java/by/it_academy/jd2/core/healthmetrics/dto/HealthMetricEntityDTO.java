@@ -40,7 +40,7 @@ public class HealthMetricEntityDTO {
     }
 
     public HealthMetricEntityDTO(HealthMetrics entity) {
-        this.type = entity.getTypes();
+        this.type = entity.getMetricType();
         this.value = entity.getValue();
         this.timestamp = entity.getTimestamp();
     }
@@ -50,7 +50,7 @@ public class HealthMetricEntityDTO {
         return type;
     }
 
-    public void setTypes(HealthMetricsTypes type) {
+    public void setType(HealthMetricsTypes type) {
         this.type = type;
     }
 
