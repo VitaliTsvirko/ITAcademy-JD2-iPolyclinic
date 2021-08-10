@@ -1,5 +1,6 @@
 package by.it_academy.jd2.controller.jsp.medicalcard;
 
+import by.it_academy.jd2.core.exceptions.MedicalCardNotFoundException;
 import by.it_academy.jd2.service.api.IAppointmentsService;
 import by.it_academy.jd2.service.api.IDiseasesService;
 import by.it_academy.jd2.service.api.IMedicalCardService;
@@ -37,16 +38,20 @@ public class MedicalCardController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestUserMedicalId(#id)")
     public String getMedicalCardById(@PathVariable Long id, Model model){
-        model.addAttribute("appointmentsList", medicalCardService.getAllAppointments(id)
-                                                    .stream()
-                                                    .map(a -> new AppointmentDTO(a))
-                                                    .collect(Collectors.toList()));
-        model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(id)));
-        model.addAttribute("authUser", new UserBasicDataDTO(userService.getAuthorizedUser()));
-        model.addAttribute("medicalCardId", id);
-        model.addAttribute("medicalCardAllergy", medicalCardService.getMedicalCardById(id).getAllergy());
+        try{
+            model.addAttribute("appointmentsList", medicalCardService.getAllAppointments(id)
+                    .stream()
+                    .map(a -> new AppointmentDTO(a))
+                    .collect(Collectors.toList()));
+            model.addAttribute("patientData", new UserBasicDataDTO(medicalCardService.getUserByMedicalCardId(id)));
+            model.addAttribute("authUser", new UserBasicDataDTO(userService.getAuthorizedUser()));
+            model.addAttribute("medicalCardId", id);
+            model.addAttribute("medicalCardAllergy", medicalCardService.getMedicalCardById(id).getAllergy());
 
-        return "medicalcard/medicalcard";
+            return "medicalcard/medicalcard";
+        } catch (MedicalCardNotFoundException e) {
+            return "error";
+        }
     }
 
 
