@@ -1,19 +1,6 @@
 package by.it_academy.jd2.core.healthmetrics;
 
-import by.it_academy.jd2.core.healthmetrics.dto.HealthMetricAnalysisDTO;
-import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricStatus;
-import by.it_academy.jd2.domain.enumeration.GenderType;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
 @DisplayName("Testing HealthMetricsUtils")

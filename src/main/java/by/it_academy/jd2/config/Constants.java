@@ -1,7 +1,5 @@
 package by.it_academy.jd2.config;
 
-import java.time.format.DateTimeFormatter;
-
 /**
  * Created by Vitali Tsvirko
  */

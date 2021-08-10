@@ -6,8 +6,6 @@ import by.it_academy.jd2.core.healthmetrics.analysers.HeartRateIndexAnalyser;
 import by.it_academy.jd2.core.healthmetrics.analysers.PhysicalLevelIndexAnalyser;
 import by.it_academy.jd2.core.healthmetrics.analysers.IHealthMetricAnalyser;
 
-import java.util.Optional;
-
 public enum HealthMetricsTypes {
     WEIGHT ("Вес", "кг", null),
     HEIGHT ("Рост", "см", null),

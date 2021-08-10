@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.LongStream;
 
 /**
  * Created by Vitali Tsvirko
@@ -24,7 +23,7 @@ import java.util.stream.LongStream;
 @RequestMapping("/api/management")
 public class AppointmentMetricsRestController {
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     public AppointmentMetricsRestController(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;

@@ -2,10 +2,6 @@ package by.it_academy.jd2.domain;
 
 import by.it_academy.jd2.domain.enumeration.AppointmentType;
 import by.it_academy.jd2.domain.enumeration.HealthStatus;
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

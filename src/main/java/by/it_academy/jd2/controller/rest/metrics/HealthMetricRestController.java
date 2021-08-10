@@ -2,7 +2,6 @@ package by.it_academy.jd2.controller.rest.metrics;
 
 import by.it_academy.jd2.config.Constants;
 import by.it_academy.jd2.core.healthmetrics.dto.HealthMetricEntityDTO;
-import by.it_academy.jd2.core.healthmetrics.dto.UserHealthMetricDTO;
 import by.it_academy.jd2.core.healthmetrics.enumeration.HealthMetricsTypes;
 import by.it_academy.jd2.service.HealthMetricService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -12,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,14 +32,14 @@ public class HealthMetricRestController {
     }
 
     @GetMapping("/{userId}/healthmetrics")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#userId)")
     public ResponseEntity<?> readAllMetrics(@PathVariable Long userId){
         return new ResponseEntity<>(healthMetricService.getUserAnalysisHealthMetricsByUserId(userId), HttpStatus.OK);
     }
 
 
     @PostMapping("/{userId}/healthmetrics")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#userId)")
     public ResponseEntity<?> writeMetrics(@RequestBody HealthMetricEntityDTO[] metricsDTO, @PathVariable Long userId){
         return new ResponseEntity<>(healthMetricService.addMetricsByUserId(Arrays.stream(metricsDTO).collect(Collectors.toList()), userId), HttpStatus.OK);
     }
@@ -51,7 +48,7 @@ public class HealthMetricRestController {
 
 
     @GetMapping("/{userId}/healthmetrics/{type}")
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#id)")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'DOCTOR') or @securityAccessHandler.isAuthenticationUserIdEqualsRequestId(#userId)")
     public ResponseEntity<?> readMetricByTypeAndByUserId(@PathVariable Long userId, @PathVariable HealthMetricsTypes type) throws JsonProcessingException {
         List<HealthMetricEntityDTO> data = healthMetricService.getMetricDataByUserIdAndMetricType(userId, type);
 

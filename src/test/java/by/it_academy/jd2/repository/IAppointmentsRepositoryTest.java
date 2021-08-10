@@ -3,7 +3,6 @@ package by.it_academy.jd2.repository;
 import by.it_academy.jd2.config.JacksonConfig;
 import by.it_academy.jd2.config.PersistentConfig;
 import by.it_academy.jd2.domain.Appointment;
-import by.it_academy.jd2.service.api.IAppointmentsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -20,17 +19,9 @@ import javax.transaction.Transactional;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

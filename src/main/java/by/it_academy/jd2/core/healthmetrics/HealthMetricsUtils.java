@@ -1,26 +1,24 @@
 package by.it_academy.jd2.core.healthmetrics;
 
-import java.util.Optional;
-
 public class HealthMetricsUtils {
 
-    public static Double WEIGHT_MIN = 0.0;
-    public static Double WEIGHT_MAX = 1000.0;
+    public static final Double WEIGHT_MIN = 0.0;
+    public static final Double WEIGHT_MAX = 1000.0;
 
-    public static Double HEIGHT_MIN = 0.0;
-    public static Double HEIGHT_MAX = 300.0;
+    public static final Double HEIGHT_MIN = 0.0;
+    public static final Double HEIGHT_MAX = 300.0;
 
-    public static Integer SYS_AD_MIN = 40;
-    public static Integer SYS_AD_MAX = 300;
+    public static final Integer SYS_AD_MIN = 40;
+    public static final Integer SYS_AD_MAX = 300;
 
-    public static Integer DIA_AD_MAX = 300;
-    public static Integer DIA_AD_MIN = 40;
+    public static final Integer DIA_AD_MAX = 300;
+    public static final Integer DIA_AD_MIN = 40;
 
-    public static Integer HEART_RATE_MAX = 300;
-    public static Integer HEART_RATE_MIN = 20;
+    public static final Integer HEART_RATE_MAX = 300;
+    public static final Integer HEART_RATE_MIN = 20;
 
-    public static Integer AGE_MIN = 0;
-    public static Integer AGE_MAX = 150;
+    public static final Integer AGE_MIN = 0;
+    public static final Integer AGE_MAX = 150;
 
     private HealthMetricsUtils(){
 

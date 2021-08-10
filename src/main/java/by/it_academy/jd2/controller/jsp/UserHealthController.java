@@ -52,8 +52,31 @@ public class UserHealthController {
 
         model.addAttribute("userId", user.getId());
         model.addAttribute("metricType", HealthMetricsTypes.valueOf(type.toUpperCase(Locale.ROOT)));
-        model.addAttribute("metricDescription", "Индекс массы тееа (англ. body mass index (BMI), ИМТ) — величина, позволяющая оценить степень соответствия массы человека и его роста и тем самым косвенно судить о том, является ли масса недостаточной, нормальной или избыточной.");
+        model.addAttribute("metricDescription", getMetricDescription(HealthMetricsTypes.valueOf(type.toUpperCase(Locale.ROOT))));
 
         return "metricinfo";
     }
+
+
+    private String getMetricDescription(HealthMetricsTypes type){
+        if (type.equals(HealthMetricsTypes.BMI)){
+            return "Индекс массы тела (англ. body mass index (BMI), ИМТ) — величина, позволяющая оценить степень соответствия массы человека и его роста и тем самым косвенно судить о том, является ли масса недостаточной, нормальной или избыточной.";
+        }
+
+        if (type.equals(HealthMetricsTypes.HEART_RATE)){
+            return "Пульс (от лат. pulsus — удар, толчок) — толчкообразные колебания стенок артерий, связанные с сердечными циклами. В более широком смысле под пульсом понимают любые изменения в сосудистой системе, связанные с деятельностью сердца, поэтому в клинике различают артериальный, венозный и капиллярный пульс. Является одним из основных и старейших биомаркеров.";
+        }
+
+        if (type.equals(HealthMetricsTypes.BODY_TEMPERATURE)) {
+            return "Температура тела — комплексный показатель теплового состояния организма животных, включая человека. Является одним из основных и старейших биомаркеров.";
+        }
+
+        if (type.equals(HealthMetricsTypes.PHYS_LEVEL)){
+            return "Индекс физического состояния";
+        }
+
+        return "Описание будет добавлено позже";
+    }
+
+
 }

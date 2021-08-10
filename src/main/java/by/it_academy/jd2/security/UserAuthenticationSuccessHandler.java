@@ -1,7 +1,6 @@
 package by.it_academy.jd2.security;
 
 import by.it_academy.jd2.domain.User;
-import by.it_academy.jd2.domain.enumeration.UserRoles;
 import by.it_academy.jd2.repository.IUsersRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -32,9 +31,10 @@ public class UserAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         HttpSession session = request.getSession(false);
         if (session != null) {
-            User loginUser = usersRepository.findByPhoneNo(authentication.getName()).get();
-
-            session.setAttribute("user", loginUser);
+            usersRepository.findByPhoneNo(authentication.getName())
+                    .ifPresent( loginUser ->
+                        session.setAttribute("user", loginUser)
+                    );
 
             //redirect to request page
             SavedRequest saveRequest = new HttpSessionRequestCache().getRequest(request, response);

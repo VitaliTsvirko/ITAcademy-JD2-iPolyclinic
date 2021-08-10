@@ -2,8 +2,6 @@ package by.it_academy.jd2.core.healthmetrics.dto;
 
 import by.it_academy.jd2.domain.enumeration.GenderType;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 /**
  * Created by Vitali Tsvirko
  */

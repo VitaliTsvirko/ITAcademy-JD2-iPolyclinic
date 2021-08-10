@@ -17,7 +17,7 @@ public class PhysicalLevelIndexAnalyser implements IHealthMetricAnalyser {
     /**
      * Тектовые значения оценки физического состояния
      */
-    public static Map<HealthMetricStatus, String> physicalLevelIndexStatus = Map.of(
+    public static final Map<HealthMetricStatus, String> physicalLevelIndexStatus = Map.of(
             HealthMetricStatus.LLOW, "Ниже среднего",
             HealthMetricStatus.LOW, "Низкий",
             HealthMetricStatus.OK, "Средний",
